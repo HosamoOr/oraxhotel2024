@@ -1,0 +1,298 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+
+}
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">كل العملاء </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                            <button type="button" class="btn btn-primary"
+                                    onclick="@("window.location.href='" + @Url.Action("Create1", "Customers") + "'");"
+                                    new { id=5 })">
+
+                                <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="@Url.Action("Index")">عملائي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="@Url.Action("allCusomer")">كل العملاء</a>
+                    </li>
+
+
+                </ul>
+                <br />
+                <br />
+
+                <div class="table-responsive">
+
+                    <div id="toolbar" class="select">
+                        <select class="form-control">
+                            <option value="">اساسي</option>
+                            <option value="selected">صفوف معينة</option>
+
+                            @*<option value="all">الكل</option>*@
+
+                        </select>
+                    </div>
+
+
+                    <table id="table" data-mobile-responsive="true" class="mb-5 display table table-striped table-bordered"
+                           data-toolbar="#toolbar"
+                           data-search="true"
+                           data-show-refresh="true"
+                           data-show-toggle="true"
+                           data-show-fullscreen="true"
+                           data-show-columns="true"
+                           data-show-export="true"
+                           data-click-to-select="true"
+                           data-minimum-count-columns="2"
+                           data-show-pagination-switch="true"
+                           data-pagination="true"
+                           data-id-field="idcumtomerAll"
+                           data-page-list="[2, 4, 6, 100, all]"
+                           data-show-footer="true"
+                           data-side-pagination="server"
+                           data-show-copy-rows="true">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>رقم الاثبات</th>
+                                <th>نوع الاثبات</th>
+                                <th>الاسم</th>
+                                <th>مكان الاصدار</th>
+                                <th>Mobile No</th>
+
+                                <th>البريد الالكتروني</th>
+                                <th class="text-right">Action</th>
+                            </tr><!--end tr-->
+                        </thead>
+
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @*<button class="btn btn-outline-light btn-sm px-4 " onclick="location.href='hospital-add-patient.html'">+ Add New</button>*@
+                    </div><!--end col-->
+                    <div class="col-auto">
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-sm mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul><!--end pagination-->
+                        </nav><!--end nav-->
+                    </div> <!--end col-->
+                </div><!--end row-->
+                <!--end col-->
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+
+
+    @*farze-regesrer*@
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+
+    <script>
+                                    var $table = $('#table');
+
+
+
+                                    $(function () {
+
+
+
+                                            $('#toolbar').find('select').change(function () {
+
+
+
+                                                $table.bootstrapTable('destroy').bootstrapTable({
+                                                    exportDataType: $(this).val(),
+                                                    //exportTypes: ['xlsx', 'xlsx', 'txt', 'csv'], //Optional export file type
+                                                    exportTypes: ['xlsx', 'pdf', 'doc', 'csv', 'excel', 'png', 'txt', 'powerpoint'],
+                                                    //exportFooter: true,
+                                                    //  export: 'glyphicon-export icon-share',
+                                                    // showExport: true,
+
+
+                                                    url: '@Url.Action("GetDataFarz", "Customers")',
+                                                    //height: 790,                    //ارتفاع الجدول
+                                                    search: true,
+                                                    searchAlign: "left",
+                                                    trimOnSearch: true,         //حذف الفراغات عند البحث
+                                                    searchOnEnterKey: true, //设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
+
+                                                    /* icons: {   //تغيير الايقونات الافتراضية
+                                                         refresh: "glyphicon-repeat",
+                                                         toggle: "glyphicon-list-alt",
+                                                         columns: "glyphicon-list",
+                                                         export: 'glyphicon-export'
+                                                     },*/
+
+
+                                                    exportOptions: {
+
+                                                        // ignoreColumn: [0, 1], //استخراج اعمدة محددة    $(":selected", $("#userinputid")).text();
+                                                        fileName: function () {
+                                                           // return $("#userinputid option").filter(":selected").text();
+                                                        }
+
+                                                        , //file name setting
+                                                        worksheetName: 'nameUser', //table workspace name
+                                                        tableName: 'nameUser',
+                                                        excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
+                                                    },
+                                                    queryParams: queryParams,       //查询函数
+                                                    //pagination: true,                       //显示分页栏
+                                                    showRefresh: true,               //显示刷新按钮
+                                                    showColumns: true,              //是否显示内容列下拉框
+                                                    // striped: true,                      //设置为 true 会有隔行变色效果
+                                                    //sortName: "plateNumber",                //定义排序字段
+                                                    //sortOrder: "desc",                  //定义排序方式，'asc' 或者 'desc'
+                                                    // silentSort: false,                      //设置为 false 将在点击分页按钮时，自动记住排序项
+                                                    //maintainSelected: true,         //设置为 true 在点击分页按钮或搜索按钮时，将记住checkbox的选择项
+                                                    //toolbar: 'toolbar',          //工具栏id
+                                                    // sidePagination: "server",                               //设置在哪里进行分页，可选值为 'client' 或者 'server'，默认'client'
+                                                    //pageNumber: 1,                                             //如果设置了分页，首页页码
+                                                    // pageSize: 20,                                               //每页每页显示行数
+                                                    //  pageList: [20, 50, 100, 200, 'All'],                         //设置可供选择的页面数据条数,如果数据量大于50小于100，则只会显示20，50，100三项
+                                                    showFullscreen: true,                                    //是否显示全屏按钮
+                                                    responseHandler: function (data) {                  //如果后台返回的数据格式与bootstrapTable的数据格式不同在这里调整
+                                                        return {
+                                                            "page": data.pages,
+                                                            "total": data.total,
+                                                            "rows": data.list
+                                                        };
+                                                    },
+                                                    columns: [
+                                                        //{ field: 'state'},
+
+                                                        { field: 'numProof', title: 'رقم الاثبات' },
+                                                        { field: 'typeProof', title: 'نوع الاثبات' },
+                                                        { field: 'name', title: 'Name', formatter: function (value, row, index) { return '<a href=' + value + '  target="_blank"  rel="noopener noreferrer" >' + value + '</a>'; } },
+
+
+                                                        { field: 'locRelease', title: 'مكان الاصدار' },
+
+                                                        { field: 'phoneWork', title: 'Mobile No' },
+                                                        { field: 'email', title: 'البريد الالكتروني' },
+                                                    ]
+
+                                                })
+                                            }).trigger('change')
+                                        });
+
+                                        //$('#userinputid').on('change', function (event) {
+                                        //    var form = $(event.target).parents('form');
+
+                                        //    $('#table').bootstrapTable('refresh');
+
+                                        //});
+
+                                        function queryParams(params) {
+                                            //params = {
+                                            //    search: "", sort: undefined, order: undefined, limit: 10,
+                                            //    offset: 0,
+                                            //    username: "hsam"
+                                            //};//，可通过上面的配置修改
+                                            var temp = {            //这里的键的名字和控制器的变量名必须一致
+                                                limit: params.limit,
+                                                offset: params.offset,
+                                                pageSize: this.pageSize,
+                                                pageNumber: this.pageNumber,
+                                                userid: 100
+                                            };
+                                            return temp;
+                                        }
+
+
+
+
+
+
+
+
+    </script>
+
+}

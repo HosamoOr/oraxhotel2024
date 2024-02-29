@@ -1,0 +1,300 @@
+﻿@model IEnumerable<HotelSys.ViewModel.CustomerViewModel>
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+@section style{
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">عملائي </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                               @Html.Partial("_newcustomerMPartia2",new HotelSys.ViewModel.CustomerViewModel())
+
+                            <button type="button" class="btn btn-primary"
+                                    onclick="newCusModelShow()">
+
+                                <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Index")">عملائي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="@Url.Action("allCusomer")">كل العملاء-المرافقين</a>
+                    </li>
+
+
+                </ul>
+                <br />
+
+
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">عملائي </h4>
+                                @*<p class="text-muted mb-0">
+                                        Tabulator allows you to paginate your data. simply set the pagination property to true.
+                                    </p>*@
+                            </div><!--end card-header-->
+                            <div class="card-body">
+
+                                @*<div id="toolbar" class="select">
+                                    <select class="form-control">
+                                        <option value="all">الكل</option>
+                                       <option value="selected">صفوف معينة</option>
+
+                                        <option value="">اساسي</option>
+
+                                    </select>
+                                </div>*@
+
+                            <div class="table-responsive">
+                            <div id="toolbar" class="select">
+                                <label for="typeCustomer" class="col-lg-3 col-form-label-sm text-end">تصنيف</label>
+                                <select class="form-control" id="typeCustomerid">
+                                    <option selected="" value="1">عملائي </option>
+                                    <option value="2">كل العملاء</option>
+
+
+                                </select>
+                            </div>
+                            <table id="table13"
+                                   style="font-size: 12px;"
+                                   data-mobile-responsive="true" class="mb-0 display table table-striped table-bordered"
+                                   data-toolbar="#toolbar"
+                                   data-search="true"
+                                   data-show-refresh="true"
+                                   data-show-toggle="true"
+                                   data-show-fullscreen="false"
+                                   data-show-columns="true"
+                                   data-show-export="false"
+                                   data-click-to-select="true"
+                                   data-minimum-count-columns="2"
+                                   data-show-pagination-switch="true"
+                                   data-pagination="true"
+                                   data-id-field="idcumtomerAll"
+                                   data-page-list="[10, 20, 50, 100, all]"
+                                   data-show-footer="true"
+                                   data-side-pagination="server"
+                                   data-show-copy-rows="true">
+                                <thead class="thead-light">
+                                    <tr>
+                                       
+                                        <th class="border-top-0">اسم العميل</th>
+
+                                        <th class="border-top-0">نوع الاثبات</th>
+                                        <th class="border-top-0">رقم الاثبات</th>
+                                        <th class="border-top-0">رقم التلفون</th>
+                                        <th class="border-top-0">اخر زيارة</th>
+                                         <th class="border-top-0">الايميل</th>
+                                        <th class="border-top-0">ملاحظات</th>
+                                         <th class="border-top-0">الجنسية</th>
+                                        <th class="border-top-0">الجنسية ID</th>
+                                          <th class="border-top-0">المنطقة</th>
+                                           <th class="border-top-0"></th>
+                                          
+                                         
+                                    </tr><!--end tr-->
+                                </thead>
+
+                            </table>
+                        </div>
+
+
+
+
+                               @* <table id="table" data-mobile-responsive="true" class="mb-5 display table table-striped table-bordered"
+                                      
+
+
+                                       data-toolbar="#toolbar"
+                                       data-search="true"
+                                       data-show-refresh="true"
+                                       data-show-toggle="true"
+                                       data-show-fullscreen="true"
+                                       data-show-columns="true"
+                                       data-show-export="true"
+                                       data-click-to-select="true"
+                                       data-minimum-count-columns="2"
+                                       data-show-pagination-switch="true"
+                                       data-pagination="true"
+                                      data-id-field="id"
+                                       data-page-list="[10, 25, 50, 100, all]"
+                                       data-show-footer="true"
+                                       data-side-pagination="server"
+                                       data-show-copy-rows="true"
+                                       data-response-handler="responseHandler"
+                                       
+                                       >
+                                  
+                                </table>*@
+
+
+
+
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+
+
+
+
+
+                @*<div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>رقم الاثبات</th>
+                                    <th>نوع الاثبات</th>
+                                    <th>الاسم</th>
+                                    <th>مكان الاصدار</th>
+                                    <th>Mobile No</th>
+                                    <th>تاريخ اخر زيارة</th>
+                                    <th>البريد الالكتروني</th>
+                                    <th class="text-right">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @{
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.NumProof</td>
+                                            <td>@item.TypeProof</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.LocRelease</td>
+                                            <td>@item.PhoneWork</td>
+                                            <td>
+
+                                                @if (@item.VisitEndDate == null)
+                                                {
+                                                    <label> لا زيارات </label>
+
+                                                }
+                                                else
+                                                {
+                                                    @item.VisitEndDate
+                                                }
+
+
+                                            </td>
+                                            <td>@item.Email</td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.IdmyCu"><i class="las fa-pen text-secondary font-18"></i></a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdmyCu"><i class="las fa-trash-alt text-danger font-18"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>*@
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+
+
+    <!-- Javascript  -->
+    
+
+     @*farze-regesrer*@
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+      <script src="~/js/city.js"></script>
+    <script src="~/js/AddEditcustomer.js"></script>
+
+      
+
+    <script src="/assets/pages/form-validation.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+
+
+}

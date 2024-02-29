@@ -1,0 +1,309 @@
+﻿@using DevExtreme.AspNet.Mvc
+
+@{
+    ViewData["Title"] = "Index";
+     Layout = "~/Views/Shared/_LayoutDevExtreme.cshtml";
+
+}
+
+
+@section style{
+    <style>
+
+
+
+         sup {
+    font-size: 0.8em;
+    vertical-align: super;
+    line-height: 0;
+} 
+
+.options {
+    padding: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-bottom: 20px;
+}
+
+.options .dx-fieldset {
+    margin: 0;
+}
+
+.caption {
+    font-size: 18px;
+    font-weight: 500;
+    padding-right: 15px;
+}
+
+.dx-theme-material .dx-accordion .dx-accordion-item-opened .dx-accordion-item-title {
+    padding-top: 20px;
+}
+
+
+
+
+    
+        .form {
+    display: flex;
+}
+
+.form>div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#treeviewDriveC,
+#treeviewDriveD {
+    margin-top: 10px;
+}
+
+.drive-header {
+    min-height: auto;
+    padding: 0px;
+    cursor: default;
+}
+
+.drive-panel {
+    padding: 20px 30px;
+    font-size: 115%;
+    font-weight: bold;
+    border-right: 1px solid rgba(165, 165, 165, 0.4);
+    height: 100%;
+}
+
+.drive-panel:last-of-type {
+    border-right: none;
+}
+
+    
+    </style>
+}
+
+
+<div id="rtl" class="@(Model.RtlEnabled ? "dx-rtl" : "")">
+    <div class="options">
+        <div class="caption">Options</div>
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="dx-field-label">Language</div>
+                <div class="dx-field-value">
+                    @(Html.DevExtreme().SelectBox()
+                        .RtlEnabled(Model.RtlEnabled)
+                        .InputAttr("aria-label", "Language")
+                        .DataSource(Model.LanguageItems)
+                        .Value(Model.RtlEnabled ? Model.LanguageItems.First() : Model.LanguageItems.Last())
+                        .OnValueChanged("selectBox_valueChanged"))
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="dx-fieldset">
+            <div class="dx-fieldset-header">
+                @(Html.DevExtreme().Menu()
+                    .DataSource(d => d.Mvc().Controller("Common").LoadAction("GetContinentsData").Key("ID"))
+                    .RtlEnabled(Model.RtlEnabled)
+                    .ItemsExpr("Items")
+                    .DisplayExpr(Model.DisplayExpr))
+            </div>
+
+        </div>
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="dx-field-label">
+                    @(Html.DevExtreme().TreeView()
+                        .Width(200)
+                        .DataSource(d => d.Mvc().Controller("Common").LoadAction("GetContinentsData").Key("ID"))
+                        .RtlEnabled(Model.RtlEnabled)
+                        .ItemsExpr("Items")
+                        .DisplayExpr(Model.DisplayExpr))
+                </div>
+                <div class="dx-field-value">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="form">
+
+       <div class="drive-panel">
+        <div class="drive-header dx-treeview-item"><div class="dx-treeview-item-content"><i class="dx-icon dx-icon-activefolder"></i><span>Drive D:</span></div></div>
+       
+        
+    </div>
+
+
+    <div class="drive-panel">
+        <div class="drive-header dx-treeview-item"><div class="dx-treeview-item-content"><i class="dx-icon dx-icon-activefolder"></i><span>الحسابات:</span></div></div>
+
+        @(Html.DevExtreme().Sortable()
+            .Filter(".dx-treeview-item")
+            .Data("driveC")
+            .Group("shared")
+            .AllowReordering(true)
+            .AllowDropInsideItem(true)
+            .OnDragChange("onDragChange")
+            .OnDragEnd("onDragEnd")
+            .Content(
+                Html.DevExtreme().TreeView()
+                   
+                    .ExpandNodesRecursive(false)
+                    .DataStructure(TreeViewDataStructure.Plain)
+                    .KeyExpr("Id")
+                    .ParentIdExpr("ParentId")
+                    .ExpandedExpr("IsExpanded")
+                    .DisplayExpr("Name")
+                    .DataSource(d => d.Mvc().LoadAction("GetPlainDataForDragAndDrop"))
+                    .DataSourceOptions(o => o.Map("mapIcons"))
+                    
+                    .RtlEnabled(true)
+                    .Width(250)
+                    .Height(380).ToString()
+            ))
+    </div>
+ 
+</div>
+<script>
+    function onDragChange(e) {
+        if(e.fromComponent === e.toComponent) {
+            var $nodes = e.element.find(".dx-treeview-node");
+            var isDragIntoChild = $nodes.eq(e.fromIndex).find($nodes.eq(e.toIndex)).length > 0;
+            if(isDragIntoChild) {
+                e.cancel = true;
+            }
+        }
+    }
+
+    function onDragEnd(e) {
+        if(e.fromComponent === e.toComponent && e.fromIndex === e.toIndex) {
+            return;
+        }
+
+        var fromTreeView = getTreeView(e.fromData);
+        var toTreeView = getTreeView(e.toData);
+
+        var fromNode = findNode(fromTreeView, e.fromIndex);
+        var toNode = findNode(toTreeView, calculateToIndex(e));
+
+        if(e.dropInsideItem && toNode !== null && !toNode.itemData.IsDirectory) {
+            return;
+        }
+
+        var fromTopVisibleNode = getTopVisibleNode(fromTreeView);
+        var toTopVisibleNode = getTopVisibleNode(toTreeView);
+
+        var fromItems = fromTreeView.option('items');
+        var toItems = toTreeView.option('items');
+        moveNode(fromNode, toNode, fromItems, toItems, e.dropInsideItem);
+
+        fromTreeView.option("items", fromItems);
+        toTreeView.option("items", toItems);
+        fromTreeView.scrollToItem(fromTopVisibleNode);
+        toTreeView.scrollToItem(toTopVisibleNode);
+    }
+
+    function getTreeView(driveName) {
+        return driveName === 'driveC'
+            ? $('#treeviewDriveC').dxTreeView('instance')
+            : $('#treeviewDriveD').dxTreeView('instance');
+    }
+
+    function calculateToIndex(e) {
+        if(e.fromComponent != e.toComponent || e.dropInsideItem) {
+            return e.toIndex;
+        }
+
+        return e.fromIndex >= e.toIndex
+            ? e.toIndex
+            : e.toIndex + 1;
+    }
+
+
+    function findNode(treeView, index) {
+        var nodeElement = treeView.element().find('.dx-treeview-node')[index];
+        if(nodeElement) {
+            return findNodeById(treeView.getNodes(), nodeElement.getAttribute('data-item-id'));
+        }
+        return null;
+    }
+
+    function findNodeById(nodes, id) {
+        for(var i = 0; i < nodes.length; i++) {
+            if(nodes[i].itemData.Id == id) {
+                return nodes[i];
+            }
+            if(nodes[i].children) {
+                var node = findNodeById(nodes[i].children, id);
+                if(node != null) {
+                    return node;
+                }
+            }
+        }
+        return null;
+    }
+
+    function moveNode(fromNode, toNode, fromItems, toItems, isDropInsideItem) {
+        var fromIndex = findIndex(fromItems, fromNode.itemData.Id);
+        fromItems.splice(fromIndex, 1);
+
+        var toIndex = toNode === null || isDropInsideItem
+            ? toItems.length
+            : findIndex(toItems, toNode.itemData.Id);
+        toItems.splice(toIndex, 0, fromNode.itemData);
+
+        moveChildren(fromNode, fromItems, toItems);
+        if(isDropInsideItem) {
+            fromNode.itemData.ParentId = toNode.itemData.Id;
+        } else {
+            fromNode.itemData.ParentId = toNode != null
+                ? toNode.itemData.ParentId
+                : undefined;
+        }
+    }
+
+    function moveChildren(node, fromItems, toItems) {
+        if(!node.itemData.IsDirectory) {
+            return;
+        }
+
+        node.children.forEach(function(child) {
+            if(child.itemData.IsDirectory) {
+                moveChildren(child, fromItems, toItems);
+            }
+
+            var fromIndex = findIndex(fromItems, child.itemData.Id);
+            fromItems.splice(fromIndex, 1);
+            toItems.splice(toItems.length, 0, child.itemData);
+        });
+    }
+
+    function findIndex(array, id) {
+        var idsArray = array.map(function(elem) { return elem.Id; });
+        return idsArray.indexOf(id);
+    }
+
+    function getTopVisibleNode(component) {
+        var treeViewElement = component.element().get(0);
+        var treeViewTopPosition = treeViewElement.getBoundingClientRect().top;
+        var nodes = treeViewElement.querySelectorAll(".dx-treeview-node");
+        for(var i = 0; i < nodes.length; i++) {
+            var nodeTopPosition = nodes[i].getBoundingClientRect().top;
+            if(nodeTopPosition >= treeViewTopPosition) {
+                return nodes[i];
+            }
+        }
+
+        return null;
+    }
+
+    function mapIcons(item) {
+        if (item.Icon) {
+            item.icon = item.Icon;
+        }
+        return item;
+    }
+</script>

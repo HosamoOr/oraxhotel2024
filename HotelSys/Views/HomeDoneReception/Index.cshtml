@@ -1,0 +1,133 @@
+﻿@model IEnumerable<HotelSys.ViewModel.ReceptionViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاستقبال</a></li>
+                                <li class="breadcrumb-item"><a href="#">الحجوزات المؤكدة </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">الحجوزات المؤكدة </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button class="btn btn-success" style="margin-bottom:10px"
+                               onclick="@("window.location.href='" + @Url.Action("Index", "Reception") + "'");"
+                               new { id=5 })">
+                                <i class="fa fa-plus"></i> حجز جديد
+                            </button>
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Rooms") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + شقة جديدة
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                @*<div class="table-responsive">*@
+
+
+
+
+                    <table class="table table-striped "  id="tblReception">
+
+                        <thead class="thead_dark1  thead-light">
+                            <tr>
+                                <th class="th_text">رقم العقد</th>
+                                <th class="th_text">الشقة</th>
+                                <th class="th_text">العميل</th>
+                                <th class="th_text"> بداية الحجز</th>
+                                <th class="th_text"> نهاية الحجز</th>
+                                <th class="th_text">المدة</th>
+                                <th class="th_text">يومي</th>
+                                <th class="th_text">حالة الحجز</th>
+                                 <th class="th_text">تاريخ الدخول</th>
+                                 <th class="th_text"> تاريخ الخروج</th>
+                                <th class="th_text">الاجمالي</th>
+
+                                <th class="th_text">المالية</th>
+
+                                <th class="th_text">العمليات</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                @*</div>*@
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+
+
+    @*<script src="https://code.jquery.com/jquery-3.3.1.js"></script>*@
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    @*<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>*@
+
+
+
+    @*farze-regesrer*@
+
+    @*<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>*@
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>*@
+
+    <script src="~/js/done_receptionDT.js"></script>
+
+
+
+}
+

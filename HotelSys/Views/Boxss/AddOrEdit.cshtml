@@ -1,0 +1,66 @@
+﻿@model HotelSys.ViewModel.BoxViewModel
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+           
+         
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label">اسم الصندوق</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="IdAccount" class="control-label">رقم الحساب</label>
+                        <input asp-for="IdAccount" class="form-control"  disabled=""/>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+             
+                    
+             
+                 <div class="col-lg-10">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               asp-for="IsDefault"
+                                               type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="IsDefault">تعيين كصندوق افتراضي </label>
+                                     <span asp-validation-for="IsDefault" class="text-danger"></span>
+                                    
+                                    </div>
+                                    </div>
+
+
+            
+            </div>
+             <div class="modal-footer">
+                       
+                        <button type="submit" class="btn btn-primary">  
+                    @{
+                        if(Model.Id==0)
+                        {
+                            <span>اضافة</span>
+                        }else
+                        {
+                             <span>تعديل</span>
+                        }
+                    }
+                            
+                            
+                        </button>
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    </div>
+          
+        </form>
+    </div>
+</div>

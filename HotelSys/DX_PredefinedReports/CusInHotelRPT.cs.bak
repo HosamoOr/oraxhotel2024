@@ -1,0 +1,18 @@
+using System;
+using DevExpress.XtraReports.UI;
+
+namespace HotelSys.PredefinedReports
+{
+    public partial class CusInHotelRPT
+    {
+        public CusInHotelRPT()
+        {
+            InitializeComponent();
+        }
+
+        private void xrPictureBox1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
+    }
+}

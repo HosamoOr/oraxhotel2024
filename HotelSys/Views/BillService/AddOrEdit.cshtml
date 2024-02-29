@@ -1,0 +1,1332 @@
+﻿@model HotelSys.ViewModel.BillViewModel
+
+@{  Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+
+
+
+   <div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">الخدمات  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">اضافة سند خدمات </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                          
+
+
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+               
+                
+                </div>
+                <div class="row">
+                   
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"> اضافة خدمات </h4>
+
+                                </div><!--end card-header-->
+                                 @Html.Partial("_ReceLoginPartial")
+
+                  @Html.Partial("_externalPartial")
+                               
+                               
+                                @Html.Partial("_addServicesModal")
+
+
+                                 
+                                <div class="col-md-4">
+       
+
+                            <div class="form-check form-switch">
+
+              
+                                 <input   asp-for="IncludeTax" type="checkbox" readonly>
+                   
+                                       <label class="form-check-label"> 
+                                           <span id="txtIncudeSer" >
+                                           
+                                            @{
+                                                if ( @Model.IncludeTax==true)
+                                                {
+                                                    <div>السعر شامل الضريبة</div>
+                                                }
+                                                else
+                                                {
+                                                    <div>السعر غير شامل الضريبة</div>
+                                                }
+                                            }
+                                       
+                                       </span> </label>
+                      
+                
+                              </div>
+
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div>
+                                        <h5>اضف صنف</h5>
+
+                                        <div >
+                                            <button type="button"
+                                                    onclick="showServiceDoad1()"
+                                                    class="btn btn-secondary mb-2 mr-1" >
+                                                <span class="docs-tooltip" data-bs-toggle="tooltip" data-animation="false" title="" >
+                                                    اضف خدمة للفاتورة
+                                                </span>
+                                            </button>
+                                        </div>
+
+                                       
+
+                                    </div>
+
+                                    <div class="card-header">
+                                        <h4 class="card-title">الاصناف المختارة</h4>
+
+                                        <div class="table-responsive-sm">
+                                            <table class="table mb-0" id="tableProductInInv">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">تحديد</th>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">اسم الخدمة</th>
+                                                        <th scope="col">السعر</th>
+                                                        <th scope="col">الكمية</th>
+                                                        <th scope="col">الضريبة</th>
+                                                        <th scope="col">ضريبة بلدي</th>
+                                                        <th scope="col">الاجمالي</th>
+                                                    </tr>
+                                                </thead>
+                                                @*<tbody>
+                                                    <tr class="table-primary">
+                                                        <th scope="row">1</th>
+                                                        <td class="">كواية</td>
+                                                        <td class="">50</td>
+                                                        <td class="">1</td>
+                                                        <td class="">50</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <th scope="row">2</th>
+                                                        <td>تنظيف ملابس</td>
+                                                        <td>100</td>
+                                                        <td>1</td>
+                                                        <td>100</td>
+                                                    </tr>
+                                                    <tr class="table-secondary">
+                                                        <th scope="row">3</th>
+                                                        <td class="">توصيل طعام</td>
+                                                        <td class="">40</td>
+                                                        <td class="">1</td>
+                                                        <td class="">40</td>
+                                                    </tr>
+
+                                                    <tr class="">
+                                                        <th scope="row">4</th>
+                                                        <td>ماء عامرية</td>
+                                                        <td>100</td>
+                                                        <td>1</td>
+                                                        <td>100</td>
+                                                    </tr>
+
+                                                    <tr class="table-success">
+                                                        <th scope="row">5</th>
+                                                        <td>بوفية</td>
+                                                        <td>200</td>
+                                                        <td>1</td>
+                                                        <td>200</td>
+                                                    </tr>*@
+
+
+                                            
+                                                    
+                                                    </table>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-6 col-form-label text-end">اجمالي السعر </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control full-width text-lg-center" 
+                                                           style="font-size: 12px;"  
+                                                           id="TotalService" name="TotalService"
+                                                           type="text" value="0" disabled>
+                                                </div>
+                                            </div>
+
+                                              <div class="mb-3 row">
+
+                                                <label class="col-sm-6 col-form-label text-end">اجمالي الضريبة </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control full-width text-lg-center" 
+                                                           style="font-size: 12px;"  
+                                                           id="TotalTaxSer" name="TotalTaxSer"
+                                                           type="text" value="0" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-6 col-form-label text-end">نوع الخصم </label>
+                                                <div class="col-sm-6">
+                                                    <select  id="TypeDiscountS" class="form-control full-width text-lg-center"  aria-label="TypeDiscountS" >
+                                                        <option selected="">اختر  </option>
+                                                        <option value="1">مبلغ </option>
+                                                        <option value="2">نسبة مئوية</option>
+
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-4 col-form-label text-end">التاريخ </label>
+                                                <div class="center col-sm-8">
+                                                    <input class="form-control full-width text-lg-center" asp-for="Date"   type="date" id="DateS" name="DateS">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                            <div class="mb-3 row" id="amountDisS">
+
+                                                <label class="col-sm-6 col-form-label text-end">مبلغ الخصم </label>
+                                                <div class="col-sm-6">
+                                                    <input id="QtyDiscountS" name="QtyDiscountS" type="number" value="0" class="form-control full-width text-lg-center">
+
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row" id="rateDisS">
+
+                                                <label class="col-sm-6 col-form-label text-end">نسبة الخصم </label>
+
+
+
+
+
+                                                <div class="input-group">
+                                                    <div class="form-outline">
+                                                        <div class="col-sm-6">
+                                                            <input id="QtyDiscountRateS"
+                                                                   value="0"
+                                                                   type="number" min="1" max="100"
+                                                                   name="QtyDiscountRateS" class="form-control full-width text-lg-center">
+
+                                                            <button type="button" class="btn btn-primary">%</button>
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                </div>
+
+
+                                            </div>
+
+                                              <div class="mb-3 row">
+
+                                                <label class="col-sm-6 col-form-label text-end">اجمالي ضريبة بلدي </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control full-width text-lg-center" 
+                                                           style="font-size: 12px;"  
+                                                           id="TotalBaladiSer" name="TotalBaladiSer"
+                                                           type="text" value="0" disabled>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-6 col-form-label text-end">السعر النهائي </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control full-width text-lg-center" id="FinalTotalS" name="FinalTotalS" value="0" disabled>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-6 col-form-label text-end">رقم السند </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control full-width text-lg-center" id="idService" name="idService"
+                                                           type="text" value="0" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-6 col-form-label text-end">طريقة الدفع</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-select" id="TypePayBillService" aria-label="TypePayBillService">
+                                                        <option value="1">نقدا</option>
+                                                        <option value="2" selected="">كمبيالة</option>
+                                                        @*<option value="3">تحويل بنكي</option>
+                    <option value="4">بطاقة</option>*@
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="mb-3 row" id="idacc_to_div">
+                                                <label class="col-sm-6 col-form-label text-end">امين الصندوق</label>
+                                                <div class="col-sm-6">
+
+                                                  
+                                                        <select class="form-select" id="id_accountToServeice" aria-label="id_accountToServeice">
+                                                            
+                                                        </select>
+                                                  
+                                                   
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                         
+                                         
+                                        <div class="mb-3 row">
+
+                                            <label class="col-sm-3 col-form-label text-end">ملاحظة</label>
+                                            <div class="col-sm-9">
+                                                <textarea placeholder="ملاحظة" id="noteS" name="noteS" rows="2"
+                                                          class="form-control full-width text-lg-center" style="min-width: 100%"></textarea>
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        </div>
+                                    </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div><!--end col-->
+                    </div>
+
+
+             <div class="card-footer">
+                      
+                       
+                          <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showReceMpdal()">
+                                <i class="fa fa-plus"></i>  تحميل على شقة
+                                    </button>
+                               
+
+                        <button type="button" class="btn btn-primary" onclick="showAccModal()">   ايراد الخدمات </button> 
+
+                           <button type="button" class="btn btn-secondary" >رجوع</button>
+                    </div>
+
+
+                </div><!--end row-->
+                <!--end col-->
+            </div>
+
+            <br />
+             <br />
+              <br />
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+
+
+              
+                 
+             
+
+
+@*</form>*@
+
+@section scripts{
+    
+     @*<script src="~/js/reception/bills/Servicebond4.js"></script>*@
+
+    @*farze-regesrer*@
+
+
+     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+   
+    <script src="~/js/billService/forRoom.js"></script>
+
+    <script src="~/js/billService/forAcc.js"></script>
+    <script>
+
+        
+    
+   
+var statuAccto = true;
+var DataItem = [];
+
+
+function changeDT()
+{
+    var checkedCount = $("#tableProductInInv input:checked").length;
+        var creditAmount = 0;
+
+        var totalVAt_ = 0;
+        var totalBelad_ = 0;
+        DataItem = [];
+
+        var isTaxSerinc = $('.sincludetax').prop('checked');
+       
+      
+        for (var i = 0; i < checkedCount; i++) {
+
+            var qtyy = $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[4].children[0].value;
+
+            var price_ = $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[3].innerHTML;
+            var idPro = $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[1].innerHTML;
+
+            var price_tax_ = $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[5].innerHTML;
+            var price_baladi_ = $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[6].innerHTML;
+
+            var namePro_ = $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[2].innerHTML;
+            
+
+
+            var sumSub = parseFloat(qtyy * price_);
+
+            if (isTaxSerinc === false) {
+                sumSub = parseFloat(sumSub) + parseFloat(price_tax_) + parseFloat(price_baladi_);
+                alert(sumSub);
+            }
+
+            $("#tableProductInInv input:checked")[i].parentNode.parentNode.children[7].innerHTML = sumSub
+
+            if (qtyy != "") {
+                creditAmount += parseFloat(sumSub);
+            } else {
+                creditAmount = 0;
+            }
+            totalVAt_ = totalVAt_ + parseFloat(price_tax_);
+            totalBelad_ = totalBelad_ + parseFloat(price_baladi_);
+           
+            $('#TotalTaxSer').val(totalVAt_);
+            $('#TotalBaladiSer').val(totalBelad_);
+
+
+            DataItem.push({
+               
+                    'Id': 0,
+                'Qty': qtyy,
+                'PriceOne': price_,
+                'Total': sumSub,
+                'IdProduct': idPro,
+                'IdBill': 0,
+                'TaxPrice': price_tax_,
+                'BaladiTaxPrice': price_baladi_,
+               'NameProduct':namePro_
+
+              
+               
+
+            });
+        }
+        $("#TotalService").fadeOut(500, function () {
+            $(this).val(creditAmount).fadeIn(500);
+        });
+
+        
+        var qyd = $("#QtyDiscountS").val();
+        if (qyd > creditAmount) {
+            alert("يجب ان يكون مبلغ الخصم اقل او يساوي اجمالي الفاتورة");
+
+            $("#QtyDiscountS").val(creditAmount);
+            qyd = creditAmount;
+        }
+
+        $("#FinalTotalS").fadeOut(500, function () {
+            $(this).val(parseFloat(creditAmount - qyd)).fadeIn(500);
+        });
+
+}
+
+
+$(document).ready(function () {
+
+  // showServiceDoad1();
+  
+
+    $('#amountDisS').hide();
+    $('#rateDisS').hide();
+    $('.loading').hide();
+    $('#idacc_to_div').hide();
+
+    //
+    $("#compoboxService").change(function () {
+        alert("Print me");
+    });
+    
+    $("#QtyDiscountRateS").change(function () {
+        var discrs = parseFloat($(this).val());
+        var totals2 = parseFloat($('#TotalService').val());;
+
+        if (discrs > 100 || discrs < 0) {
+            alert("عفوا .. لابد ان تكون نسبة الخصم اقل او يساوي 100%");
+            $('#QtyDiscountRateS').val(100);
+            $("#QtyDiscountS").val(totals2);
+        }
+
+        updatePriceS(totals2, $("#QtyDiscountS").val());
+       // updatePrice(parseFloat($('#txtPrice').val()), parseFloat($('#QtyTime').val()), parseFloat($('#QtyDiscount').val()));
+
+       
+    });
+
+    $("#QtyDiscountS").change(function () {
+        var disc2 = parseFloat($(this).val());
+
+        var total2 = parseFloat($('#TotalService').val());;
+
+        if (disc2 > total2) {
+            alert("عفوا .. لابد ان تكون قيمة الخصم اقل او يساوي اجمالي الفاتورة");
+
+            $("#QtyDiscountS").fadeOut(300, function () {
+                $(this).val(total2).fadeIn(300);
+            });
+
+            disc2 = total2;
+           //$('#QtyDiscountS').val(total2);
+        }
+
+       // updatePrice(parseFloat($('#txtPrice').val()), parseFloat($('#QtyTime').val()), parseFloat($('#QtyDiscount').val()));
+        updatePriceS(total2, disc2);
+
+    });
+    
+
+    $('#TypeDiscountS').on('change', function (event) {
+
+        var targetSs = $('#TypeDiscountS option:selected').val();
+        if (targetSs == "1") {
+            $('#amountDisS').show();
+            $('#rateDisS').hide();
+
+
+        }
+        else if (targetSs == "2") {
+            $('#amountDisS').hide();
+            $('#rateDisS').show();
+
+        }
+        else {
+            $('#amountDisS').hide();
+            $('#rateDisS').hide();
+
+        }
+
+
+    });
+
+
+    $('#TypePayBillService').on('change', function (event) {
+
+        var targetSs = $('#TypePayBillService option:selected').val();
+        if (targetSs == "1") {
+            $('#idacc_to_div').show();
+
+            if (statuAccto == true) {
+                _getBoxs();
+            }
+
+           
+            
+        }
+        else if (targetSs == "2") {
+            $('#idacc_to_div').hide();
+          
+
+        }
+        else {
+            $('#idacc_to_div').hide();
+           
+        }
+
+
+    });
+
+
+
+
+
+
+
+
+    var creditAmount = 0
+   // $('#tableProduct').DataTable();
+
+    $("#tableProductInInv").on('change', function () {
+
+       
+        changeDT();
+        
+
+    });
+
+
+  
+
+});
+
+
+function _getBoxs() {
+    var url = '/_Accounts/GetBoxs/';
+   // $('.loading').show();
+
+
+     $.post(url, function () {
+        
+       // $('.loading').hide();
+
+    })
+        .done(function (data) {
+
+            var response = jQuery.parseJSON(data);
+
+
+            for (var i = 0; i < response.length; i++) {
+                // alert(response[i].Name);
+
+               
+                $('#id_accountToServeice').append("<option value='" + response[i].Id + "'>" + response[i].Name + "</option>");
+
+
+            }
+            statuAccto = false;
+
+
+        })
+        .fail(function () {
+            alert("error");
+        })
+        .always(function () {
+            //alert("finished");
+        });
+
+}
+
+function cleanFeild() {
+    $("#QtyDiscountS").val(0);
+    $("#FinalTotalS").val(0);
+    $("#TotalService").val(0);
+
+}
+
+function updatePriceS(total00,discount00) {
+    
+    var total_finish = total00 - discount00;
+
+   
+    var targetT = $('#TypeDiscountS option:selected').val();
+    if (targetT == "2") {
+        var disc00 = parseFloat($('#QtyDiscountRateS').val());
+        var qpric0 = total00 * disc00 / 100;
+
+        $("#QtyDiscountS").fadeOut(300, function () {
+            $(this).val(qpric0).fadeIn(300);
+        });
+
+
+
+        total_finish = total00 - qpric0;
+    }
+    else {
+        // $('#totalDiscount').text(discountf);
+
+
+        $("#QtyDiscountS").fadeOut(300, function () {
+            $(this).val(discount00).fadeIn(300);
+        });
+
+    }
+
+
+    $("#FinalTotalS").fadeOut(300, function () {
+        $(this).val(parseFloat(total_finish)).fadeIn(300);
+    });
+
+    $("#TotalService").fadeOut(300, function () {
+        $(this).val(parseFloat(total00)).fadeIn(300);
+    });
+
+
+}
+
+function saveBondService(idacc0,cuorCo1,isForRoom,idReception,nameCusto,roomId_) {
+
+    var cuorCo1 = "cu";
+   
+    var idaccFrom = idacc0;
+    var idaccTo = 211002; //ايرادات ايجار
+
+   
+    var methedPay = $('#TypePayBillService').val();
+    if (methedPay == "1") {
+
+        idaccFrom = $('#id_accountToServeice').val();//الصناديق
+    }
+   
+
+    var tot = $('#TotalService').val();
+
+    var isTaxSerinc_ = $('.sincludetax').prop('checked');
+
+    var totaTaxRat_1 = parseFloat($('#TotalTaxSer').val()) / parseFloat($('#FinalTotalS').val()) * 100;
+
+    var totalBeladiRat_1 = parseFloat($('#TotalBaladiSer').val()) / parseFloat($('#FinalTotalS').val()) * 100;
+
+      var title="";
+
+     if(isForRoom==true){
+         title=title+' الشقة ' + roomId_ +'-- العقد  ' +idReception ;
+     }
+var not =$('#noteS').val() +title;
+   
+
+
+    var myModel =
+    {
+        "Id": 0,
+        "Type": 7,
+        "TypePay": $('#TypePayBillService').val(),
+        "Date": $('#DateS').val(),
+        "Total": tot,
+        "IsForRoom": isForRoom,
+
+        "DeserveAmount": $('#FinalTotalS').val(),
+        "TypeDiscount": $('#TypeDiscountS').val(),
+        "QtyDiscount": $('#QtyDiscountS').val(),
+        
+        "Note": ' فاتورة خدمات   '+not,
+        
+       
+        "IdCurrancy": 0,
+      
+        "id_accountForm": idaccFrom ,
+        "id_accountTo": idaccTo,
+
+        "IdReception": idReception,
+        "IdAccount": idacc0,
+        "customerOrCompany": cuorCo1,
+
+        "IncludeTax": isTaxSerinc_,
+        "TotalTaxPrice": $('#TotalTaxSer').val(),
+        "TotalTaxRate": totaTaxRat_1,
+        "TotalBaladiTaxPrice": $('#TotalBaladiSer').val(),
+        "TotalBaladiTaxRate": totalBeladiRat_1,
+
+
+        "Items": DataItem,
+
+
+    };
+    
+    var url = '/Bill/Createjson';
+
+     
+   
+
+
+ Swal.fire({
+       title: 'فاتورة الحدمات',
+        icon: 'info',
+                html:
+                  'هل انت متاكد من تحميل المبلغ  <b>' +tot+ '</b>'+
+                  ' علي: ' +'<b style="font-size:22px;color:red">'+nameCusto + '</b> \n'+title+''+
+                  '',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:
+                  '<i class="fa fa-save" style="font-size:22px;color:blue"></i> تاكيد وحفظ!',
+                confirmButtonAriaLabel: 'تاكيد وحفظ!',
+                cancelButtonText:
+                  '<i class="fa fa-close" style="font-size:22px;color:red"></i> الغاء ',
+                cancelButtonAriaLabel: 'الغاء'
+
+
+    }).then(function (result) {
+        if (result.isConfirmed) {
+
+
+            
+    $.post(url, myModel, function () {
+
+    
+
+    }).done(function (data_) {
+
+        
+        if (data_.id > 0) {
+              $('#receptionRoomModal').modal('hide');
+
+                
+                    const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          //Toast.fire({
+          //  icon: 'success',
+          //  title:  'تم الحفظ السجل بنجاح.'
+          //});
+
+          
+          Swal.fire({
+       title: 'تم حفظ الفاتورة بنجاح',
+        
+                showCloseButton: false,
+                showCancelButton: false,
+                focusConfirm: false,
+                confirmButtonText:
+                  'ok',
+               
+    }).then(function (result) {
+        if (result.isConfirmed) {
+
+
+            window.location = "@Url.Action("Index", "BillService")";
+   
+
+
+
+        }
+    });
+
+
+         
+
+
+
+
+         
+        }
+        else {
+
+          Swal.fire({
+                title: 'لم يتم الحفظ .. حدث خطااا',
+               
+              })
+
+
+        }
+
+      
+
+
+
+
+    })
+        .fail(function () {
+            alert("error");
+        })
+        .always(function () {
+            //alert("finished");
+        });
+
+
+
+
+        }
+    });
+
+
+        
+}
+
+
+var isLoasGroup=false;
+
+
+
+function showServiceDoad1() {
+
+   
+ //event.preventDefault();
+
+   
+   
+
+
+    var url = '/ReceptionService/GetInitBill/';
+
+  
+
+    $('.loading').show();
+
+   $('#addServicesModal').modal('show');
+
+   if(isLoasGroup==false)
+   {
+
+       isLoasGroup=true;
+
+        var jqxhr = $.post(url, function () {
+        //alert("success");
+        $('.loading').hide();
+
+    })
+        .done(function (data) {
+          
+            var response = jQuery.parseJSON(data);
+
+            var ddata = response['dataGroup'];
+           // var isServiceTax = response['ServicesIncludeTax'];
+          //  var txtServiceTax = response['txtIncludeTax'];
+
+         
+
+           // $('.sincludetax').prop('checked', isServiceTax);
+         
+           // $('#txtIncudeSer').text(txtServiceTax);
+
+          
+            for (var i = 0; i < ddata.length; i++) {
+               // alert(response[i].Name);
+
+                var r1 = '<button  data-id="' + ddata[i].Id + '"  data-toggle="' + ddata[i].Name + '" onclick="selectgroupService(event)"  class="btn btn-secondary mb-2 mr-1" data-method="getData" data-option="" data-target="#putData">' + ddata[i].Name + '</button>';
+
+            
+                $("#groupContact").append(r1);
+
+            }
+        
+
+        })
+        .fail(function () {
+            alert("error");
+        })
+        .always(function () {
+            //alert("finished");
+        });
+
+   }
+
+   
+    
+
+
+
+    //$('#noteS').val('سند خدمات  على الشقة' + $('#roominputid').val());
+
+   // $('#AmountS').val(0);
+
+    
+
+
+    //var now = new Date();
+
+
+
+    //var dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+   // var currentDate = now.toLocaleDateString('ja-JP', dateOptions).replace(/\//gi, '-');
+    //var timeOptions = { hour: '2-digit', minute: '2-digit' };
+    //var currentTime = now.toLocaleTimeString('it-IT', timeOptions);
+
+
+    //$('#DateS').val(currentDate);
+
+
+   // $('#NumCheckEForm').hide();
+    //$('#NumCardEForm').hide();
+    //$('#IdBankEForm').hide();
+
+
+   
+}
+
+
+var stdt = false;
+
+function selectgroupService(e) {
+
+    
+
+    var row = e.target.getAttribute('data-id');
+
+    var row2 = e.target.getAttribute('data-toggle');
+
+  
+
+    if (stdt == false) {
+
+        var dt = $('#tableProduct')
+            .DataTable({
+
+                "sAjaxSource": '/Products/GetDataFarz1/' + row,
+                "bServerSide": true,
+                "bProcessing": true,
+                "bSearchable": true,
+                "order": [[1, 'asc']],
+                "language": {
+                    //"emptyTable": "No record found.",
+                    //"processing":
+                    //    '<i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:#2a2b2b;"></i><span class="sr-only">انتضر يتم تحميل البيانات...</span> '
+
+                    "sProcessing": '<i class="fa fa- spinner fa- spin fa - 3x fa - fw" style="color:#2a2b2b; "></i><span class="sr - only"> جاري تحميل البيانات...</span> ',
+                    "sLengthMenu": "أظهر _MENU_ سجلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ سجل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ سجل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+
+                },
+                "columns": [
+
+
+
+                    {
+                        "data": "id"
+                        ,
+                        "render": function (data, type, row, meta) {
+                            //return '<a class='btn btn-default btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Employee")/" + data + "')><i class='fa fa-pencil'></i> Edit</a>'
+
+                             return '<button class="btn btn-success" onclick="selectProCLick(JSON.parse(\'' + JSON.stringify(row).replace(/'/g, '&apos;').replace(/"/g, '&quot;') + '\'))">' + 'اختر' + '</button>';
+
+                            
+                            
+                            
+                            //'<input type="checkbox" name="name1" class="btn-check"> <label class="btn btn-primary" for="btn-check">اختر</label>'
+
+                              //  <button data - id="' + row.id + '"  data - toggle="' + row.name + '" onclick = "selectProCLick(event)" > select</button > ';
+
+                            //btn = '<a class="btn btn-success"  onclick="deleteThis( \'' + row.name + '\' )"/><i class="fa fa-edit"></i> Edit</a>';
+                            //return btn;
+
+                        }
+
+
+                    }
+                    ,
+                    {
+                        "data": "id",
+                        "autoWidth": false,
+                        "width": "5%",
+                       
+                        "searchable": true
+                    },
+                    {
+                        "data": "name",
+                        "autoWidth": false,
+                        "searchable": true,
+                        "width": "30%",
+                    }
+                    ,
+                    {
+                        "data": "price",
+                        "autoWidth": true,
+                        "searchable": true
+                    }
+                    ,
+
+                    //{
+                    //    "autoWidth": false,
+                    //    "width": "30%",
+                    //    'render': function (date) {
+
+
+                    //        return '<input type="number" style="font-size: 12px;"  class=" form-control full-width text-lg-center" value="1" >';
+                    //    }
+                    //},
+                    {
+                        "data": "tax_price",
+                        "autoWidth": true,
+                        "searchable": true
+                    },
+                    {
+                        "data": "baladi_price",
+                        "autoWidth": true,
+                        "searchable": true
+                    }
+                    
+                    //,
+
+                    //{
+                        
+                    //    "autoWidth": false,
+                    //    "width": "2%",
+                    //    "defaultContent": '0', //ms-2: modificar las distancia de separacion del icono
+
+                    //    //'render': function (date) {
+
+
+                    //    //    return '0';
+                    //    //}
+                    //}
+
+
+
+                ]
+                //, "scrollX": true,
+                ////"paging": false,
+                //"info": false,
+                ////"lengthMenu": false,
+                //dom: 'lBfrtip',
+                //,
+                //buttons: [
+                //    'copy', 'pdf', 'print'
+                //]
+
+            });
+        stdt = true;
+    }
+    else {
+        $('#tableProduct').DataTable().ajax.url('/Products/GetDataFarz1/' + row).load();
+    }
+
+    //cleanFeild();
+
+
+}
+   
+function selectProCLick(ed) {
+
+    var rowCount1 = $('#tableProductInInv tr').length;
+
+     //var namePro_ = $("#tableProductInInv tr")[0].parentNode.children[2].innerHTML;
+
+     var isfound=false;
+
+    
+      var sumSub = parseFloat(ed.price);
+       var isTaxSerinc = $('.sincludetax').prop('checked');
+        if (isTaxSerinc === false) {
+                sumSub = parseFloat(sumSub) + parseFloat(ed.tax_price) + parseFloat(ed.baladi_price);
+              
+            }
+
+     
+
+     if(rowCount1>1)
+     {
+          $('#tableProductInInv tr').each(function() {
+    var namePro_22 = $(this).find("td").eq(2).html();  
+
+    if(namePro_22==ed.name)
+    {
+        isfound=true;
+        
+         var qtyS = $(this).find("td:eq(4) input[type='number']").val();
+
+         var qtySS=parseFloat(qtyS);
+         qtySS=qtySS+1;
+
+         $(this).find("td:eq(4) input[type='number']").val(qtySS);
+
+           sumSub = parseFloat(qtySS *ed.price);
+  
+        if (isTaxSerinc === false) {
+                sumSub = parseFloat(sumSub) + parseFloat(ed.tax_price) + parseFloat(ed.baladi_price);
+              
+            }
+             $(this).find("td").eq(7).html(sumSub);  
+         
+
+          
+
+    }
+    
+      
+});
+     }
+     else
+     {
+         $('#tableProductInInv').append('<tr><td><input type="checkbox" name="name1" checked="true" /></td><td>'+ed.id+'</td><td>'+ed.name+'</td><td>'+ed.price+'</td><td><input type="number" lang="en" style="font-size: 12px;"  class=" form-control full-width text-lg-center" value="1" ></td><td>'+ed.tax_price+'</td><td>'+ed.baladi_price+'</td><td>'+sumSub+'</td></tr>');  
+
+     }
+    
+
+     if(isfound==false && rowCount1>1)
+     {
+          $('#tableProductInInv').append('<tr><td><input type="checkbox" name="name1" checked="true" /></td><td>'+ed.id+'</td><td>'+ed.name+'</td><td>'+ed.price+'</td><td><input type="number" lang="en" style="font-size: 12px;"  class=" form-control full-width text-lg-center" value="1" ></td><td>'+ed.tax_price+'</td><td>'+ed.baladi_price+'</td><td>'+sumSub+'</td></tr>');  
+
+     }
+
+Swal.fire({
+              title: 'تم اضافة المنتج للفاتورة',
+              //html: 'I will close in <b></b> milliseconds.',
+              timer: 420,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                  const content = Swal.getContent()
+                  if (content) {
+                    const b = content.querySelector('b')
+                    if (b) {
+                      b.textContent = Swal.getTimerLeft()
+                    }
+                  }
+                }, 100)
+              },
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
+              /* Read more about handling dismissals below */
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+              }
+            });
+   changeDT();
+   //$('#tableProductInInv').data.reload();
+
+   //$('#tableProductInInv').ajax.reload();
+
+    //$('#tableProductInInv').DataTable().data.reload();
+
+
+   // $('#tableProductInInv').fnDestroy();
+     //$('#tableProductInInv').Destroy();
+
+        //var creditAmount = 0;
+
+        //var totalVAt_ = 0;
+        //var totalBelad_ = 0;
+       
+
+        //var isTaxSerinc = $('.sincludetax').prop('checked');
+
+        //var ismore=false;
+       
+      
+        //for (var i = 0; i < rowCount; i++) {
+             
+
+        //    var namePro_ = $("#tableProductInInv tr")[i].parentNode.parentNode.children[2].innerHTML;
+
+        //    alert(namePro_);
+
+        //    if(namePro_==ed.name)
+        //    {
+        //     ismore=true;
+        //      var qtyy = $("#tableProductInInv tr")[i].parentNode.parentNode.children[4].children[0].value;
+
+
+        //    }
+
+
+          
+        //}
+
+
+   // $('#tableProductInInv').append('<tr><td><input type="checkbox" name="name1" checked="true" /></td><td>'+ed.id+'</td><td>'+ed.name+'</td><td>'+ed.price+'</td><td><input type="number" style="font-size: 12px;"  class=" form-control full-width text-lg-center" value="1" ></td><td>'+ed.tax_price+'</td><td>'+ed.baladi_price+'</td><td></td></tr>');  
+
+   
+
+}
+
+function showInPopupInvServ() {
+
+    var idInvService = $('#compoboxService').val();
+
+    showInPopupRes("/ReceptionService/PreViewBillService?id="+idInvService, ' فاتورة خدمات');
+
+}
+
+function printInv() {
+
+   
+
+}
+
+
+
+    </script>
+}
+ 
+
+
+  

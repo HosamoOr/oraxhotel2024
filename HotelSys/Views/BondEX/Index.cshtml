@@ -1,0 +1,391 @@
+﻿@using HotelSys.ViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+
+
+<div class="page-wrapper">
+
+   
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"> الحسابات </a></li>
+                                <li class="breadcrumb-item"><a href="#">سندات الصرف </a></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                           
+
+                           
+                               
+                                     <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopupBig('@Url.Action("AddOrEdit","BondEX",null,Context.Request.Scheme)','سند صرف جديد')">
+                                <i class="fa fa-plus"></i>  سند صرف جديد
+                                    </button>
+                               
+                                   
+                                
+                           
+
+                            @*<button type="button" class="btn btn-primary"
+                                onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                new { id=5 })">
+
+                            <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                        </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <center><div id="result"></div></center>
+
+
+                <div id="view-all">
+    @await Html.PartialAsync("_ViewAll")
+</div>
+
+
+              @*  <div class="table-responsive">
+                    <table class="table" id="tableServicesGruop">
+                        <thead class="thead-light">
+                            <tr>
+                                <th> ACTION </th>
+                               
+                                <th># </th>
+                                <th> رقم المرجع </th>
+                                <th> رقم العقد</th>
+                                <th> الحساب  </th>
+
+                                <th> المبلغ  </th>
+                                <th> من اجل </th>
+                                <th>التاريخ  </th>
+
+                                <th>طريقة الدفع </th>
+
+
+                            </tr>
+                        </thead>
+
+
+                    </table>
+
+
+
+                </div>*@
+
+
+            </div>
+
+            <br />
+            <br />
+            <br />
+            
+
+           <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts
+{
+
+
+    @*farze-regesrer*@
+
+
+     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    
+    
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+            bindDatatableComp();
+
+             $('#TypePayT').on('change', function (event) {
+
+                 alert("my change");
+             });
+
+             $('#nameaccount4').on('change', function (event) {
+
+                 alert("my nameaccountP");
+             });
+             
+
+
+
+        });
+
+
+
+
+
+function bindDatatableComp() {
+
+    var dt = $('#tableServicesGruop')
+        .DataTable({
+
+            "sAjaxSource": '/BondEX/GetDataAsyncAll',
+            "bServerSide": true,
+            "bProcessing": true,
+            "bSearchable": true,
+            "order": [[1, 'asc']],
+            "language": {
+                //"emptyTable": "No record found.",
+                //"processing":
+                //    '<i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:#2a2b2b;"></i><span class="sr-only">انتضر يتم تحميل البيانات...</span> '
+
+                "sProcessing": '<i class="fa fa- spinner fa- spin fa - 3x fa - fw" style="color:#2a2b2b; "></i><span class="sr - only"> جاري تحميل البيانات...</span> ',
+                "sLengthMenu": "أظهر _MENU_ سجلات",
+                "sZeroRecords": "لم يعثر على أية سجلات",
+                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ سجل",
+                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "sInfoFiltered": "(منتقاة من مجموع _MAX_ سجل)",
+                "sInfoPostFix": "",
+                "sSearch": "ابحث:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "الأول",
+                    "sPrevious": "السابق",
+                    "sNext": "التالي",
+                    "sLast": "الأخير"
+                }
+
+            },
+            "lengthMenu": [
+                [10, 50,100,500,1000, -1],
+                [10, 50, 100, 500, 1000, 'All'],
+            ],
+
+            "columns": [
+                {
+                    "data": "id"
+                    ,
+                    "render": function (data, type, row, meta) {
+
+                       // return '<div><button onclick="selectEdit(/BondQ/Delete/' + row.id + ')"><i class="las fa-trash text-danger font-18"></i></button><button onclick="showInPopup(/BondQ/AddOrEdit/' + row.id + ')"><i class="las fa-edit text-success font-18"></i></button> <button onclick="/BondQ/Details/' + row.id + '"><i class="las fa-tools text-success font-18"></i></button></div>'
+                         return '<div><a onclick="selectDel(JSON.parse(\'' + JSON.stringify(row).replace(/'/g, '&apos;').replace(/"/g, '&quot;') + '\'))">'+ '<i class="las fa-trash text-danger font-18"></i>' + '</a><a onclick="selectEdit(JSON.parse(\'' + JSON.stringify(row).replace(/'/g, '&apos;').replace(/"/g, '&quot;') + '\'))">'+ '<i class="las fa-edit text-success font-18"></i>' + '</a> <div>';
+
+                        //'<div> <button   data-en="' + row.nameEn + '" data-id="' + row.id + '"  data-toggle="' + row.name + '" onclick="selectSerCLick(event)"  class="btn btn-success">تعديل</button> <button   data-en="' + row.nameEn + '" data-id="' + row.id + '"  data-toggle="' + row.name + '" onclick="DelSerCLick(event)"  class="btn btn-danger">حذف</button></div>';
+
+                        
+                    }
+                },
+               
+               
+
+                {
+                    "data": "id",
+                    "autoWidth": false,
+                    "width": "9%",
+                    "searchable": true
+                },
+                {
+                    "data": "numReference",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "idReception",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "nameCustomer",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "amount",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "why",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "datewithTime",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "typePay",
+                    "autoWidth": true,
+                    "searchable": true
+                }
+
+                //{
+                //    "data": "detials",
+                //    "autoWidth": true,
+                //    "searchable": true,
+                //    "render": function (data, type, row, meta) {
+
+
+                //        return '<div style="width: 80px; text-overflow: ellipsis; white-space: nowrap;overflow: hidden; ">' + row.detials+'</div>';
+                //        //'<a>' + row.imgs[0].img + '</a>';
+                //        //'
+
+                //    }
+                //},
+                
+                
+               
+
+
+                //{
+                //   'render': function (date) {
+
+                //        var date = new Date(parseInt(date.substr(6)));
+                //        var month = date.getMonth() + 1;
+                //        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                //    }
+                //},
+
+
+
+            ]
+            //, "scrollX": true,
+            ////"paging": false,
+            //"info": false,
+            ////"lengthMenu": false,
+            //dom: 'lBfrtip',
+            //,
+            //buttons: [
+            //    'copy', 'pdf', 'print'
+            //]
+
+        });
+
+
+        }
+
+        function selectEdit(row1)
+        {
+            
+   
+
+    showInPopupBig("/BondEX/AddOrEdit/"+row1.id,"تعديل سند الصرف");
+
+        }
+     
+        function selectDel(row1)
+        {
+            
+ 
+
+    showDelPop("/BondEX/Delete/"+row1.id," سند الصرف");
+
+        }
+
+
+        
+
+        //function DelSerCLick(ee) {
+        //    var rowid = ee.target.getAttribute('data-id');
+
+        //    var rowname = ee.target.getAttribute('data-toggle');
+        //    var rowen = ee.target.getAttribute('data-en');
+
+
+        //    $("#IdD").val(rowid);
+        //    $("#NameD").val(rowname);
+        //    $("#NameEnD").val(rowen);
+
+
+
+        //    $('#DelGroupServiceModal').modal('show');
+
+
+        //    ee.preventDefault();
+        //}
+
+        //function selectSerCLick(ee) {
+        //    var rowid = ee.target.getAttribute('data-id');
+
+        //    var rowname = ee.target.getAttribute('data-toggle');
+        //    var rowen = ee.target.getAttribute('data-en');
+
+
+        //    $("#Id").val(rowid);
+        //    $("#Name").val(rowname);
+        //    $("#NameEn").val(rowen);
+
+        //    $("#submitID").val('تعديل');
+
+        //    $('#GroupServiceModal').modal('show');
+
+
+        //    ee.preventDefault();
+        //}
+
+
+
+
+
+    </script>
+
+}

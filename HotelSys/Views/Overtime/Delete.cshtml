@@ -1,0 +1,134 @@
+﻿@model DataModels.OvertimeTable
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">اوقات الذروة</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title"> حذف وقت ذروة  </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <h5>هل انت متاكد من حذف وقت الذروة هذا ؟</h5>
+                <div>
+
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label>وقت البدء</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.StartTime)
+
+                        </dd>
+                        <dt>
+                            <label> وقت الانتهاء</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.EndTime)
+
+                        </dd>
+
+                        @if (Model.StartDate == null)
+                        {
+
+                            <dt>
+                                <label>تاريخ البدءوالانتهاء </label>
+                            </dt>
+                            <dd>
+                                غير نشط
+                            </dd>
+
+                           
+                        }
+                        else
+                        {
+                            <dt>
+                                <label>تاريخ البدء</label>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.StartDate)
+                            </dd>
+
+                            <dt>
+                                <label>
+                                    تاريخ الانتهاء
+                                </label>
+
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EndDate)
+                            </dd>
+
+
+                        }
+
+
+
+                        <dt>
+
+                        </dt>
+
+                        <dt>
+                            <label>تاريخ اخر تعديل</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Createat)
+                        </dd>
+                        <dt>
+                            <label>المستخدم :</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.IdUser)
+                        </dd>
+                        @*<dt>
+            @Html.DisplayNameFor(model => model.IdSub)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdSub)
+        </dd>*@
+                    </dl>
+
+                   
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="حذف" class="btn btn-danger" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

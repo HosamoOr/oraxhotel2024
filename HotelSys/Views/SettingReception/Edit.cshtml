@@ -1,0 +1,160 @@
+﻿@model HotelSys.ViewModel.SettingReceptionViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الاعدادات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title">اعدادات الحجوزات </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <br />
+                <br />
+
+                <div class="row">
+                    <div class="col-lg-11">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               asp-for="IsCheckinTime"
+                                               type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="IsCheckinTime">وقت الدخول</label>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="col-lg-4">
+
+
+                                    <div class="form-group">
+
+                                        <input asp-for="TimeCheckin" type="time" class="form-control" />
+                                        <span asp-validation-for="TimeCheckin" class="text-danger"></span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="row">
+                                <div class="col-lg-4">
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               asp-for="IsCheckoutTime"
+                                               type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">وقت الخروج</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        
+                                        <input asp-for="TimeCheckout" type="time" class="form-control" />
+                                        <span asp-validation-for="TimeCheckout" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               asp-for="IsIntervalChangeroom"
+                                               type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">فترة تغيير الشقة(بالساعات) </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                      
+                                        <input asp-for="IntervalChangeroom"  class="form-control" />
+                                        <span asp-validation-for="IntervalChangeroom" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-lg-4">
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               asp-for="IsMounthReceptionCheckout"
+                                               type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">وقت الخروج الشهري </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input"
+                                               asp-for="IncudePriceTax"
+                                               type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault"> السعر شامل الضريبة  </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    @*<div class="form-group">
+                                        <label asp-for="IdSub" class="control-label"></label>
+                                        <input asp-for="IdSub" class="form-control" />
+                                        <span asp-validation-for="IdSub" class="text-danger"></span>
+                                    </div>*@
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+

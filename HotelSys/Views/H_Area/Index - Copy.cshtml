@@ -1,0 +1,392 @@
+﻿
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style{
+
+    @*Farze+regester*@
+
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            
+
+            <div class="row">
+
+               
+
+
+  <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الاعدادات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title">اعدادات عامة </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <br />
+                <br />
+
+
+
+                 <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link  " href="@Url.Action("Index", "SettingGeneral")">اعدادات الخدمات</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("Index", "H_Country")">تهيئة الدول</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="@Url.Action("Index", "H_City")">تهيئة المحافظات</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="@Url.Action("Index", "H_Area")">تهيئة المديريات</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+
+    
+             <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                               @*<li class="breadcrumb-item"><a href="#">المديريات</a></li>*@
+                            </ol>
+                             <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopup('@Url.Action("AddOrEdit","H_Area",null,Context.Request.Scheme)','مديرية جديدة')">
+                                <i class="fa fa-plus"></i>  مديرية جديدة
+                                    </button>
+                               
+                        </div>
+                          
+                                   
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+
+     <div class="row mb-3">
+                            
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+
+
+                                    <label class="control-label">الدولة</label>
+                                    <div class="form-group input-group has-validation">
+                                           <input type="hidden" id="idcountryHid" />
+                                        <select class="form-select text-lg-center" id="country" asp-items="ViewBag.IdCountry" aria-label="country">
+                                            <option value="-1" selected="">الكل  </option>
+                                           
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="hidden" id="idcityHid" />
+                        <select class="form-select text-lg-center" id="city"  aria-label="city">
+                                            <option value="-1" selected="">اختر  </option>
+                                           
+
+                                        </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+       
+<div class="row">
+
+    <div id="view-all">
+    @await Html.PartialAsync("_ViewAll")
+</div>
+
+</div>
+
+
+
+
+
+    
+  </div>
+</div>
+
+
+
+              
+            </div>
+        </div>
+
+
+
+            </div><!--end row-->
+
+
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                للانظمة
+                وتقنية المعلومات
+            </span>
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+
+
+
+
+
+
+
+
+
+@section scripts
+{
+
+
+    
+ @*farze-regesrer*@
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+     <script>
+     
+         
+    $(document).ready(function () {
+    bindDatatable();
+
+    
+
+
+         $('#city').on('change', function (event) {
+       
+        var comid_ = $(":selected", $("#city")).val();
+        var url = '/H_Area/GetByCity/' + comid_;   //$(this).attr("action");
+
+
+
+    });
+    
+
+    $('#country').on('change', function (event) {
+      
+        alert(this.val());
+        var comid_2 = $(":selected", $("#country")).val();
+        var url = '/H_City/GetBycountry/' + comid_2;   //$(this).attr("action");
+
+
+
+
+
+
+        $.ajax(
+            {
+                type: 'GET',
+                url: url,
+                success:
+                    function (data) {
+
+                        var response = jQuery.parseJSON(data);
+
+                        $('#city option').each(function () {
+                            if ($(this).val() != '-1') {
+                                $(this).remove();
+                            }
+                        });
+
+
+                        for (var i = 0; i < response.length; i++) {
+                            // alert(response[i].Name);
+
+
+
+
+                            $('#city').append("<option value='" + response[i].Id + "'>" + response[i].Name + "</option>");
+
+
+                        }
+                        var icity_ = $("#idcityHid").val();
+
+                        alert(icity_);
+
+                        if ($("#idcountryHid").val() == comid_2) {
+                            if (icity_ != -1) {
+                                $("#city").val(icity_).change();
+
+                            }
+
+                        }
+
+
+
+                    },
+                error:
+                    function (response) {
+                        alert("Error: " + response);
+                    }
+            });
+
+    });
+
+
+
+});
+
+function bindDatatable() {
+    datatable = $('#tableServicesGruop')
+        .DataTable({
+
+            "sAjaxSource":'/H_Area/GetDataFarz1/' + $("#city").val(),
+            "bServerSide": true,
+            "bProcessing": true,
+            "bSearchable": true,
+            "order": [[1, 'asc']],
+            "language": {
+                //"emptyTable": "No record found.",
+                //"processing":
+                //    '<i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:#2a2b2b;"></i><span class="sr-only">انتضر يتم تحميل البيانات...</span> '
+                //,
+
+                "sProcessing": "جارٍ التحميل...",
+                "sLengthMenu": "أظهر _MENU_ سجلات",
+                "sZeroRecords": "لم يعثر على أية سجلات",
+                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ سجل",
+                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "sInfoFiltered": "(منتقاة من مجموع _MAX_ سجل)",
+                "sInfoPostFix": "",
+                "sSearch": "ابحث:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "الأول",
+                    "sPrevious": "السابق",
+                    "sNext": "التالي",
+                    "sLast": "الأخير"
+                }
+
+
+
+            },
+            "columns": [
+                {
+
+                    "data": "id",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "name",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "countCustomer",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "nameCity",
+                    "autoWidth": true,
+                    "searchable": true
+                }, 
+                {
+                    "data": "nameCity",
+                    "autoWidth": true,
+                    "searchable": true
+                }
+
+
+
+            ]
+        });
+         
+   
+
+
+     
+     </script>
+
+     
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}

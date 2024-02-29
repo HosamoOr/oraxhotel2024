@@ -1,0 +1,1001 @@
+﻿@model HotelSys.ViewModel.ReceptionViewModel
+
+
+@{
+    ViewData["Title"] = "oneReservation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+    
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+    <style>
+
+
+
+
+        /*input[type="date"]::-webkit-datetime-edit, input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-clear-button {
+            color: #fff;
+            position: relative;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-year-field {
+            position: absolute !important;
+            border-left: 1px solid #8c8c8c;
+            padding: 2px;
+            color: #000;
+            left: 56px;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-month-field {
+            position: absolute !important;
+            border-left: 1px solid #8c8c8c;
+            padding: 2px;
+            color: #000;
+            left: 26px;
+        }
+
+
+        input[type="date"]::-webkit-datetime-edit-day-field {
+            position: absolute !important;
+            color: #000;
+            padding: 2px;
+            left: 4px;
+        }
+
+        .form-group.required .control-label:after {
+            content: "*";
+            color: red;
+        }*/
+    </style>
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الشقق والتسكين</a></li>
+
+                                <li class="breadcrumb-item active">تسجيل الدخول </li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">@ViewBag.HeaderPage</h4>
+                        <input type="hidden" id="titlePageType"  value="@ViewBag.titlePageType">
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        @*<div class="card-header">
+                            <h4 class="card-title">~</h4>
+
+                        </div>*@
+  
+                        <div class="card-body">
+                            <div class="ReceptionAddForm" name="ReceptionAddForm" method="post" id="custom-step">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab">
+                                        <a class="nav-link active" id="step1-tab1" data-bs-toggle="tab" href="#step1">تفاصيل الحجز</a>
+                                        <a class="nav-link " id="step2-tab2"
+                                           data-bs-toggle="tab" href="#step2">المالية</a>
+
+
+                                        @*nav-link disabled*@
+
+
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+
+                                    <center><div id="result"></div></center>
+
+                                    <div class="tab-pane active" id="step1">
+                                        <h4 class="card-title mt-3 mb-1">بيانات الحجز </h4>
+
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group row mb-2">
+                                                    <label class="col-lg-3 col-form-label text-end">الرقم :</label>
+                                                    <div class="col-sm-8">
+                                                        <input disabled id="idReception"
+                                                               class="form-control bg-white"
+                                                               asp-for="IdReception">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label class="col-lg-3 col-form-label text-end">مصدر الحجز :</label>
+                                            <div class="col-sm-3">
+
+
+                                                <select asp-for="Source"
+                                                        id="Source"
+                                                        class="form-select" asp-items="ViewBag.Idsource"></select>
+
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="form-group row mb-2">
+                                                    <label class="col-lg-5 col-form-label text-end">حالة الحجز :</label>
+                                                    <div class="col-sm-6">
+                                                        <input disabled id="idstatusReception"
+                                                              type="hidden"
+                                                               class="form-control bg-white"
+                                                               asp-for="status">
+
+                                                        <input disabled id="txtstatusReception"
+                                                               class="form-control"
+                                                              >
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                      
+
+                                             <div class="row mb-3">
+
+                            <div class="col">
+                                <div class="form-group">
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">جهة القدوم: </div>
+                    </div>
+                         <input  id="AreaFrom" type="text" class="form-control bg-white" asp-for="AreaFrom">
+                </div>
+               
+            </div>
+                            </div>
+
+                            <div class="col">
+                                 <div class="form-group">
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">سبب الزيارة: </div>
+                    </div>
+                     <input  id="WhyVisit" type="text" class="form-control bg-white" asp-for="WhyVisit">
+                </div>
+                @*<span asp-validation-for="Id_Area" class="text-danger"></span>*@
+            </div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+                                        
+                                        </div>
+
+
+
+
+
+
+                                        <div class="row">
+
+
+                                            <h4 class="card-title mt-3 mb-1">بيانات الشقة</h4>
+
+
+                                            <div class="row">
+
+
+                                                <label class="col-lg-3 col-form-label text-end">
+                                                    الشقة :
+                                                    <span class="rr">*</span>
+                                                </label>
+                                                <div class="col-sm-3">
+
+
+                                                    <select asp-for="room.IdRoom" id="roominputid" class="form-select" asp-items="ViewBag.IdRoom"></select>
+                                                    <div class="invalid-feedback">
+                                                        الرجاء اختيار الشقة
+                                                    </div>
+
+                                                </div>
+
+
+                                                <label class="col-lg-3 col-form-label text-end">السعر :</label>
+                                                <div class="col-sm-3">
+
+
+                                                    <input id="txtPrice"  asp-for="Price" type="text" class="form-control">
+
+                                                </div>
+
+
+                                            </div><!--end col-->
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <div class="row">
+
+
+                                            <h4 class="card-title mt-3 mb-1">بيانات العميل  </h4>
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <label for="customer" class="col-lg-3 col-form-label text-end">
+                                                        العميل
+                                                        <span class="rr">*</span>
+                                                    </label>
+
+                                                    <input type="text" disabled id="customerName" asp-for="customer.Name" class="col-lg-3 col-form-control bg-white" />
+                                                    <div class="invalid-feedback">
+                                                        الرجاء اختيار عميل
+                                                    </div>
+
+                                                    <input type="hidden" id="customerID" asp-for="customer.IdcumtomerAll" class="col-sm-1" />
+                                                    <input type="hidden" id="PrivateNoteID" class="col-sm-1" />
+                                                    <input type="hidden" id="customerIDacc" asp-for="customer.IdAccount" />
+                                                    <input type="hidden" id="customerMyID" asp-for="customer.IdmyCu" />
+                                                    <input type="hidden" id="isMyID" asp-for="customer.is_my" />
+
+                                                </div>
+
+
+                                                <div class="col-sm-4">
+
+
+                                                    <span>
+                                                        <button type="button"
+                                                                id="searchCuid" onclick="bindDatatablecust()"
+                                                                class="btn btn-primary-outline">
+                                                            <i class="fas fa-search text-secondary font-18"></i>
+                                                        </button>
+
+                                                    </span>
+
+
+                                                    <span>
+                                                        <button type="button" class="btn btn-primary-outline"
+                                                                onclick="newCusModelShow()">
+                                                            <i class="fas fa-plus text-secondary font-18"></i>
+                                                        </button>
+
+                                                    </span>
+
+                                                    <span>
+                                                        <button class="btn btn-primary-outline  "
+                                                                onclick="editCusModelShow()">
+                                                            <i class="fas fa-edit text-secondary font-18"></i>
+                                                        </button>
+
+                                                    </span>
+
+                                                    <!-- Modal  ADD customer-->
+                                                    @*<partial name="_newcustomerModal" />*@
+
+                                                    @Html.Partial("_newcustomerMPartial", Model.customer)
+
+
+                                                    <!-- Modal  search customer-->
+                                                    @Html.Partial("_searchCustomerPartial")
+
+
+                                                    <!-- Modal  search  company-->
+                                                    @Html.Partial("_SearchCompanyPartial")
+
+
+                                                    <!-- Modal  New  company-->
+                                                    @Html.Partial("_newCompanyPartial")
+
+
+
+                                                </div><!--end form-group-->
+                                            </div>
+
+
+                                            @Html.Partial("_showCompanyPartial", Model.company)
+
+
+                                            @Html.Partial("_showFollowerPartial", Model.followers)
+
+
+
+
+                                        </div><!--end row-->
+
+
+                                        <div class="row">
+
+                                            <h4 class="card-title">بيانات الفترة</h4>
+
+
+                                            <div class="row">
+
+                                                <div class="row">
+
+                                                    <label class="col-lg-3 col-form-label text-end">نوع الايجار :</label>
+                                                    <div class="col-sm-3">
+
+
+                                                        <select asp-for="Unit"
+                                                                id="Unit"
+                                                                class="form-select" asp-items="ViewBag.Unit"></select>
+
+                                                    </div>
+
+
+
+                                                    <label class="col-lg-3 col-form-label text-end">التقويم</label>
+                                                    <div class="col-sm-3">
+
+
+                                                        <select asp-for="TypeDate"
+                                                                id="TypeDate"
+                                                                class="form-select" asp-items="ViewBag.TypeDate"></select>
+
+                                                    </div>
+
+
+                                                    <label class="col-lg-3 col-form-label text-end">عدد الايام</label>
+                                                    <div class="input-group qty-icons w-25">
+                                                        <button class="btn btn-primary" onclick="MensQty(this)">-</button>
+                                                        <input id="QtyTime" type="number" class="form-control" min="1"
+                                                               asp-for="QtyTime">
+                                                        <button class="btn btn-primary" onclick="plasQty(this)">+</button>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                                <div class="row">
+
+
+                                                    <div class="col-md-6">
+
+
+                                                        <div class="form-group row mb-2">
+
+                                                        </div><!--end form-group-->
+
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col">
+
+                                                    <h4 class="card-title">ميلادي: </h4>
+
+
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <div class="input-group" id="DateRange">
+                                                                <span class="input-group-text">من</span>
+                                                                <input type="date"
+                                                                       id="StartDate"
+                                                                       asp-for="StartDate"
+                                                                       min="1997-01-01" max="2030-12-31"
+                                                                       class="form-control datepicker-input" placeholder="Start" aria-label="StartDate">
+                                                                <span class="input-group-text">الى</span>
+                                                                <input type="date" class="form-control datepicker-input"
+                                                                       id="EndDate"
+                                                                       min="1997-01-01" max="2030-12-31"
+                                                                       asp-for="EndDate"
+                                                                       placeholder="End" aria-label="EndDate">
+                                                            </div>
+                                                        </div>
+
+                                                        @*<div class="col">
+                                <div class="form-group ">
+                                    <label for="StartDate" class="form-label text-end">من : </label>
+
+                                    <input class="form-control" id="StartDate"
+                                           asp-for="StartDate"
+                                           min="1997-01-01" max="2030-12-31"
+                                           type="date">
+
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group ">
+                                    <label for="toDate_en" class="form-label text-end">الى : </label>
+
+                                    <input class="form-control" type="date" id="EndDate"
+                                           min="1997-01-01" max="2030-12-31"
+                                           asp-for="EndDate">
+
+
+                                </div>
+                            </div>*@
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+
+                                                    @*<h4 class="card-title">هجري: </h4>*@
+
+
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            @*<div class="input-group" id="DateRange">
+                                    <span class="input-group-text">من</span>
+                                    <input type="date"
+                                           id="StartDateh"
+                                           asp-for="StartDate"
+                                           min="1997-01-01" max="2030-12-31"
+                                           class="form-control datepicker-input" placeholder="Starth" aria-label="StartDate">
+                                    <span class="input-group-text">الى</span>
+                                    <input type="date" class="form-control datepicker-input"
+                                           id="EndDateh"
+                                           min="1997-01-01" max="2030-12-31"
+                                           asp-for="EndDate"
+                                           placeholder="Endh" aria-label="EndDateh">
+                                </div>*@
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+
+                                        <br />
+
+                                        <div class="card-footer">
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <button type="button" id="step1Next" onclick="saveReception()" class="btn btn-primary  float-end">
+                                                        <i class="mdi mdi-check-all me-2"></i>
+                                                        حفظ
+                                                    </button>
+                                                </div>
+                                               @{ 
+
+//if(Model.status==1)
+//{
+                                                                                                                                    <div id="divCencel" class="col">
+                                                                                                                                    <button type="button" id="btnCancelreception" onclick="SummaryOutput(2)" class="btn btn-primary  float-end">
+                                                                                                                                        <i class="mdi mdi-cancel me-2"></i>
+                                                                                                                                        الغاء الحجز
+                                                                                                                                    </button>
+                                                                                                                                    </div>
+                                                                                                                                   @*}*@
+                                               }
+                                                
+
+
+                                                <div class="col">
+                                                    <a type="button" class="btn btn-de-secondary " href="/HomeReception/Index">
+                                                        خروج
+                                                        <i class="mdi mdi-close me-2"></i>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane" id="step2">
+
+                                        @Html.Partial("_step2Bill", Model)
+
+
+
+
+                                    </div>
+
+                                    <partial name="logout/_sumaryLogoutModal.cshtml" />
+
+                                    <partial name="CancelReception/_sumaryCancelModal.cshtml" />
+
+                                    @*<partial name="ReportsReceptionModal" />
+*@
+                                    
+                                </div>
+                            </div>
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+
+
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<!-- Javascript  -->
+
+@Html.Partial("_searchFollowePartial")
+
+@Html.Partial("_newcFollwerModal")
+
+
+@Html.Partial("_newcFollwerModal")
+
+
+@section scripts{
+
+
+    @*farze-regesrer*@
+
+
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="~/js/reception.js"></script>*@
+
+     <script src="~/js/reception/bills/Servicebond4.js"></script>
+
+    <script src="~/js/reception/roomR.js"></script>
+
+      <script src="~/js/city.js"></script>
+
+    <script src="~/js/reception/customerR.js"></script>
+
+    <script src="~/js/reception/companyR.js"></script>
+
+    <script src="~/js/reception/followersR.js"></script>
+
+    <script src="~/js/reception/main.js"></script>
+
+    <script src="~/js/reception/bills/talkbond.js"></script>
+
+    <script src="~/js/reception/bills/paybondy.js"></script>
+    <script src="~/js/reception/bills/main.js"></script>
+
+   
+
+    <script src="~/js/reception/mainOut.js"></script>
+
+    <script src="/assets/pages/form-validation.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+    
+
+    <script>
+
+
+
+      @*$("#addcompform").on("submit", function (event) {
+        event.preventDefault();
+
+        // var myModel =
+        //{
+        //    "Id": 2,
+        //    "Name": "hhhhhh",
+        //    "IdAccount": 22,
+        //    "IdSub": 22
+        //};
+        //var jsonToPost = JSON.stringify(myModel);
+
+        var url = '@Url.Action("Createjson", "_Company")'; //$(this).attr("action");
+        var formData = $(this).serialize();
+
+        $.post(url, formData, function (response) {
+            $('#addCompanyModal').modal('hide');
+            alert(" New company sucess " + response.id);
+
+
+            $("#companyName").val(response.name + "   " + response.id);
+
+            $("#companyID").val(response.id);
+
+            //
+
+            //window.location.href = '@Url.Action("Index", "_Company")';
+            //  if (intervalId)
+            //clearInterval(intervalId);
+        });
+
+
+    });*@
+
+        //addFolloweForm
+
+
+
+
+
+        $('#txtPrice').change(function ()
+        {
+            var pric = parseFloat( $(this).val());
+
+            var qty = parseFloat($('#QtyTime').val());
+            var dicount = parseFloat($('#QtyDiscount').val());
+
+
+            updatePrice(pric, qty, dicount);
+
+
+        });
+
+
+        //$('#priceB').change(function () {
+        //    var v2 = $(this).val();
+        //    $('#txtPrice').val(v2);
+
+        //    $('#totalB').text(v2 * $('#QtyTime').val());
+        //    $('#finishtotal').text(v2 * $('#QtyTime').val());
+
+        //    $('#balance').text(v2 * $('#QtyTime').val());
+
+
+
+        //});
+
+
+
+
+        function eventDate() {
+            var date = $('#EndDate').val();
+
+            var dateA = new Date(date);
+
+            var date2 = $('#StartDate').val();
+            var dateB = new Date(date2);
+
+            var countDay = daysdifference(dateA, dateB);
+            if (countDay < 0) {
+                alert('لا يمكن ان يكون تاريخ الانتهاء اقل من تاريخ البداية');
+
+
+                intitDate();
+                //var one = 1;
+
+                //$('#EndDate').val(date2);
+
+                //$('#totalB').text(one * $('#priceB').val());
+                //$('#finishtotal').text(one * $('#priceB').val());
+
+                //$('#balance').text(one * $('#priceB').val());
+            }
+            else {
+                $('#QtyTime').val(countDay);
+
+                var pric = parseFloat($('#txtPrice').val());
+
+                var dicount = parseFloat($('#QtyDiscount').val());
+
+                updatePrice(pric, countDay, dicount);
+
+            }
+
+
+           // alert(countDay);
+
+
+        }
+
+        $('#EndDate').blur(function () {
+            eventDate();
+
+        });
+
+        $('#StartDate').blur(function () {
+            eventDate();
+
+        });
+
+        $('#QtyTime').change(function () {
+
+            var qty_ = parseFloat($(this).val());
+            updatePrice(parseFloat($('#txtPrice').val()), qty_ , parseFloat($('#QtyDiscount').val()));
+
+            addQtyDay(qty_);
+
+
+
+        });
+
+        $('#TotalTaxRate').change(function () {
+
+            var taxrat_ = parseFloat($(this).val());
+
+            var textpp_ = parseFloat($('#txtPrice').val());
+
+            var vatprice = textpp_ * taxrat_/100;
+
+            $('#TotalTaxPrice').val(vatprice);
+
+
+            var qty_1 = parseFloat($('#QtyTime').val());
+
+            updatePrice(textpp_, qty_1, parseFloat($('#QtyDiscount').val()));
+
+     
+
+        });
+
+        $('#TotalTaxPrice').change(function () {
+
+            var taxpric_ = parseFloat($(this).val());
+            var textpp_ = parseFloat($('#txtPrice').val());
+
+            var vatrate = taxpric_ / textpp_ * 100;
+
+            $('#TotalTaxRate').val(vatrate);
+
+            if (taxpric_ > textpp_)
+            {
+                alert('لا يمكن ان يكون مبلغ الضريبة اكبر من المبلغ المستحق');
+                return;
+            }
+            else
+            {
+                var qty_1 = parseFloat($('#QtyTime').val());
+
+                updatePrice(textpp_, qty_1, parseFloat($('#QtyDiscount').val()));
+
+            }
+
+           
+
+
+
+        });
+
+
+
+        function daysdifference(firstDate, secondDate) {
+            var startDay = new Date(firstDate);
+            var endDay = new Date(secondDate);
+
+            // Determine the time difference between two dates
+            var millisBetween = startDay.getTime() - endDay.getTime();
+
+
+            // Determine the number of days between two dates
+            var days = millisBetween / (1000 * 3600 * 24);
+
+            // Show the final number of days between dates
+            return Math.round(days);
+
+            //Math.round(Math.abs(days));
+        }
+
+        function MensQty(emq) {
+            var qm1 = parseFloat($('#QtyTime').val());
+
+            emq.parentNode.querySelector('input[type=number]').stepDown();
+
+
+
+            if (qm1 != 1) {
+                updatePrice(parseFloat($('#txtPrice').val()), parseFloat($('#QtyTime').val()), parseFloat($('#QtyDiscount').val()));
+
+                SUBOneDay();
+
+            }
+
+
+        }
+
+        function plasQty(epq) {
+            epq.parentNode.querySelector('input[type=number]').stepUp();
+
+            updatePrice(parseFloat($('#txtPrice').val()), parseFloat($('#QtyTime').val()), parseFloat($('#QtyDiscount').val()));
+
+
+             addOneDay();
+
+        }
+
+        function updatePrice(pricef, qtyf, discountf) {
+
+            var totalSer = 0.0;
+
+            var totalEx = parseFloat($('#totalE').text()); //اجمالي المصروفات
+            var totalPay = parseFloat($('#totalT').text()); //اجمالي المقبوضات
+
+
+            if ($('#sumServices').text() != ".") {
+
+                totalSer = parseFloat($('#sumServices').text());
+            }
+
+            var sumtotalEx = totalEx + totalSer;
+
+            var total_ = pricef * qtyf;//+ totalSer;
+
+            var total_finish = (total_ - discountf) ;
+
+
+
+
+
+           
+
+            //$("#priceB").fadeOut(300, function () {
+            //    $(this).val(pricef).fadeIn(300);
+            //});
+
+            var targetT = $('#TypeDiscount option:selected').val();
+            if (targetT == "2") {
+                var disc00 = parseFloat($('#QtyDiscountRate').val());
+                var qpric0 = total_ * disc00 / 100;
+
+
+
+                //$("#QtyDiscount").fadeOut(300, function () {
+                //    $(this).val(qpric0).fadeIn(300);
+                //});
+
+
+                $("#QtyDiscount").val(qpric0);
+                $('#totalDiscount').text(qpric0);
+
+                //$("#totalDiscount").fadeOut(300, function () {
+                //    $(this).val(qpric0).fadeIn(300);
+                //});
+
+                total_finish = total_ - qpric0;
+            }
+            else {
+                $('#totalDiscount').text(discountf);
+
+
+                //$("#totalDiscount").fadeOut(300, function () {
+                //    $(this).val(discountf).fadeIn(300);
+                //});
+            }
+
+
+            //$("#totalB").fadeOut(300, function () {
+            //    $(this).text(total_).fadeIn(300);
+            //});
+
+
+            var isincludPrice_ = $('#IncludeTax').val();
+
+           
+
+            var taxrat_ = parseFloat($('#TotalTaxRate').val());
+
+            var totalTaax = pricef * taxrat_ / 100;
+
+            $('#TotalTaxPrice').val(totalTaax);
+            $('#totalTax').text(totalTaax);
+
+
+
+
+            var isbb = $('#IsBaladiTax').val();
+            var raBala = parseFloat($('#TotalBaladiTaxRate').val());
+            var baladiPri = 0.0;
+            
+          
+
+            if (isbb == 'true' ) {
+
+               
+
+                baladiPri = pricef * raBala / 100;
+               
+            }
+
+           
+
+            $('#totalBaladiTax').text(baladiPri);
+            
+
+            if (isincludPrice_ == 'False') {
+               
+                $('#priceB').val(pricef + totalTaax + baladiPri);
+
+                
+                total_ = total_ + totalTaax + baladiPri;
+                alert(total_);
+                total_finish = total_finish + totalTaax + baladiPri;
+                
+            }
+            else{
+
+                $('#priceB').val(pricef - totalTaax - baladiPri);
+
+               //alert(pricef +'pricef ');
+             
+                //total_ = total_ + totalTaax + baladiPri;
+                //alert(total_);
+                //total_finish = total_finish + totalTaax + baladiPri;
+
+            }
+
+
+
+
+            $('#totalB').text(total_);
+
+
+            //$("#finishtotal").fadeOut(300, function () {
+            //    $(this).text(total_finish).fadeIn(300);
+            //});
+
+           $('#finishtotal').text(total_finish);
+
+            $('#finishtotalbeforVAT').text(total_finish - totalTaax - baladiPri);
+
+            
+
+
+            var bl = (total_finish * -1) + totalPay - sumtotalEx;
+
+            //$("#balance").fadeOut(300, function () {
+            //    $(this).text(bl).fadeIn(300);
+            //});
+
+            $('#balance').text(bl);
+        }
+
+    </script>
+
+}

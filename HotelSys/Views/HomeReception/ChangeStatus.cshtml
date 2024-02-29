@@ -1,0 +1,149 @@
+﻿@model HotelSys.ViewModel.Status_Current_RoomViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    // Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title"> تغيير حالة الشقة</h4>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+
+
+                <div class="row">
+                    <div class="col-md-9">
+
+
+
+                        <form asp-action="changeStatus">
+                            <div asp-validation-summary="ModelOnly"
+                                 class="text-danger">
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                        <label class="col-lg-3 col-form-label-sm text-end">  اسم الشقة: </label>
+                                        <div class="col-lg-9">
+                                            @Html.DisplayFor(model => model.RoomModel.NameR)
+                                        </div>
+
+                                    </div><!--end form-group-->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                        <label class="col-lg-3 col-form-label-sm text-end"> عدد الغرف: </label>
+                                        <div class="col-lg-9">
+                                            @Html.DisplayFor(model => model.RoomModel.CountRooms)
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> <!--end row--->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                        <label class="col-lg-3 col-form-label-sm text-end">  نوع الشقة: </label>
+
+                                        <div class="col-lg-9">
+                                            <select asp-for="RoomModel.IdType" class="form-control" asp-items="ViewBag.IdType"></select>
+                                        </div>
+
+                                    </div>
+                                    <!--end form-group-->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                        <label class="col-lg-3 col-form-label-sm text-end"> الطابق: </label>
+                                        <div class="col-lg-9">
+                                            @Html.DisplayFor(model => model.RoomModel.NumFloor)
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> <!--end row--->
+
+                            <div class="row">
+
+                                <div class="col-md-10">
+                                    <div class="form-group row mb-2">
+                                        <label class="col-lg-3 col-form-label-sm text-end">الحالة </label>
+                                        <div class="col-lg-9">
+                                            <select class="form-select-sm" aria-label="typeCustomer" asp-for="@Model.Status">
+                                                <option value="1">فارغة  </option>
+                                                <option value="2">نظافة</option>
+                                                <option value="3">صيانة</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="submit" value="تغيير الحالة" class="btn btn-primary" />
+
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div><!-- container -->
+            <!--Start Rightbar-->
+            <!--Start Rightbar/offcanvas-->
+            <!--end Rightbar-->
+            <!--Start Footer-->
+            <!-- Footer Start -->
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+            <!-- end Footer -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+</div>
+
+
+
+

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<DataModels.ItemsExpensesTable>
+
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+
+
+<div class="page-wrapper">
+
+   
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"> المالية </a></li>
+                                <li class="breadcrumb-item"><a href="#">بنود المصروفات  </a></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopupSmail('@Url.Action("AddOrEdit","ItemsExpenses",null,Context.Request.Scheme)','بند مصروف جديد')">
+                                <i class="fa fa-plus"></i>  بند مصروفات جديد
+                            </button>
+
+                           @* <a onclick="showInPopupBig('@Url.Action("AddOrEdit","BondQ",null,Context.Request.Scheme)','سند قبض جديد')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Transaction</a>
+                   *@
+
+
+                            @*<button type="button" class="btn btn-primary"
+                                onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                new { id=5 })">
+
+                            <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                        </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <center><div id="result"></div></center>
+
+
+               <div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
+
+             
+
+
+            </div>
+
+            <br />
+            <br />
+            <br />
+            
+
+           <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts
+{
+
+
+    
+      <!--  Sweet-Alert  -->
+    <script src="~/assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="~/js/swit_alert.js"></script>
+
+
+    <script>
+
+
+
+       
+
+    </script>
+
+}

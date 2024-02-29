@@ -1,0 +1,140 @@
+﻿@model IEnumerable<HotelSys.ViewModel.CountyViewModel>
+
+
+@{
+   
+    Layout = "~/Views/Shared/_ItemLayout.cshtml";
+}
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+
+  <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الاعدادات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title">اعدادات عامة </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <br />
+                <br />
+
+
+
+                 <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link  " href="@Url.Action("Index", "SettingGeneral")">اعدادات الخدمات</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link active" href="@Url.Action("Index", "H_Country")">تهيئة الدول</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="@Url.Action("Index", "H_City")">تهيئة المحافظات</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="@Url.Action("Index", "H_Area")">تهيئة المديريات</a>
+      </li>
+
+      
+    </ul>
+  </div>
+  <div class="card-body">
+
+    <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                               @*<li class="breadcrumb-item"><a href="#">المحافظات</a></li>*@
+                            </ol>
+                            <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopup('@Url.Action("AddOrEdit","H_Country",null,Context.Request.Scheme)','دولة جديدة')">
+                                <i class="fa fa-plus"></i>  دولة جديدة
+                                    </button>
+                        </div>
+                         
+                               
+                                   
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+
+      
+       
+<div class="row">
+
+    <div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
+</div>
+
+
+
+
+
+    
+  </div>
+</div>
+
+
+
+              
+            </div>
+        </div>
+
+
+
+@section scripts
+{
+
+
+    @*farze-regesrer*@
+
+
+     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+}

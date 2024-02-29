@@ -1,0 +1,451 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادت</a></li>
+                                <li class="breadcrumb-item"><a href="#">الخدمات  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">مجموعة الخدمات </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button  class="btn btn-success" style="margin-bottom:10px" onclick="NewSerG()">
+                                <i class="fa fa-plus"></i> خدمة جديدة
+                            </button>
+
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <center><div id="result"></div></center>
+
+
+                <div class="table-responsive">
+                    <table class="table" id="tableServicesGruop">
+                        <thead class="thead-light">
+                            <tr>
+                                <th># </th>
+                                <th>اسم الخدمة </th>
+                                <th> الاسم الانجليزي </th>
+
+                                <th> عدد الخدمات الفرعية </th>
+
+                                <th class="text-right"></th>
+                                <th class="text-right"></th>
+                            </tr><!--end tr-->
+                        </thead>
+
+
+                    </table>
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="GroupServiceModal" tabindex="-1" aria-labelledby="GroupServiceModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <form id="myform11" name="myform11">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleServiceM">اضافة خدمة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    @Html.Partial("_oneServiceGPartial")
+
+
+                    @*<div class="dvData"></div>
+
+                        <div class="dvData2"></div>*@
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    @*<button type="button" class="btn btn-primary">حفظ</button>*@
+                    <input type="submit" value="اضافة" id="submitID" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="DelGroupServiceModal" tabindex="-1" aria-labelledby="GroupServiceModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <form id="Delmyform11" name="Delmyform11">
+                <div class="modal-header">
+                    <h5 class="modal-title" >حذف خدمة (تأكيد)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    @Html.Partial("_DeloneServiceGPartial")
+
+
+                    @*<div class="dvData"></div>
+
+                        <div class="dvData2"></div>*@
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    @*<button type="button" class="btn btn-primary">حفظ</button>*@
+                    <input type="submit" value="حذف"  class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+
+
+    @*farze-regesrer*@
+
+
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+    <script>
+        function NewSerG() {
+
+            $("#Id").val(0);
+            $("#Name").val('');
+            $("#NameEn").val('');
+
+            $("#submitID").val('اضافة');
+
+            $('#GroupServiceModal').modal('show');
+        }
+
+
+
+
+
+
+        $("#myform11").on("submit", function (event) {
+                event.preventDefault();
+
+
+                 var url = '@Url.Action("Create", "GroupServices")'; //$(this).attr("action");
+                var formData = $(this).serialize();
+
+                $.post(url, formData, function (response) {
+                    $('#GroupServiceModal').modal('hide');
+
+                    $("#result").html(response.mass + response.id);
+
+                    if (response.id > 0) {
+
+                        //adding class
+                        $("#result").addClass("alert alert-success");
+                        $('#tableServicesGruop').DataTable().ajax.reload();
+                      //  اضافة للجدول
+                    }
+                    else {
+
+                        $("#result").addClass("alert alert-danger");
+
+                    }
+
+
+
+
+
+                  //  if (intervalId)
+                        //clearInterval(intervalId);
+                });
+
+
+            });
+
+
+            $("#Delmyform11").on("submit", function (event) {
+                event.preventDefault();
+
+
+                var url ='/GroupServices/Delete'; //$(this).attr("action");
+                var formData = $(this).serialize();
+
+                $.post(url, formData, function (response) {
+                    $('#DelGroupServiceModal').modal('hide');
+
+                    $("#result").html(response.mass + response.id);
+
+                    if (response.id > 0) {
+
+                        //adding class
+                        $("#result").addClass("alert alert-success");
+                        $('#tableServicesGruop').DataTable().ajax.reload();
+                      //  اضافة للجدول
+                    }
+                    else {
+
+                        $("#result").addClass("alert alert-danger");
+
+                    }
+
+
+
+
+
+                  //  if (intervalId)
+                        //clearInterval(intervalId);
+                });
+
+
+            });
+
+
+
+        $(document).ready(function () {
+
+            bindDatatableComp();
+
+        });
+
+
+function bindDatatableComp() {
+
+    var dt = $('#tableServicesGruop')
+        .DataTable({
+
+            "sAjaxSource": '/GroupServices/GetDataFarz1/',
+            "bServerSide": true,
+            "bProcessing": true,
+            "bSearchable": true,
+            "order": [[1, 'asc']],
+            "language": {
+                //"emptyTable": "No record found.",
+                //"processing":
+                //    '<i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:#2a2b2b;"></i><span class="sr-only">انتضر يتم تحميل البيانات...</span> '
+
+                "sProcessing": '<i class="fa fa- spinner fa- spin fa - 3x fa - fw" style="color:#2a2b2b; "></i><span class="sr - only"> جاري تحميل البيانات...</span> ',
+                "sLengthMenu": "أظهر _MENU_ سجلات",
+                "sZeroRecords": "لم يعثر على أية سجلات",
+                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ سجل",
+                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "sInfoFiltered": "(منتقاة من مجموع _MAX_ سجل)",
+                "sInfoPostFix": "",
+                "sSearch": "ابحث:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "الأول",
+                    "sPrevious": "السابق",
+                    "sNext": "التالي",
+                    "sLast": "الأخير"
+                }
+
+            },
+            "columns": [
+
+
+                {
+                    "data": "id",
+                    "autoWidth": false,
+                    "width": "9%",
+                    "searchable": true
+                },
+                {
+                    "data": "name",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "nameEn",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "countBrchService",
+                    "autoWidth": true,
+                    "searchable": true
+                },
+                {
+                    "data": "id"
+                    ,
+                    "render": function (data, type, row, meta) {
+
+                        return '<div> <button   data-en="' + row.nameEn + '" data-id="' + row.id + '"  data-toggle="' + row.name + '" onclick="selectSerCLick(event)"  class="btn btn-success">تعديل</button> <button   data-en="' + row.nameEn + '" data-id="' + row.id + '"  data-toggle="' + row.name + '" onclick="DelSerCLick(event)"  class="btn btn-danger">حذف</button></div>';
+
+                       
+                    }
+                },
+                     {
+                    "data": "id"
+                    ,
+                    "render": function (data, type, row, meta) {
+
+                                return '<a  href=/Products/Index/' + row.id + '  class="btn btn-primary"><span style="color:white"> تفاصيل  </span></a>';
+
+                    }
+
+                }
+                //{
+                //   'render': function (date) {
+
+                //        var date = new Date(parseInt(date.substr(6)));
+                //        var month = date.getMonth() + 1;
+                //        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                //    }
+                //},
+
+
+
+            ]
+            //, "scrollX": true,
+            ////"paging": false,
+            //"info": false,
+            ////"lengthMenu": false,
+            //dom: 'lBfrtip',
+            //,
+            //buttons: [
+            //    'copy', 'pdf', 'print'
+            //]
+
+        });
+
+
+}
+
+        function DelSerCLick(ee) {
+            var rowid = ee.target.getAttribute('data-id');
+
+            var rowname = ee.target.getAttribute('data-toggle');
+            var rowen = ee.target.getAttribute('data-en');
+
+
+            $("#IdD").val(rowid);
+            $("#NameD").val(rowname);
+            $("#NameEnD").val(rowen);
+
+
+
+            $('#DelGroupServiceModal').modal('show');
+
+
+            ee.preventDefault();
+        }
+
+        function selectSerCLick(ee) {
+            var rowid = ee.target.getAttribute('data-id');
+
+            var rowname = ee.target.getAttribute('data-toggle');
+            var rowen = ee.target.getAttribute('data-en');
+
+
+            $("#Id").val(rowid);
+            $("#Name").val(rowname);
+            $("#NameEn").val(rowen);
+
+            $("#submitID").val('تعديل');
+
+            $('#GroupServiceModal').modal('show');
+
+
+            ee.preventDefault();
+        }
+
+
+
+
+    </script>
+
+}

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<HotelSys.ViewModel.HotelBrchViewModel>
+
+      <div class="table-responsive">
+
+      
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                       <label > اسم الفرع</label>
+                    </th>
+
+                <th>
+                    <label> العنوان </label>
+                </th>
+
+                <th>
+                    <label> الطوابق </label>
+                </th>
+
+                     <th>
+                        <label > عدد الشقق</label>
+                    </th>
+
+                   <th>
+                     <label> عدد المستخدمين</label>
+                   </th>
+                    
+                    <th>
+                           </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameH)
+                            
+                        </td>
+                         <td>
+                       
+                             --
+                        </td>
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem =>  item.countFloot)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.count_Room)
+                    </td>
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.count_users)
+                    </td>
+
+                        <td>
+                            <div>
+                            <a onclick="showInPopup('@Url.Action("AddOrEdit","HotelBrch",new {id=item.Id},Context.Request.Scheme)','تعديل الفرع  ')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> تعديل</a>
+                                @*<form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <input type="submit" value="حذف" class="btn btn-danger" />
+                                </form>*@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

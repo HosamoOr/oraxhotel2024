@@ -1,0 +1,73 @@
+﻿@model DataModels.CityTable
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPostWithotList(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+           
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">اسم المحافظة: </div>
+                    </div>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="row">
+                  <div class="form-group">
+                <label asp-for="IdCountry" class="control-label">الدولة</label>
+                
+
+                  <select asp-for="IdCountry" id="IdCountry" class="form-select" asp-items="ViewBag.IdCountry"></select>
+                   <span asp-validation-for="IdCountry" class="text-danger"></span>
+
+            </div>
+
+
+
+            </div>
+              <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">اسم المحافظة/انجليزي: </div>
+                    </div>
+                    <input asp-for="NameEn" class="form-control" />
+                </div>
+                <span asp-validation-for="NameEn" class="text-danger"></span>
+            </div>
+         @*   
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>*@
+
+             <div class="modal-footer">
+                        
+                        <button type="submit" class="btn btn-primary">  
+                    @{
+                        if(Model.Id==0)
+                        {
+                            <span>اضافة</span>
+                        }else
+                        {
+                             <span>تعديل</span>
+                        }
+                    }
+                            
+                            
+                        </button>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+
+                    </div>
+
+        </form>
+    </div>
+</div>

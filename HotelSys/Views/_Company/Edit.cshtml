@@ -1,0 +1,106 @@
+﻿@model HotelSys.ViewModel._CompanyViewModel
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الشركات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title"> تعديل شركة  </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <div class="row">
+
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="IdCo" />
+                        @*<div class="form-group">
+                        <label asp-for="Name" class="control-label">اسم الشركة</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>*@
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">اسم الشركة : </label>
+                            <div class="col-lg-9">
+                                <input asp-for="NameCo" class="form-control" />
+                                <span asp-validation-for="NameCo" class="text-danger"></span>
+
+                            </div>
+                        </div><!--end form-group-->
+
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">رقم الحساب : </label>
+                            <div class="col-lg-9">
+                                <label asp-for="IdAccountCo" class="control-label">@Model.IdAccountCo</label>
+
+                            </div>
+                        </div><!--end form-group-->
+                        @*<div class="form-group">
+                                    <label asp-for="IdAccount" class="control-label">رقم الحساب </label>
+
+                                    <label asp-for="IdAccount" class="control-label">@Model.IdAccount</label>
+                                    <select asp-for="IdAccount" class="form-control" asp-items="ViewBag.IdAccount"></select>
+                    <span asp-validation-for="IdAccount" class="text-danger"></span>
+                                </div>*@
+                        @*<div class="form-group">
+                        <label asp-for="IdSub" class="control-label"></label>
+                        <input asp-for="IdSub" class="form-control" />
+                        <span asp-validation-for="IdSub" class="text-danger"></span>
+                    </div>*@
+
+
+                        <div class="form-group row mb-2">
+                            <input type="submit" value="تعديل" class="btn btn-success" />
+                        </div><!--end form-group-->
+
+
+
+                    </form>
+                </div>
+            </div>
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SubAccLayout.cshtml";
+}
+
+@section style{
+    <link href="assets/plugins/tree/listree.min.css" rel="stylesheet" type="text/css" />
+
+
+}
+@section scripts{
+
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+         treeview  show Accounts
+        <script src="~/js/bootstrap-treeview.js"></script>*@
+    <script src="~/assets/plugins/tree/listree.umd.min.js"></script>
+    <script src="~/assets/pages/tree.init.js"></script>
+}
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link " aria-current="page" href="@Url.Action("Index", "_Accounts")">شبكة</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="@Url.Action("TreeView", "_Accounts")">شجرة</a>
+    </li>
+
+
+</ul>
+
+<br />
+<div class="col-lg-10">
+    <div class="card">
+
+        <div class="card-body">
+
+            <ul class="listree">
+                <li>
+                    <div class="listree-submenu-heading expanded">الاصول</div>
+                    <ul class="listree-submenu-items" style="display: none;">
+                        <li>
+                            <div class="listree-submenu-heading expanded">الاصول الثابتة</div>
+                            <ul class="listree-submenu-items" style="display: none;">
+                                <li>
+                                    <div class="listree-submenu-heading collapsed">عقارات</div>
+                                    <ul class="listree-submenu-items" style="display: none;">
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">عقار1</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">سكن</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">سكن2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        @*<li>
+                                            <div class="listree-submenu-heading collapsed">Storewise Daily order metrics</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">Storewise daily order count</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Storewise daily bookings</a>
+                                                </li>
+                                            </ul>
+                                        </li>*@
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="listree-submenu-heading collapsed">سيارات</div>
+                                    @*<ul class="listree-submenu-items" style="display: none;">
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">Categorywise Daily invoice metrics</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">Categorywise daily invoice count</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Categorywise daily revenue</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">Storewise Daily invoice metrics</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">Storewise daily invoice count</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Storewise daily revenue</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>*@
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="listree-submenu-heading expanded">الاصول المتداولة</div>
+                            <ul class="listree-submenu-items" style="display: none;">
+                                <li>
+                                    <div class="listree-submenu-heading collapsed">العملاء</div>
+                                    <ul class="listree-submenu-items" style="display: none;">
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">عملاء افراد</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">عميل 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">عميل جديد</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">عملاء شركات</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">شركة 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">شركة جديدة</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                              
+                                </li>
+
+                                <li>
+                                    <div class="listree-submenu-heading collapsed">Daily Invoice Metrics</div>
+                                    <ul class="listree-submenu-items" style="display: none;">
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">Categorywise Daily invoice metrics</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">Categorywise daily invoice count</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Categorywise daily revenue</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="listree-submenu-heading collapsed">Storewise Daily invoice metrics</div>
+                                            <ul class="listree-submenu-items" style="display: none;">
+                                                <li>
+                                                    <a href="">Storewise daily invoice count</a>
+                                                </li>
+                                                <li>
+                                                    <a href="">Storewise daily revenue</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                           
+                            
+                            </ul>
+                        </li>
+                         </ul>
+                </li>
+                <li>
+                    <div class="listree-submenu-heading collapsed">الخصوم</div>
+                    <ul class="listree-submenu-items" style="display: none;">
+                        <li>
+                            <div class="listree-submenu-heading collapsed">Personal Settings</div>
+                            <ul class="listree-submenu-items" style="display: none;">
+                                <li><a href="">Password Settings</a></li>
+                                <li><a href="">Viewing Preferences</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="listree-submenu-heading collapsed">Org Settings</div>
+                            <ul class="listree-submenu-items" style="display: none;">
+                                <li><a href="">Teams</a></li>
+                                <li><a href="">Billing</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </div><!--end card-body-->
+    </div><!--end card-->
+</div>

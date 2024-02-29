@@ -1,0 +1,118 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    //Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المستخدمين </a></li>
+
+                                <li class="breadcrumb-item active">حساب جديد </li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">انشاء مستخدم جديد</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <h6>..</h6>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <h4>انشاء حساب جديد</h4>
+                        
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label asp-for="Input.Email">اسم الموظف </label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber" class="control-label"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Input.IdBoxAccDef" class="control-label">رقم ح/الصندوق </label>
+                        <input asp-for="Input.IdBoxAccDef" class="form-control"  disabled=""/>
+                       
+                    </div>
+                </div>
+                <br/>
+                <br/>
+               
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">بيانات تسجيل دخول المستخدم للنظام </h4>
+                               @* <p class="text-muted mb-0">تستخدم البيانات التالية لتسجيل دخول المستخدم للنظام</p>
+                          *@  </div><!--end card-header-->
+                            <div class="card-body">
+
+                                <div class="form-group">
+                <label asp-for="Input.UserName" class="control-label"></label>
+                <input asp-for="Input.UserName" class="form-control" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+
+    
+  
+                        <div class="form-group">
+                            <label asp-for="Input.Password">كلمة السر </label>
+                            <input asp-for="Input.Password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.ConfirmPassword">تاكيد كلمة السر </label>
+                            <input asp-for="Input.ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                         
+  
+  </div>  
+  </div>  
+  </div>
+</div>
+                        
+
+
+            
+               
+
+                        <button type="submit" class="btn btn-primary">انشاء </button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

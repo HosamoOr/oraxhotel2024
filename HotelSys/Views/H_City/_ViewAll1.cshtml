@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HotelSys.ViewModel.CityViewModel>
+
+      <div class="table-responsive">
+
+      
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                       <label > اسم المحافظة</label>
+                    </th>
+
+                     <th>
+                        <label > عدد المديريات</label>
+                    </th>
+                    
+                    <th>
+                           </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                            
+                        </td>
+                         <td>
+                       
+                             @Html.DisplayFor(modelItem => item.countArea)
+                        </td>
+                        
+                        <td>
+                            <div>
+                                <a onclick="showInPopup('@Url.Action("AddOrEdit","H_City",new {id=item.Id},Context.Request.Scheme)','تعديل المحافظة ')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> تعديل</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <input type="submit" value="حذف" class="btn btn-danger" />
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+         <div class="row">
+                            <div class="col-md-12">
+
+
+
+                                <div id="toolbar" class="select">
+                                    <select class="form-control">
+                                        <option value="">اساسي</option>
+                                        <option value="selected">صفوف معينة</option>
+
+                                        @*<option value="all">الكل</option>*@
+
+                                    </select>
+                                </div>
+
+                                <table id="table" data-mobile-responsive="true" class="mb-5 display table table-striped table-bordered"
+                                   
+                                       data-toolbar="#toolbar"
+                                       data-search="true"
+                                       data-show-refresh="true"
+                                       data-show-toggle="true"
+                                       data-show-fullscreen="true"
+                                       data-show-columns="true"
+                                       data-show-export="true"
+                                       data-click-to-select="true"
+                                       data-minimum-count-columns="2"
+                                       data-show-pagination-switch="true"
+                                       data-pagination="true"
+                                       data-id-field="id"
+                                       data-page-list="[10, 25, 50, 100, all]"
+                                       data-show-footer="true"
+                                       data-side-pagination="server"
+                                       data-show-copy-rows="true">
+                                    @*<thead>
+                                            <tr>
+                                                <th data-field="state" data-checkbox="true"></th>
+                                                <th data-field="plateNumber">plateNumber</th>
+                                                <th data-field="note">note</th>
+                                                <th data-field="lat">lat</th>
+                                                <th data-field="long">lat</th>
+                                                <th data-field="date">lat</th>
+                                            </tr>
+                                        </thead>*@
+                                </table>
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+    </div>

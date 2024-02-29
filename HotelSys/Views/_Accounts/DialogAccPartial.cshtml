@@ -1,0 +1,49 @@
+﻿@model HotelSys.ViewModel._AccountViewModel
+    <div class="row">
+        @{
+            if (Model.Id == 0)
+            {
+                <h4 class="card-title mt-3 mb-1">حساب جديد </h4>
+            }
+
+
+            else
+            {
+                <h4 class="card-title mt-3 mb-1">تحديث الحساب </h4>
+            }
+
+
+        }
+
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label"> اسم الحساب</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label class="control-label">التاريخ </label>
+                <input asp-for="Createat" class="form-control" />
+                <span asp-validation-for="Createat" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label class="control-label">مجموعة الحساب</label>
+                <select asp-for="IdGroup" class="form-control" asp-items="ViewBag.IdGroup"></select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">حالة الحساب</label>
+                <select asp-for="Status" class="form-control">
+                    <option value="Active" >Active</option>
+                    <option value="Disable">Disable</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="اضافة " class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+

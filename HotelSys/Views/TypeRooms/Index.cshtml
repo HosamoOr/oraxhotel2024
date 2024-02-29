@@ -1,0 +1,102 @@
+﻿@model IEnumerable<DataModels.TypeRoomsTable>
+
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادات </a></li>
+
+                                <li class="breadcrumb-item active">انواع الشقق </li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title"> انواع الشقق</h4>
+                        <div>
+                            <a asp-action="Index">رجوع</a>
+                        </div>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+
+            <div class="row">
+
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                            <button type="button" class="btn btn-primary"
+                                    onclick="@("window.location.href='" + @Url.Action("Create", "TypeRooms") + "'");"
+                                    new { id=5 })">
+
+                                <i class="mdi add-file-input me-2"></i>  + نوع شقق جديد
+                            </button>
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0 table-centered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    النوع
+                                </th>
+                                 <th>اللون</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                   
+                                     <span class="label label-default m-l-10" style="background-color:@item.Color">@item.NameT</span>
+                                </td>
+                                <td>
+                                      @Html.DisplayFor(modelItem => item.Color)
+                                </td>
+
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit text-success font-20"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash text-danger font-24"></i></a>
+
+                                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-list text-secondary font-22"></i></a> 
+                                   
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+           
+         

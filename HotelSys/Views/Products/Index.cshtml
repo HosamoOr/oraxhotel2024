@@ -1,0 +1,147 @@
+﻿@model HotelSys.ViewModel.GroupServicesViewModel
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادت</a></li>
+                                <li class="breadcrumb-item"><a href="#">الخدمات  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">الخدمات الفرعية </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a class="btn btn-success" style="margin-bottom:10px" asp-action="Create">
+                                <i class="fa fa-plus"></i>
+                                <span style="color:white">  خدمة فرعية جديدة</span>
+                                
+                               
+                            </a>
+
+
+                            @*<button type="button" class="btn btn-primary"
+                            onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                            new { id=5 })">
+
+                        <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                    </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <center><div id="result"></div></center>
+
+
+
+                الخدمة الاب
+                <h2>@Model.Name </h2>
+
+                عدد الخدمات الفرعية
+                <h2>@Model.countBrchService </h2>
+
+
+
+                <div class="table-responsive">
+                    <table class="table" id="tableServicesGruop">
+                        <thead class="thead-light">
+                            <tr>
+                                
+                                <th>اسم الخدمة </th>
+                                <th> الاسم الانجليزي </th>
+
+                                <th> السعر </th>
+
+                                 <th> المجموعة الضريبية </th>
+
+                                <th></th>
+
+                            </tr><!--end tr-->
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.products)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameEn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nameTaxGroup)
+                                    </td>
+
+                                    <td>
+                                        <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.Id">
+                                            <span style="color:white"> تعديل</span>
+                                            
+
+
+                                        </a> |
+                                        <a asp-action="Details"  class="btn btn-primary" asp-route-id="@item.Id">
+
+                                            <span style="color:white"> تفاصيل</span>
+                                            </a> |
+                                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
+                                            <span style="color:white"> حذف</span>
+                                            </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model HotelSys.ViewModel._CompanyViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompanyTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameCo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameCo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdSub)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdSub)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.IdAccountNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAccountNavigation.Name)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdCo">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<HotelSys.ViewModel._AccountViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SubAccLayout.cshtml";
+}
+
+    <ul class="nav nav-pills">
+
+          <li class="nav-item">
+        <a class="nav-link " href="@Url.Action("TreeView2", "_TreeAccounts")">شجرة</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "_Accounts")">شبكة</a>
+        </li>
+      
+
+
+    </ul>
+<br />
+
+<div class="table-responsive">
+    <table class="table mb-0 table-centered">
+        <thead>
+            <tr>
+
+                <th>رقم الحساب</th>
+                <th>اسم الحساب</th>
+                <th>المجموعة الاب</th>
+                <th>حالة الحساب</th>
+                <th class="text-end">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                @Html.Partial("oneAccPartial", item)
+
+
+                @*<tr>
+                        <td>
+                            @item.Id
+                        </td>
+
+                        <td> @item.Name </td>
+                        <td>@item.IdGroupNavigation.Name</td>
+                        <td>@item.Status </td>
+                        <td class="text-end">
+                            <button type="button" class="btn btn-primary-outline" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                <i class="fas fa-edit text-secondary font-18"></i>
+                            </button>
+
+
+
+
+                        </td>
+                    </tr>*@
+
+
+                <!-- Modal  search customer-->
+                @*<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">بيانات الحساب</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+
+
+
+
+
+                                        <div class="row">
+
+
+
+
+
+
+
+
+                                        </div>
+
+
+                                        <div class="row">
+
+
+
+
+
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                                    <button type="button" class="btn btn-primary">موافق </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+
+            }
+        </tbody>
+    </table><!--end /table-->
+</div>
+
+
+

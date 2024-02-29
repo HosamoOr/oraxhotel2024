@@ -1,0 +1,134 @@
+﻿@model IEnumerable<HotelSys.ViewModel.CustomerViewModel>
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">كل العملاء </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                            <button type="button" class="btn btn-primary"
+                                    onclick="@("window.location.href='" + @Url.Action("Create1", "Customers") + "'");"
+                                    new { id=5 })">
+
+                                <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>
+
+                            @*<button type="button" class="btn btn-primary"
+                            onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                            new { id=5 })">
+
+                        <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                    </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="@Url.Action("Index")">عملائي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="@Url.Action("allCusomer")">كل العملاء</a>
+                    </li>
+
+
+                </ul>
+                <br />
+                <br />
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>رقم الاثبات</th>
+                                <th>نوع الاثبات</th>
+                                <th>الاسم</th>
+                                <th>مكان الاصدار</th>
+                                <th>Mobile No</th>
+
+                                <th>البريد الالكتروني</th>
+                                <th class="text-right">Action</th>
+                            </tr><!--end tr-->
+                        </thead>
+
+                        <tbody>
+
+                            @{
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.NumProof</td>
+                                        <td>@item.TypeProof</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.LocRelease</td>
+                                        <td>@item.PhoneWork</td>
+
+                                        <td>@item.Email</td>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@item.IdcumtomerAll"><i class="las fa-list-alt text-secondary font-18"></i></a>
+                                        </td>
+                                    </tr><!--end tr-->
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @*<button class="btn btn-outline-light btn-sm px-4 " onclick="location.href='hospital-add-patient.html'">+ Add New</button>*@
+                    </div><!--end col-->
+                    <div class="col-auto">
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-sm mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul><!--end pagination-->
+                        </nav><!--end nav-->
+                    </div> <!--end col-->
+                </div><!--end row-->
+                <!--end col-->
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@model HotelSys.ViewModel.HotelBrchViewModel
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+           
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">اسم الفرع: </div>
+                    </div>
+                    <input asp-for="NameH" class="form-control" />
+                </div>
+                <span asp-validation-for="NameH" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="row mb-4">
+                    @*  <div class="col">
+                    <div class="form-outline">
+                    <label class="form-label" style="margin-left: 0px;">الاسم الانجليزي</label>
+                    <input asp-for="NumEn" class="form-control" />
+                    <span asp-validation-for="NumEn" class="text-danger"></span>
+
+                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 68.8px;"></div><div class="form-notch-trailing"></div></div>
+                    </div>
+                    </div>*@
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="form7Example2" style="margin-left: 0px;">الدولة</label>
+                            @*  <input asp-for="Country" class="form-control" />*@
+
+                            <select asp-for="IdCountry" class="form-control" asp-items="ViewBag.IdCountry"></select>
+                            <span asp-validation-for="Country" class="text-danger"></span>
+
+                            <div class="form-notch">
+                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                <div class="form-notch-middle" style="width: 68px;"></div><div class="form-notch-trailing"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" style="margin-left: 0px;"> المدينة</label>
+                            <input asp-for="City" class="form-control" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 68.8px;"></div><div class="form-notch-trailing"></div></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="form7Example2" style="margin-left: 0px;">المنطقة</label>
+                            <input asp-for="Regin" class="form-control" />
+                            <span asp-validation-for="Regin" class="text-danger"></span>
+
+                            <div class="form-notch">
+                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                <div class="form-notch-middle" style="width: 68px;"></div><div class="form-notch-trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Text input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form7Example4" style="margin-left: 0px;">عنوان الفرع</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 55.2px;"></div><div class="form-notch-trailing"></div></div>
+                </div>
+
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" style="margin-left: 0px;">رقم الهاتف الفرع</label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 68.8px;"></div><div class="form-notch-trailing"></div></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="form7Example2" style="margin-left: 0px;"> عدد الطوابق</label>
+                            <input asp-for="countFloot" class="form-control" type="number" />
+                            <span asp-validation-for="countFloot" class="text-danger"></span>
+
+                            <div class="form-notch">
+                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                <div class="form-notch-middle" style="width: 68px;"></div><div class="form-notch-trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+            </div>
+         @*   
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>*@
+
+             <div class="modal-footer">
+                        
+                        <button type="submit" class="btn btn-primary">  
+                    @{
+                        if(Model.Id==0)
+                        {
+                            <span>اضافة</span>
+                        }else
+                        {
+                             <span>تعديل</span>
+                        }
+                    }
+                            
+                            
+                        </button>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+
+                    </div>
+
+        </form>
+    </div>
+</div>

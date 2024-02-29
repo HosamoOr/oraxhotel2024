@@ -1,0 +1,213 @@
+﻿@model HotelSys.ViewModel.Status_Current_RoomViewModel
+
+
+ 
+
+    <div class="col-md-2">
+
+
+        <div class="card" text-white mb-2" style="background-color:@Model.color">
+
+            <h6 class=" card-img-top text-white num-room">@Model.RoomModel.NameR</h6>
+
+
+
+            <div class="card-img-overlay">
+                <div class="dropdown d-sm-inline-flex card-text">
+                    <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="las la-ellipsis-v font-20 text-muted"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
+                        <a class="dropdown-item" href="#"> </a>
+
+                    @{
+                        if (Model.Status != "5")
+                        {
+                          <a class="btn btn-primary-outline" asp-action="ChangeStatus" asp-route-id="@Model.Id">
+                            <i class="fas fa-edit text-success font-17"></i>
+                            تغيير الحالة
+                            </a>
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+
+                     
+
+                        <a class="btn btn-primary-outline" asp-action="Edit" asp-route-id="@Model.IdRoom" asp-controller="Rooms">
+                            <i class="fas fa-edit text-success font-17"></i>
+                            عرض الشقة
+                        </a>
+
+                        @{
+                            if (Model.Status == "1")
+                            {
+                                <a class="btn btn-primary-outline" asp-action="Index" asp-controller="Reception" asp-route-id="@Model.IdRoom">
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                    حجز
+                                </a>
+                            }
+
+                            if (Model.Status == "2")
+                            {
+                                <a class="btn btn-primary-outline" asp-action="Index" asp-controller="Reception" asp-route-id="@Model.IdRoom">
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                    حجز
+                                </a>
+                            }
+
+                            if (Model.Status == "3")
+                            {
+                                <a class="btn btn-primary-outline" asp-action="Index" asp-controller="Reception" asp-route-id="@Model.IdRoom">
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                    حجز
+                                </a>
+                            }
+
+                            if (Model.Status == "4")
+                            {
+
+                                
+                                <a class="btn btn-primary-outline" asp-action="Edit" asp-controller="Reception" asp-route-id="@Model.IdReception">
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                     تعديل الحجز
+                                </a>
+
+                                <a class="btn btn-primary-outline"  onclick='selectDel("@Model.IdReception","@Model.IdRoom")'>
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                     الغاء الحجز
+                                </a>
+
+                            }
+
+                            if (Model.Status == "5")
+                            {
+                                <a class="btn btn-primary-outline" asp-action="Edit" asp-controller="Reception" asp-route-id="@Model.IdReception">
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                   تعديل الحجز
+                                </a>
+
+                                  <a class="btn btn-primary-outline" asp-action="Edit" asp-controller="Reception" asp-route-id="@Model.IdReception">
+                                    <i class="fas ti-row-insert-top text-success font-17"></i>
+                                   تصفية الحجز
+                                </a>
+                            }
+
+                        }
+
+
+
+                    </div>
+                </div>
+                @*<h4 class="card-title">John Doe</h4>
+                <p class="card-text">Some example text.</p>
+                <a href="#" class="btn btn-primary">See Profile</a>*@
+            </div>
+
+            <div class="card-footer row-cols-1 font-10">
+
+
+                @{
+                    if (Model.Status == "1")
+                    {
+                        <label> فارغ </label>
+                    }
+                    else if (Model.Status == "2")
+                    {
+                        <label> نظافة </label>
+                    }
+                    else if (Model.Status == "3")
+                    {
+                        <label> صيانة </label>
+                    }
+                    else if (Model.Status == "4")
+                    {
+
+                        @*<li class="list-item d-inline-block">
+                            <a class="" href="#">
+
+                                <i class="fas fa-circle text-primary  font-15"></i>
+
+                                    <span class="text-muted font-weight-bold font-12 ">حجز مؤقت </span>
+                            </a>
+                        </li>*@
+
+
+                        <div>
+
+                            <label class="text-danger">(الرصيد: @Model.balance) 
+                                <a class="" href="#">
+
+                                    @*<i class="fas fa-circle text-primary  font-10"></i>*@
+
+                                    <span class="text-muted font-weight-bold font-9 ">حجز مؤقت </span>
+                                </a>
+                            </label>
+                            <label class="text-primary">( @Model.nameCuOrCo)  </label>
+                        </div>
+
+                    }
+                    else
+                    {
+
+
+                        <label>(الرصيد: @Model.balance) مؤجر </label>
+                    <label>( @Model.nameCuOrCo)  </label>
+
+
+                    if (@Model.qty_left=="0")
+                    {
+                        <li class="list-item d-inline-block mr-2">
+                            <a href="#" class="notification1" style="background-color: #357EC7;">
+                                <span class="text-white font-weight-bold font-12"> خروج :اليوم </span>
+                             
+
+                            </a>
+                            @*<span class="text-black font-weight-bold font-12">(@Model.qty_left) </span>*@
+                        </li>
+
+                    }
+
+
+                   
+                    }
+
+                }
+
+                <span></span>
+            </div>
+
+        </div>
+
+        @*<div class="card text-white  mb-2" style="background-color:@Model.color">
+            <div class="card-body center">
+
+                <h6 class="text-white num-room">@Model.RoomModel.NameR</h6>
+
+
+
+            </div>
+            <div class="dropdown d-sm-inline-flex ">
+                <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="las la-ellipsis-v font-20 text-muted"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
+                    <a class="dropdown-item" href="#">تعديل </a>
+                    <a class="dropdown-item" href="#">حذف</a>
+
+                </div>
+            </div>
+
+
+
+
+        </div>*@
+
+
+
+
+    </div>
+
+ 

@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+
+}
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">كل العملاء </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                            <button type="button" class="btn btn-primary"
+                                    onclick="@("window.location.href='" + @Url.Action("Create1", "Customers") + "'");"
+                                    new { id=5 })">
+
+                                <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="@Url.Action("Index")">عملائي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="@Url.Action("allCusomer")">كل العملاء</a>
+                    </li>
+
+
+                </ul>
+                <br />
+                <br />
+
+                <div class="table-responsive">
+
+                   
+
+                  
+                        <table class="table table-striped" id="tblPolo" data-mobile-responsive="true">
+                            
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>الاسم</th>
+
+                                        <th>رقم الاثبات</th>
+                                        <th>نوع الاثبات</th>
+                                        
+                                        <th>مكان الاصدار</th>
+                                        <th>Mobile No</th>
+
+                                        <th>البريد الالكتروني</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+
+                    
+                   
+                    <!--end col-->
+                </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+
+
+    @*farze-regesrer*@
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+
+    <script src="~/js/customer.js" >
+
+
+
+              
+
+
+    </script>
+
+}

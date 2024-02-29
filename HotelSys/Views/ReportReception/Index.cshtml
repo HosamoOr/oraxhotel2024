@@ -1,0 +1,296 @@
+﻿@model HotelSys.ViewModel.datesViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">التقاير</a></li>
+                                <li class="breadcrumb-item"><a href="#">الحجوزات   </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title"> الحجوزات  </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <form asp-action="getFileFarzeShare">
+
+                        <div class="form-group ">
+                            <span>
+                               @* <label>اختر ح/الصندوق</label>
+                                <select class="form-control" id="userinputid" asp-items="ViewBag.IdAccount">
+
+                                   
+                                </select>*@
+
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <span>
+
+                                <a type="submit" id="btnPrint" href="/ReportCashBox/Viewer" target="_blank" value="share" class="btn btn-primary" >
+
+                                <i class="fa fa-print" style="font-size:22px;color:white"></i></a>
+
+                            </span>
+                             <span>
+
+                                <a   id="btnrefrsh"   value="share" class="btn btn-primary" >
+
+                                <i class="fa fa-refresh" style="font-size:22px;color:white"></i></a>
+
+                            </span>
+
+                            @*للاصلاح *@
+                            @*<span>
+
+                                <a type="submit"  href="/ReportTransCustomers/doctorDon"  value="share" class="btn btn-primary" >
+
+                                <i class="fa fa-print" style="font-size:22px;color:white"></i></a>
+
+                            </span>*@
+                         @* <a  class="btn btn-primary" href="/ReportTransCustomers/Viewer" >click me</a>
+*@
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="input-group" id="DateRange">
+                                        <span class="input-group-text">من</span>
+                                        <input type="date"
+                                               id="StartDate"
+                                               asp-for="start"
+                                               min="1997-01-01" 
+                                               class="form-control datepicker-input" placeholder="Start" aria-label="StartDate" disabled>
+                                        <span class="input-group-text">الى</span>
+                                        <input type="date" class="form-control datepicker-input" 
+                                               id="EndDate"
+                                               min="1997-01-01"
+                                               asp-for="end" 
+                                               placeholder="End" aria-label="EndDate"  disabled>
+                                    </div>
+
+                                     <div class="col">
+                                      
+                                    <div class="form-check form-switch">
+
+
+                                        <input class="form-check-input"  
+                                        id="isAll" type="checkbox" name="isAll" asp-for="isAll" >
+                                        <label class="form-check-label" > الكل  </label>
+                                    
+
+                                </div>
+
+                                         </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+
+                </div>
+
+                <center><div id="result"></div></center>
+
+
+                <div id="toolbar" class="select">
+                    <select class="form-control">
+                        <option value="">اساسي</option>
+                        <option value="selected">صفوف معينة</option>
+
+                        @*<option value="all">الكل</option>*@
+
+                    </select>
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table id="tblReception" data-mobile-responsive="true" class="mb-5 display table table-striped table-bordered">
+
+                        <thead class="thead_dark1  thead-light">
+                            <tr>
+                                <th class="th_text">رقم العقد</th>
+                                <th class="th_text">الشقة</th>
+                                <th class="th_text">العميل</th>
+                                <th class="th_text"> بداية الحجز</th>
+                                <th class="th_text"> نهاية الحجز</th>
+                                <th class="th_text">المدة</th>
+                                <th class="th_text">يومي</th>
+                                <th class="th_text">حالة الحجز</th>
+                                <th class="th_text">تاريخ الدخول</th>
+                                <th class="th_text"> تاريخ الخروج</th>
+                                <th class="th_text">الاجمالي</th>
+
+                                <th class="th_text">المالية</th>
+
+                   
+
+                            </tr>
+                        </thead>
+                    </table>
+
+               
+
+                    @*<table class="table" id="tableServicesGruop">
+                            <thead class="thead-light">
+                                <tr>
+
+                                    <th>رقم المستند </th>
+                                    <th> نوع المستند </th>
+
+                                    <th> المبلغ </th>
+
+                                    <th>التاريخ</th>
+                                    <th>الوقت</th>
+
+                                    <th>مدين</th>
+                                    <th>دائن</th>
+                                    <th>الرصيد</th>
+                                    <th>ملاحظات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        فاتورة تأجير
+                                    </td>
+                                    <td>
+                                        500
+                                    </td>
+                                    <td>
+                                        25/8/2022
+                                    </td>
+                                    <td>
+                                        3:29 AM
+                                    </td>
+                                    <td>
+                                        500
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        -500
+                                    </td>
+                                    <td>
+                                        سند تاجير كمبيالة للشقة رقم 2
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>*@
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+            <br />
+             <br />
+              <br />
+
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts
+    {
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    @*<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>*@
+
+
+
+    @*farze-regesrer*@
+
+    @*<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>*@
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>*@
+
+    <script src="~/js/receptionDataTable.js"></script>
+
+
+}

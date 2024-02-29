@@ -1,0 +1,144 @@
+﻿@model HotelSys.Models.BondTable
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BondTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptsOrExpenses)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptsOrExpenses)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypePay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypePay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocPay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocPay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeserveAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeserveAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorthyDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorthyDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Why)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Why)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hand)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hand)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumCheck)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumCheck)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumCard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumCard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Createat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Createat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDonePay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDonePay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdBank)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdBank)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAccountNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAccountNavigation.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdBillNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdBillNavigation.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdBondPayNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdBondPayNavigation.ReceiptsOrExpenses)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdItemExpensesNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdItemExpensesNavigation.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

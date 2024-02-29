@@ -1,0 +1,98 @@
+﻿@model HotelSys.Models.GroupAccountTable
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title"> مجموعة الحسابات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                           
+
+                        </div>
+                        <a asp-action="Index">رجوع</a>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label">اسم المجموعة</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IdMainGroup" class="control-label">المجموعة الاب</label>
+                        <select asp-for="IdMainGroup" class="form-control" asp-items="ViewBag.IdMainGroup"></select>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="IdSub" class="control-label"></label>
+                        <input asp-for="IdSub" class="form-control" />
+                        <span asp-validation-for="IdSub" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <input type="submit" value="اضافة" class="btn btn-outline-primary" />
+                    </div>
+                </form>
+
+            </div><!--end row-->
+
+
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                للانظمة
+                وتقنية المعلومات
+            </span>
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        
+    </div>
+</div>
+
+<div>
+    
+</div>
+

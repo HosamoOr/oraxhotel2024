@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <!-- <meta charset="utf-8" />
+    <title> | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    App favicon
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico"> -->
+
+    <meta charset="utf-8" />
+    <title>Orax Soft Hotel Management </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Hotel Management Orax Soft" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link href="~/img/favicon.png" rel="shortcut icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="~/assets/plugins/animate/magic.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/app-rtl.min.css" rel="stylesheet" type="text/css" />
+    <!-- Price room table field edit-->
+    <link href="~/assets/plugins/tabulator/bootstrap/tabulator_bootstrap4.css" rel="stylesheet" type="text/css">
+
+
+
+</head>
+<body>
+
+    <style>
+        td.details-control {
+            background: url('../resources/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.details td.details-control {
+            background: url('../resources/details_close.png') no-repeat center center;
+        }
+    </style>
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Position</th>
+                <th>Office</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Position</th>
+                <th>Office</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+    <script src="assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/plugins/apexcharts/irregular-data-series.js"></script>
+    <script src="assets/plugins/apexcharts/ohlc.js"></script>
+    <script src="assets/pages/apexcharts.init.js"></script>
+
+
+    <!-- Javascript  -->
+    <script src="~/assets/pages/animation.init.js"></script>
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+
+    <!-- Javascript  add Reception -->
+    <script src="~/assets/pages/form-wizard.js"></script>
+
+
+    <!-- Price room table field edit-->
+    <script src="~/assets/plugins/tabulator/tabulator.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    
+   
+    <script>
+        function format(d) {
+            return (
+                'Full name: ' +
+                d.first_name +
+                ' ' +
+                d.last_name +
+                '<br>' +
+                'Salary: ' +
+                d.salary +
+                '<br>' +
+                'The child row can contain any data you wish, including links, images, inner tables etc.'
+            );
+        }
+
+        $(document).ready(function () {
+            var dt = $('#example').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '/temp/temp1',
+                columns: [
+                    {
+                        class: 'details-control',
+                        orderable: false,
+                        data: null,
+                        defaultContent: '',
+                    },
+                    { data: 'first_name' },
+                    { data: 'last_name' },
+                    { data: 'position' },
+                    { data: 'office' },
+                ],
+                order: [[1, 'asc']],
+            });
+
+            // Array to track the ids of the details displayed rows
+            var detailRows = [];
+
+            $('#example tbody').on('click', 'tr td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = dt.row(tr);
+                var idx = detailRows.indexOf(tr.attr('id'));
+
+                if (row.child.isShown()) {
+                    tr.removeClass('details');
+                    row.child.hide();
+
+                    // Remove from the 'open' array
+                    detailRows.splice(idx, 1);
+                } else {
+                    tr.addClass('details');
+                    row.child(format(row.data())).show();
+
+                    // Add to the 'open' array
+                    if (idx === -1) {
+                        detailRows.push(tr.attr('id'));
+                    }
+                }
+            });
+
+            // On each draw, loop over the `detailRows` array and show any child rows
+            dt.on('draw', function () {
+                detailRows.forEach(function (id, i) {
+                    $('#' + id + ' td.details-control').trigger('click');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+@using DevExpress.AspNetCore
+@using HotelSys.PredefinedReports
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+  <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">Back </a>
+
+                        </div>
+                       <span>
+                           Report Customers From @ViewData["fromDate"]  to  @ViewData["toDate"]
+                       </span>  
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                </div>
+
+
+
+@*
+
+
+ <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> ddd  ﬁ—Ì— «·‰“·«¡ „‰  «—ÌŒ ........ «·Ï  «—ÌŒ </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    ⁄—÷ «· ﬁ—Ì—
+
+                    Parameter
+                  
+                </div>
+            </div>
+        </nav>
+    </header>*@
+
+@{
+    var viewerRender = Html.DevExpress().WebDocumentViewer("DocumentViewer")
+        .Height("1000px")
+        .Bind("CusInHotelRPT_now")
+        ;
+    @viewerRender.RenderHtml()
+}
+
+@section Scripts {
+    <link href="~/css/dx-reporting-skeleton-screen.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/viewer.part.bundle.css" />
+    <script src="~/js/reporting.thirdparty.bundle.js"></script>
+    <script src="~/js/viewer.part.bundle.js"></script>
+
+    @viewerRender.RenderScripts()
+}

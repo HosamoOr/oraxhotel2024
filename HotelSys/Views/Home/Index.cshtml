@@ -1,0 +1,196 @@
+﻿
+@model HotelSys.ViewModel.Home.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var XLabelsdount = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dountData.Select(x => x.title).ToList());
+    var YValuesdount = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dountData.Select(x => x.Quantity).ToList());
+    var Ccolorsdount = Newtonsoft.Json.JsonConvert.SerializeObject(Model.dountData.Select(x => x.color).ToList());
+
+
+    //var XLabelsbar = Newtonsoft.Json.JsonConvert.SerializeObject(Model.barData.Select(x => x.title).ToList());
+    //var YValuesbar = Newtonsoft.Json.JsonConvert.SerializeObject(Model.barData.Select(x => x.Quantity).ToList());
+    //var Ccolorsbar = Newtonsoft.Json.JsonConvert.SerializeObject(Model.barData.Select(x => x.color).ToList());
+
+
+    //var XLabelsPie = Newtonsoft.Json.JsonConvert.SerializeObject(Model.pieData.Select(x => x.title).ToList());
+    //var YValuesPie = Newtonsoft.Json.JsonConvert.SerializeObject(Model.pieData.Select(x => x.Quantity).ToList());
+
+}
+
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">لوحة المعلومات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">حالة الشقق اليوم</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="">
+                                <div id="apex_pie2" class="apex-charts"></div>
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+
+                <div class="col-lg-7">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">حالة الشقق الاسبوعية</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="chart-demo">
+                               @* <div id="apex_column2" class="apex-charts"></div>*@
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+
+            </div><!--end row-->
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">حالة الشقق الشهرية</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="chart-demo">
+                                @*<div id="apex_column1" class="apex-charts"></div>*@
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">حالة الشقق الاسبوعية</h4>
+                        </div><!--end card-header-->
+                        @*<div class="card-body">
+                                <div class="chart-demo">
+                                    <div id="apex_column2" class="apex-charts"></div>
+                                </div>
+                            </div>*@<!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                للانظمة
+                وتقنية المعلومات
+            </span>
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<!-- Javascript  -->
+
+@section scripts{
+    <script src="~/assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/plugins/apexcharts/irregular-data-series.js"></script>
+    <script src="~/assets/plugins/apexcharts/ohlc.js"></script>
+  @*<script src="~/assets/pages/apexcharts.init.js"></script>*@
+
+    <script>
+        $(document).ready(function () {
+
+
+       
+      //apex-pie2
+  
+  var options = {
+    chart: {
+        height: 340,
+        type: 'donut',
+    }, 
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ['transparent']
+    },
+    series: @Html.Raw(YValuesdount),
+    
+    //[70, 10, 10,10],
+    legend: {
+        show: true,
+        position: 'top',
+        horizontalAlign: 'center',
+        verticalAlign: 'middle',
+        floating: false,
+        fontSize: '14px',
+        offsetX: 0,
+        offsetY: 6
+    },
+    labels:@Html.Raw(XLabelsdount),
+    
+    
+  //  ["44محجوز", "فارغ", "نظافة","صيانة","fff"],
+
+      colors:@Html.Raw(Ccolorsdount), 
+      
+      //["#ff0000", "#00FF00","#FFA500","#808080","#808080"],
+    responsive: [{
+        breakpoint: 600,
+        options: {
+            chart: {
+                height: 240
+            },
+            legend: {
+                show: false
+            },
+        }
+    }],
+    fill: {
+        type: 'gradient'
+    }
+  }
+  
+  var chart = new ApexCharts(
+    document.querySelector("#apex_pie2"),
+    options
+  );
+
+    chart.render();
+
+   });
+  </script>
+
+    <script src="~/assets/js/app.js"></script>
+}
+
+
+

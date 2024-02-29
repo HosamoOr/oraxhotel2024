@@ -1,0 +1,109 @@
+﻿@model IEnumerable<HotelSys.ViewModel.BoxViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ItemLayout.cshtml";
+}
+
+
+
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+
+
+ <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"> الحسابات </a></li>
+                                <li class="breadcrumb-item"><a href="#">الصناديق  </a></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+             <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopup('@Url.Action("AddOrEdit","Boxss",null,Context.Request.Scheme)','صندوق جديد')">
+                                <i class="fa fa-plus"></i>  صندوق جديد
+                            </button>
+                            
+
+                             @*<a  onclick="showInPopupQ('@Url.Action("AddOrEdit", "BondQ")','عرض العقد')" class="btn btn-de-info float-start"><i class="fas fa-print-alt"></i> showInPopupBig </a>
+       *@
+
+                           @* <a onclick="showInPopupBig('@Url.Action("AddOrEdit","BondQ",null,Context.Request.Scheme)','سند قبض جديد')" class="btn btn-success text-white"><i class="fas fa-random"></i> New 
+                               
+                           
+                           
+                           
+                           </a>
+                   *@
+
+
+                            @*<button type="button" class="btn btn-primary"
+                                onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                new { id=5 })">
+
+                            <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                        </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <center><div id="result"></div></center>
+
+
+                <div id="view-all">
+    @await Html.PartialAsync("_ViewAll")
+</div>
+
+
+
+
+
+@section scripts
+{
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+   
+    
+
+    <script>
+
+
+
+}
+
+
+       
+
+    </script>
+
+}

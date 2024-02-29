@@ -1,0 +1,234 @@
+﻿@model HotelSys.ViewModel.RoomViewModel
+
+
+@{
+    ViewData["Title"] = "Create";
+    // Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">تعديل شقة</h4>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+
+                        <div class="col-md-9">
+
+
+
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <input type="hidden" asp-for="IdR" />
+
+                              <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">  اسم الشقة:
+                                                    <span class="error text-danger" style="font-size:16px !important;">*</span>
+                                                
+                                                </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="NameR" class="form-control" required>
+                                                </div>
+                                                <span asp-validation-for="NameR" class="text-danger"></span>
+                                            </div><!--end form-group-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end"> عدد الغرف: </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="CountRooms" class="form-control">
+                                                    <span asp-validation-for="CountRooms" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> <!--end row--->
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                  
+                                                <label class="col-lg-3 col-form-label-md text-end">  نوع الشقة:
+                                                <span class="error text-danger" style="font-size:16px !important;">*</span>    
+                                                </label>
+
+                                                <div class="col-lg-9">
+                                                    <select asp-for="IdType" class="form-control" asp-items="ViewBag.IdType" required></select>
+                                                </div>
+
+                                            </div><!--end form-group-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end"> الطابق:
+
+                                                    <span class="error text-danger" style="font-size:16px !important;">*</span>   
+                                                </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="NumFloor" class="form-control" required />
+                                                    <span asp-validation-for="NumFloor" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> <!--end row--->
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">عدد الاسرة المنفردة: </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="CountBedSingle" class="form-control" />
+                                                    <span asp-validation-for="CountBedSingle" class="text-danger"></span>
+
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end"> عدد الخزائن: </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="CountWallet" class="form-control" />
+                                                    <span asp-validation-for="CountWallet" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> <!--end row--->
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">عدد الاسرة المزدوجة: </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="CountBedDouble" class="form-control" />
+                                                    <span asp-validation-for="CountBedDouble" class="text-danger"></span>
+
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end"> عدد التلفزيونات: </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="CountTv" class="form-control" />
+                                                    <span asp-validation-for="CountTv" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> <!--end row--->
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">نوع المكيف: </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="TypeCondition" class="form-control" />
+                                                    <span asp-validation-for="TypeCondition" class="text-danger"></span>
+
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div>
+                                        @*<div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-sm text-end">الحالة </label>
+                                                <div class="col-lg-9">
+                                                    <select class="form-select-sm" aria-label="typeCustomer">
+                                                        <option selected="">فارغة  </option>
+                                                        <option value="1">نظافة</option>
+                                                        <option value="2">صيانة</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>*@
+
+                                    </div> <!--end row--->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">ملاحظات : </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="Note" class="form-control" />
+                                                    <span asp-validation-for="Note" class="text-danger"></span>
+
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">مميزات عامة : </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="PublicFeatures" class="form-control" />
+                                                    <span asp-validation-for="PublicFeatures" class="text-danger"></span>
+
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row mb-2">
+                                                <label class="col-lg-3 col-form-label-md text-end">مميزات خاصة : </label>
+                                                <div class="col-lg-9">
+                                                    <input asp-for="PrivateFeatures" class="form-control" />
+                                                    <span asp-validation-for="PrivateFeatures" class="text-danger"></span>
+
+                                                </div>
+                                            </div><!--end form-group-->
+                                        </div>
+                                    </div>
+
+
+                                <div class="form-group">
+                                    <input type="submit" value="تعديل" class="btn btn-primary" />
+
+                                </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+

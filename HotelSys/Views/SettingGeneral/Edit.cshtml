@@ -1,0 +1,147 @@
+﻿@model DataModels.SettingGeneralTable
+
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الاعدادات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title">اعدادات عامة </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <br />
+                <br />
+
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-pills card-header-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("Index", "SettingGeneral")">اعدادات </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="@Url.Action("Index", "H_Country")">تهيئة الدول</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="@Url.Action("Index", "H_City")">تهيئة المحافظات</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="@Url.Action("Index", "H_Area")">تهيئة المديريات</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+
+
+
+                        <div class="row">
+                            <div class="col-lg-11">
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="Id" />
+
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-check form-switch">
+
+
+
+
+
+                                                <input class="form-check-input" asp-for="ServicesIncludeTax"
+                                                       id="flexSwitchCheckDefault" type="checkbox" name="ServicesIncludeTax">
+                                                <label class="form-check-label">للخدمات السعر شامل الضريبة VAT </label>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-check form-switch">
+
+
+
+
+
+                                                <input class="form-check-input" asp-for="EnableTaxNum"
+                                                       id="flexSwitchCheckDefault" type="checkbox" name="EnableTaxNum">
+                                                <label class="form-check-label">عرض الرقم الضريبي  </label>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+                                    <br />
+
+                                    <br />
+
+
+
+
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

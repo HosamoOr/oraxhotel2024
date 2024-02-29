@@ -1,0 +1,179 @@
+﻿@model IEnumerable<HotelSys.ViewModel.PriceByTypeViewModel>
+@{
+    ViewData["Title"] = "Index";
+    var ind = 0;
+
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">الاعدادت</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">اسعار الشقق </a>
+                                </li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">اسعار الشقق حسب النوع  </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">
+                                <i class="fa fa-backward"></i>
+                                رجوع
+
+                            </a>
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Rooms") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + شقة جديدة
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <div class="row">
+                    <div class="alert alert-danger" role="alert">
+                      تنبيه : سيتم تغيير الاسعار لكل الغرف حسب النوع المحدد 
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table mb-0 table-centered">
+
+                        <thead>
+                            <tr>
+                                <th rowspan="2">النوع</th>
+                                <th rowspan="2">عدد الشقق</th>
+                                
+                                <th colspan="1">الاوقات الاعتيادية</th>
+                                <th colspan="1">اوقات الذروة</th>
+                                <th colspan="1">شهريا</th>
+                                <th colspan="1">المجموعة الضريبية</th>
+                                <th rowspan="2">عمليات</th>
+                            </tr>
+                            <tr>
+                                <th>السعر </th>
+                                @*<th>اقل سعر </th>*@
+                                <th>السعر </th>
+                                @*<th>اقل سعر </th>*@
+                                <th>السعر </th>
+                                @*<th>اقل سعر </th>*@
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @{
+
+
+                                foreach (var item in Model)
+                                {
+
+                                    ind = ind + 1;
+
+                                    @Html.Partial("OnePricePartialByType", item)
+
+
+                                    @*<form asp-action="Update">
+
+                                            <tr>
+                                                <td>@item.NameRoom</td>
+                                                <td>@item.NameType</td>
+                                                <td>@item.NumFloor</td>
+                                                <td>@item.CountRooms</td>
+                                                <td>
+
+                                                    <div class="tabulator-cell" role="gridcell"
+                                                         tabulator-field="col" tabindex="0" title="orange"
+                                                         style="width: 80px; height: 43px;">
+
+                                                        <input asp-for="@item.Price" class="form-control" style="font-size:10px" />
+                                                        <span asp-validation-for="@item.Price" class="text-danger"></span>
+
+
+
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="tabulator-cell" role="gridcell"
+                                                         tabulator-field="col" tabindex="0" title="orange"
+                                                         style="width: 80px; height: 43px;">
+
+                                                        <input asp-for="@item.PriceOvertime" class="form-control" style="font-size:10px" />
+                                                        <span asp-validation-for="@item.PriceOvertime" class="text-danger"></span>
+
+
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="tabulator-cell" role="gridcell"
+                                                         tabulator-field="col" tabindex="0" title="orange"
+                                                         style="width: 80px; height: 43px;">
+
+                                                        <input asp-for="@item.PriceMin" class="form-control" style="font-size:10px" />
+                                                        <span asp-validation-for="@item.PriceMin" class="text-danger"></span>
+
+
+                                                    </div>
+                                                </td>
+
+                                                <td>
+
+                                                    <div class="form-group">
+
+                                                        <input type="submit" value="save" />
+
+
+
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                        </form>*@
+
+
+                                }
+                            }
+
+
+
+                        </tbody>
+
+                    </table><!--end /table-->
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

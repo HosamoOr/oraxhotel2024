@@ -1,0 +1,403 @@
+﻿@model HotelSys.ViewModel.CustomerViewModel
+
+
+<div class="modal fade" id="newCustoModals" tabindex="-1" aria-labelledby="newCustoModals" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titlNewCustomer">اضافة عميل </h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="row mb-3">
+
+                            <div class="col">
+
+
+                                <div class="form-group required input-group has-validation">
+
+                                    <label class="control-label">اسم العميل</label>
+                                    <div class="form-group input-group has-validation">
+
+
+                                        <input id="NameCustomer" asp-for="Name" class="form-control full-width text-lg-center"  style="font-size: 12px;" required />
+                                        <div class="valid-feedback">
+                                            اسم عميل صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء ادخال اسم العميل
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col">
+
+
+                                <div class="form-group required input-group has-validation">
+
+                                    <label class="control-label">نوع العميل</label>
+                                    <div class="form-group input-group has-validation">
+
+
+
+                                        <select class="form-select text-lg-center" id="TypeCustomer" asp-for="Type" aria-label="typeCustomer">
+                                            <option value="0" selected="">اختر  </option>
+                                            <option value="مواطن(سعودي)">مواطن(سعودي)</option>
+                                            <option value="مقيم">مقيم</option>
+                                            <option value="زائر">زائر</option>
+                                            
+                                        </select>
+
+                                        <div class="valid-feedback">
+                                            نوع عميل صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء اختيار نوع العميل
+                                        </div>
+
+                                        @*<input asp-for="Type" class="form-control" />*@
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="control-label">البريد الالكتروني</label>
+                                    <input id="EmailID" asp-for="Email" class="form-control full-width text-lg-center"  style="font-size: 12px;" type="email"  />
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+
+
+                                    <label class="control-label">الجنسية</label>
+                                    <div class="form-group input-group has-validation">
+                                          <input type="hidden" id="idcountryHid" />
+                                        <select class="form-select text-lg-center" id="country"  aria-label="country">
+                                            <option value="-1" selected="">اختر  </option>
+                                           
+
+                                        </select>
+
+                                   @*     <select class="form-select text-lg-center" id="Nationality" asp-for="Nationality">
+                                            <option value="0" selected="">Select  </option>
+                                            <option value="السعودية">السعودية</option>
+                                            <option value="اليمن">اليمن</option>
+                                            <option value="بقية دول العالم">بقية دول العالم</option>
+
+                                        </select>*@
+                                        <div class="valid-feedback">
+                                            بيانات جنسية صالحة
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء اختيار الجنسية
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group  input-group ">
+
+
+                                    <label class="control-label">نوع العمل</label>
+                                    <div class="form-group ">
+                                        <input id="TypeWork" asp-for="TypeWork" class="form-control full-width text-lg-center"  style="font-size: 12px;"  />
+                                        @*<div class="valid-feedback">
+                                            نوع عمل صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاءكتابة نوع العمل للعميل
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group  input-group ">
+                                    <label class="control-label">مكان العمل</label>
+                                    <div class="form-group input-group ">
+                                        <input id="LocWork" asp-for="LocWork" class="form-control full-width text-lg-center"  style="font-size: 12px;" />
+                                       @* <div class="valid-feedback">
+                                            مكان عمل صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاءكتابة نوع مكان العمل
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+                                    <label class="control-label">تلفون العمل</label>
+                                    <div class="form-group input-group has-validation">
+                                        <input id="PhoneWork" asp-for="PhoneWork" class="form-control full-width text-lg-center"  style="font-size: 12px;"  />
+                                        <div class="valid-feedback">
+                                            تلفون عمل صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاءكتابة تلفون العمل
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+
+                                    <label class="control-label">نوع الهوية</label>
+                                    <div class="form-group  input-group has-validation">
+                                        <select class="form-select text-lg-center" id="TypeProof" asp-for="TypeProof">
+                                            <option value="0" selected="">Select  </option>
+                                            <option value="1">الهوية</option> @*بطاقة شخصية*@
+                                            <option value="2">جواز سفر</option>
+                                            <option value="3">...</option>
+
+                                        </select>
+                                        <div class="valid-feedback">
+                                            نوع هوية صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء اختيار نوع الهوية
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+                                    <label class="control-label">رقم الهوية</label>
+                                    <div class="form-group  input-group has-validation">
+                                        <input id="NumProof" asp-for="NumProof" class="form-control full-width text-lg-center"  style="font-size: 12px;" />
+                                        <div class="valid-feedback">
+                                            رقم هوية صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء كتابة رقم الهوية
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+                                    <label class="control-label">مكان اصدار الهوية</label>
+                                    <div class="form-group  input-group has-validation">
+                                        <input id="LocRelease" asp-for="LocRelease" class="form-control full-width text-lg-center"  style="font-size: 12px;" />
+                                        <div class="valid-feedback">
+                                            مكان اصدار صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء كتابة مكان اصدار الهوية
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="row mb-3">
+
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+                                    <label class="control-label">تاريخ الاصدار</label>
+                                    <div class="form-group  input-group has-validation">
+                                        <input id="ReleaseDate" asp-for="ReleaseDate" class="form-control full-width text-lg-center"  style="font-size: 12px;"  type="date" />
+                                        <div class="valid-feedback">
+                                            تاريخ الاصدار صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء ادخال تاريخ اصدار الهوية
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group required input-group has-validation">
+                                    <label class="col-form-label">تاريخ الانتهاء</label>
+                                    <div class="form-group  input-group has-validation">
+                                        <input class="form-control full-width text-lg-center"  style="font-size: 12px;" id="EndDateCustomer" asp-for="EndDate" type="date"  
+                                                            />
+                                        <div class="valid-feedback">
+                                            تاريخ انتهاء صالح
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            الرجاء ادخال تاريخ انتهاء الهوية
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+
+
+                         <div class="row mb-3">
+
+                            <div class="col">
+                                <div class="form-group">
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">المحافظة: </div>
+                    </div>
+                    <input type="hidden" id="idcityHid" />
+                        <select class="form-select text-lg-center" id="city"  aria-label="city">
+                                            <option value="-1" selected="">اختر  </option>
+                                           
+
+                                        </select>
+                </div>
+               
+            </div>
+                            </div>
+
+                            <div class="col">
+                                 <div class="form-group">
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text" style="font-size: 11px;" >المديرية: </div>
+                    </div>
+                       <input type="hidden" id="idareaHid" />
+                    <select class="form-select text-lg-center" id="Id_Area" asp-for="Id_Area" aria-label="Id_Area" style="font-size: 11px;">
+                                            <option value="-1" selected="">اختر  </option>
+                                          
+                                        </select>
+                </div>
+                <span asp-validation-for="Id_Area" class="text-danger"></span>
+            </div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                @*<div class="row">
+                                        <div class="form-group">
+                                            <label asp-for="Createat" class="control-label"></label>
+                                            <input asp-for="Createat" class="form-control" />
+                                            <span asp-validation-for="Createat" class="text-danger"></span>
+                                        </div>
+                                    </div>*@
+
+                                       <div class="form-group">
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">ملاحظات عامة: </div>
+                    </div>
+                    <input id="PublicNote" asp-for="PublicNote" class="form-control text-lg-center" />
+                </div>
+                <span asp-validation-for="PublicNote" class="text-danger"></span>
+            </div>
+
+
+                              
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+
+                                 <div class="form-group">
+                
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">ملاحظات خاصة: </div>
+                    </div>
+                    <input id="PrivateNoteCustomer" asp-for="PrivateNote" class="form-control text-lg-center" />
+                </div>
+                <span asp-validation-for="PublicNote" class="text-danger"></span>
+            </div>
+
+                              
+                            </div>
+
+                        </div>
+                        <div class="row mb-3" id="divMy">
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="control-label">رقم الحساب :</label>
+
+                                    <input id="IdAccountCustomer" asp-for="IdAccount" class="form-control" disabled />
+
+                                    @*<select asp-for="IdAccount" class="form-control" asp-items="ViewBag.IdAccount"></select>*@
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="control-label">تاريخ اخر زيارة</label>
+                                    <input id="VisitEndDate" asp-for="VisitEndDate" class="form-control" disabled />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                <input type="submit" value="اضافة الى قائمة عملائي " class="btn btn-primary" />
+                            </div>*@
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    <button type="button" onclick="saveCustomer15()" class="btn btn-primary">حفظ</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+@*</form>*@

@@ -1,0 +1,155 @@
+﻿
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Hotel Management Orax Soft</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Hotel Management Orax Soft" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link href="~/img/favicon.png" rel="shortcut icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="~/assets/plugins/animate/magic.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/app-rtl.min.css" rel="stylesheet" type="text/css" />
+    <!-- Price room table field edit-->
+    <link href="~/assets/plugins/tabulator/bootstrap/tabulator_bootstrap4.css" rel="stylesheet" type="text/css">
+
+    <style>
+
+        /*
+            Force full width & height.
+            If this block is removed, the layout height/length will be determined by
+            the amount of content in the page. That might result in a page which has
+            a footer only a few inches from the top of the viewport, or one which
+            scrolls beyond the viewport.
+            This forces the layout to always be full screen regardless of how much,
+            or how little, content is in place. Neither is "right" or "wrong", there
+            are valid cases for each. I just want to be clear what's controlling the
+            page/viewport height.
+          */
+        html, body, .viewport {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .flex-container {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -moz-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -moz-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        #flex-item {
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+<body style="font-family: 'Cairo', sans-serif;">
+
+    <!--Your Main contents-->
+    <div id="main"  id="splash" class="flex-container"
+         style="background: #4e73df;">
+
+        @*<h2 style="color: white;">
+            اوراكس سوفت للبرمجيات <h2>*@
+
+    <div id="flex-item">
+        <img src="~/img/lo4.jpg"
+             alt="app_icon"
+             style="width:150px ; height :150px" />
+
+        <h3 style="color: white;"> اوراكس سوفت للبرمجيات <h3>
+
+    <h4 style="color: white;">نظام الفنادق <h4>
+</div>
+
+</div>
+
+   
+    <script type="text/javascript">
+
+        function fade(element) {
+            var op = 1;  // initial opacity
+            var timer = setInterval(function () {
+                if (op <= 0.1) {
+                    clearInterval(timer);
+
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op -= op * 0.1;
+            }, 50);
+        }
+
+        setTimeout(function () {
+
+            if (typeof (Storage) !== "undefined") {
+
+                console.log("Already shown" + sessionStorage.getItem('spalashShown'));
+
+                if (!sessionStorage.getItem('spalashShown') || sessionStorage.getItem('spalashShown') === null) {
+
+                    //document.getElementById('splash').style.display = 'inline';
+
+                    //Display splash
+                    setTimeout(function () {
+
+                        fade(document.getElementById('main'));
+                        // document.getElementById('splash') .style.display = 'none' HomeReception
+                         window.location = "@Url.Action("Index", "HomeReception")";
+
+                        sessionStorage.setItem('spalashShown', true);
+                    }
+                        , 3000);
+
+                } else {
+
+                    //Display Main Content
+                    document.getElementById('splash').style.display = 'none'
+                    console.log("Already shown");
+                }
+            }
+
+            else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }, 0);
+
+    </script>
+</body>
+</html>

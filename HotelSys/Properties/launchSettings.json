@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HotelSys": {
+      "commandName": "Project",
+      "launchBrowser": true
+    }
+  }
+}

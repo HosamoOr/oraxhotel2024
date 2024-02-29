@@ -1,0 +1,119 @@
+﻿@model DataModels.ConditionReceptionTable
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title"> تعديل  الشرط</h4>
+
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+                                <a asp-action="Index">رجوع</a>
+
+                            </div>
+
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+
+
+                   
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-10">
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="Id" />
+
+                                <input class="form-control text-danger" type="text" placeholder="ملاحظة : يمكنك اضافة شروط كثيرة في حقل نص الشرط  او شرط وحيد " readonly>
+                                <br />
+
+                                <div class="col-md-12">
+
+                                    <div class="form-group row mb-xxl-1">
+                                        <label asp-for="Name" class="control-label">نص الشرط -يرجى الكتابة بلغة واضحة وصريحة</label>
+                                        <textarea id="editor" asp-for="Name" class="form-control"></textarea>
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row  mb-xxl-1">
+                                            <label class="control-label">  الترتيب: </label>
+
+                                            <input asp-for="Num" class="form-control" />
+
+                                            <span asp-validation-for="Num" class="text-danger"></span>
+                                        </div><!--end form-group-->
+                                    </div>
+
+
+                                </div>
+
+                                @*<div class="form-group">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Num" class="control-label"></label>
+                                    <input asp-for="Num" class="form-control" />
+                                    <span asp-validation-for="Num" class="text-danger"></span>
+                                </div>*@
+                                @*<div class="form-group">
+            <label asp-for="IdSub" class="control-label"></label>
+            <input asp-for="IdSub" class="form-control" />
+            <span asp-validation-for="IdSub" class="text-danger"></span>
+        </div>*@
+                                <div class="form-group">
+                                    <input type="submit" value="تعديل" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <footer class="footer text-center text-sm-start">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                        للانظمة
+                        وتقنية المعلومات
+                    </span>
+                </footer>
+
+
+            </div>
+            </div>
+        </div>
+
+                   

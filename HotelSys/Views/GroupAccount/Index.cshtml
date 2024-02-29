@@ -1,0 +1,160 @@
+﻿@model IEnumerable<HotelSys.ViewModel.GroupAccountViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">مجموعة الحسابات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            
+
+                            <a class="btn btn-primary" style="margin-bottom:10px" href="@Url.Action("Create","GroupAccount")">
+                                <i class="fa fa-plus"></i> 
+
+                                <span style="color:white"> مجموعة حساب جديدة   </span>
+
+                            </a>
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.IsRoot)
+                            </th>*@
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.IsPrivate)
+                            </th>*@
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.IdSub)
+                            </th>*@
+                            <th>
+                                <label>  المجموعة الاب</label>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.IsRoot)
+                                </td>*@
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.IsPrivate)
+                                </td>*@
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.IdSub)
+                                </td>*@
+                            <td>
+                                @if (@item.IsRoot == true)
+                                {
+                                    <label> </label>
+
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.NameMainGroup)
+                                }
+                            </td>
+                                <td>
+                                    @if (@item.IsPrivate == true)
+                                    {
+                                        <button disabled="" type="button" class="btn btn-primary-outline" >
+                                            <i class="fas fa-edit text-secondary font-17"></i>
+                                        </button>
+
+                                        <button disabled="" type="button" class="btn btn-primary-outline" >
+                                            <i class="fas fa-trash-alt text-secondary font-19"></i>
+                                        </button>
+
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary-outline" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="fas fa-edit text-success font-17"></i>
+                                        </a>
+
+                                        <a class="btn btn-primary-outline" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="fas fa-trash-alt text-danger font-19"></i>
+                                        </a>
+
+                                    }
+
+
+
+                                    @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div><!--end row-->
+
+
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                للانظمة
+                وتقنية المعلومات
+            </span>
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+
+<p>
+   
+</p>

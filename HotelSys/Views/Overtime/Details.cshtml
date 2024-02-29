@@ -1,0 +1,128 @@
+﻿@model DataModels.OvertimeTable
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title">تفاصيل وقت الذروة</h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+                                <a asp-action="Index">رجوع</a>
+
+                            </div>
+                            
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+
+                    <div>
+
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                <label>وقت البدء</label>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.StartTime)
+
+                            </dd>
+                            <dt>
+                                <label> وقت الانتهاء</label>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EndTime)
+
+                            </dd>
+
+                            @if (Model.StartDate == null)
+                            {
+
+                                <dt>
+                                    <label>تاريخ البدءوالانتهاء </label>
+                                </dt>
+                                <dd>
+                                    غير نشط
+                                </dd>
+
+
+                            }
+                            else
+                            {
+                                <dt>
+                                    <label>تاريخ البدء</label>
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.StartDate)
+                                </dd>
+
+                                <dt>
+                                    <label>
+                                        تاريخ الانتهاء
+                                    </label>
+
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EndDate)
+                                </dd>
+
+
+                            }
+
+
+
+                            <dt>
+
+                            </dt>
+
+                            <dt>
+                                <label>تاريخ اخر تعديل</label>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Createat)
+                            </dd>
+                            <dt>
+                                <label>المستخدم :</label>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.IdUser)
+                            </dd>
+                            @*<dt>
+                @Html.DisplayNameFor(model => model.IdSub)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IdSub)
+            </dd>*@
+                        </dl>
+
+                    </div>
+                    <div>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Id">تعديل </a> 
+                      
+                    </div>
+
+</div>
+</div>
+</div>
+</div>

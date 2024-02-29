@@ -1,0 +1,174 @@
+﻿@model HotelSys.Models.BillsTable
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BillsTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypePay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypePay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsForRoom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsForRoom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeserveAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeserveAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeDiscount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeDiscount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QtyDiscount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QtyDiscount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PayAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PayAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RestAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RestAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumCheck)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumCheck)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumCard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumCard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Createat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Createat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdBank)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdBank)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrCompany)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrCompany)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCurrancy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdCurrancy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalTaxPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalTaxPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalTaxRate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalTaxRate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IncludeTax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IncludeTax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBaladiTaxPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalBaladiTaxPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBaladiTaxRate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalBaladiTaxRate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBaladiTax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsBaladiTax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAccountNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAccountNavigation.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdReceptionNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdReceptionNavigation.Source)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

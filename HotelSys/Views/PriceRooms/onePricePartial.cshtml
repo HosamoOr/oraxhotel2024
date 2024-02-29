@@ -1,0 +1,152 @@
+﻿@model HotelSys.ViewModel.PriceRoomsViewModel
+
+
+
+    <form asp-action="update">
+        <input type="hidden" asp-for="Id" class="form-control" />
+        <tr>
+
+
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            @*<td>
+                <div class="form-group">
+
+                    <input type="hidden" asp-for="Id" class="form-control" />
+                </div>
+            </td>*@
+
+            <td>
+
+                <div class="form-group">
+
+                    <label class="control-label">@Model.NameRoom</label>
+
+                </div>
+
+
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="control-label">@Model.NameType</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="control-label">@Model.NumFloor</label>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="control-label">@Model.CountRooms</label>
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group" style="width: 80px; height: 43px;">
+
+                    <input asp-for="Price" class="form-control" style="font-size:10px" required/>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group" style="width: 80px; height: 43px;">
+
+                    <input asp-for="PriceOvertime" class="form-control" style="font-size:10px" required/>
+                    <span asp-validation-for="PriceOvertime" class="text-danger"></span>
+                </div>
+            </td>
+
+            <td>
+                <div class="form-group" style="width: 80px; height: 43px;">
+
+                    <input asp-for="PriceMin" class="form-control" style="font-size:10px" required />
+                    <span asp-validation-for="PriceMin" class="text-danger"></span>
+                </div>
+            </td>
+
+            @*<div class="form-group">
+                <label asp-for="IdSub" class="control-label"></label>
+                <input asp-for="IdSub" class="form-control" />
+                <span asp-validation-for="IdSub" class="text-danger"></span>
+            </div>*@
+
+            @*<div class="form-group">
+                <label asp-for="IdRoom" class="control-label"></label>
+                <input asp-for="IdRoom" class="form-control" />
+                <span asp-validation-for="IdRoom" class="text-danger"></span>
+            </div>*@
+        <td>
+            <div class="form-group">
+                <select asp-for="IdTaxGroup " class="form-control" asp-items="ViewBag.IdGroupTax"></select>
+                @*<input type="reset" value="Reset" class="btn" />*@
+            </div>
+        </td>
+
+            <td>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    @*<input type="reset" value="Reset" class="btn" />*@
+                </div>
+            </td>
+
+
+
+        </tr>
+    </form>
+
+
+@*<tr>
+    <td>@item.NameRoom</td>
+    <td>@item.NameType</td>
+    <td>@item.NumFloor</td>
+    <td>@item.CountRooms</td>
+    <td>
+
+        <div class="tabulator-cell" role="gridcell"
+             tabulator-field="col" tabindex="0" title="orange"
+             style="width: 80px; height: 43px;">
+
+            <input asp-for="@item.Price" class="form-control" style="font-size:10px" />
+            <span asp-validation-for="@item.Price" class="text-danger"></span>
+
+
+
+        </div>
+    </td>
+
+    <td>
+        <div class="tabulator-cell" role="gridcell"
+             tabulator-field="col" tabindex="0" title="orange"
+             style="width: 80px; height: 43px;">
+
+            <input asp-for="@item.PriceOvertime" class="form-control" style="font-size:10px" />
+            <span asp-validation-for="@item.PriceOvertime" class="text-danger"></span>
+
+
+        </div>
+    </td>
+
+    <td>
+        <div class="tabulator-cell" role="gridcell"
+             tabulator-field="col" tabindex="0" title="orange"
+             style="width: 80px; height: 43px;">
+
+            <input asp-for="@item.PriceMin" class="form-control" style="font-size:10px" />
+            <span asp-validation-for="@item.PriceMin" class="text-danger"></span>
+
+
+        </div>
+    </td>
+
+    <td>
+
+        <div class="form-group">
+
+            <input type="submit" value="save" />
+
+
+
+        </div>
+
+    </td>
+</tr>*@

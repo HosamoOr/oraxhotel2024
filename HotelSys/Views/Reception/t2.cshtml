@@ -1,0 +1,290 @@
+﻿
+
+
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Metrica - Admin &amp; Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin &amp; Dashboard Template" name="description">
+    <meta content="" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+
+
+
+    <!-- Sweet Alert -->
+    <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body id="body" class="" style="padding-right: 0px;">
+  
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+               
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Trigger modal And Trigger toast</h4>
+                                <p class="text-muted mb-0">
+                                    And you can even trigger SweetAlert2 popups declaratively!
+                                    Use the bindClickHandler() method for that:
+                                </p>
+                            </div><!--end card-header-->
+                            <div class="card-body">
+                                <button type="button" class="btn btn-de-primary btn-sm" data-swal-template="#my-template" onclick="executeExample('TriggerModalToast')">Trigger modal</button>
+                                <button type="button" class="btn btn-de-primary btn-sm" data-swal-toast-template="#my-template" onclick="executeExample('TriggerModalToast')">Trigger toast</button>
+                                <template id="my-template">
+                                    <swal-title>
+                                        Save changes to "Untitled 1" before closing?
+                                    </swal-title>
+                                    <swal-icon type="warning" color="red"></swal-icon>
+                                    <swal-button type="confirm">
+                                        Save As
+                                    </swal-button>
+                                    <swal-button type="cancel">
+                                        Cancel
+                                    </swal-button>
+                                    <swal-button type="deny">
+                                        Close without Saving
+                                    </swal-button>
+                                    <swal-param name="allowEscapeKey" value="false">
+                                        <swal-param name="customClass" value="{ &quot;popup&quot;: &quot;my-popup&quot; }">
+                                        </swal-param>
+                                    </swal-param>
+                                </template>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div> <!-- end col -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Icons</h4>
+                                <p class="text-muted mb-0">
+                                    A beautiful, responsive, customizable and accessible
+                                    (WAI-ARIA) replacement for JavaScript's popup boxes.
+                                </p>
+                            </div><!--end card-header-->
+                            <div class="card-body">
+                                <button type="button" class="btn btn-de-success btn-sm" onclick="executeExample('success')">Success</button>
+                                <button type="button" class="btn btn-de-danger btn-sm" onclick="executeExample('error')">Error</button>
+                                <button type="button" class="btn btn-de-warning btn-sm" onclick="executeExample('warning')">Warning</button>
+                                <button type="button" class="btn btn-de-info btn-sm" onclick="executeExample('info')">Info</button>
+                                <button type="button" class="btn btn-de-secondary btn-sm" onclick="executeExample('question')">Question</button>
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Examples</h4>
+                                <p class="text-muted mb-0">
+                                    A beautiful, responsive, customizable
+                                    and accessible (WAI-ARIA) replacement for JavaScript's popup boxes. Zero
+                                    dependencies.
+                                </p>
+                            </div><!--end card-header-->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-pink"></i>A basic message</td>
+                                                <td class="border-0">
+                                                    <button class="btn btn-de-primary btn-sm" onclick="executeExample('basicMessage')">
+                                                        Click me
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-success"></i>A title with a text under</td>
+                                                <td class="border-0">
+                                                    <button class="btn btn-de-primary btn-sm" onclick="executeExample('titleText')">
+                                                        Click me
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0">
+                                                <i class="mdi mdi-circle-outline me-1 text-warning"></i>
+                                                A modal with a title, an error icon, a text, and a footer</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm"
+                                                                             onclick="executeExample('errorType')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0">
+                                                <i class="mdi mdi-circle-outline me-1 text-dark">
+                                                    </i>Custom HTML description and buttons with ARIA labels</td>
+                                                <td class="border-0">
+                                                <button type="button" class="btn btn-de-primary btn-sm"
+                                                        onclick="executeExample('customHtml')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-pink"></i>A dialog with three buttons</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('threeButtons')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-info"></i>A custom positioned dialog</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('customPosition')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-primary"></i>Custom animation with Animation</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('customAnimation')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-secondary"></i>A confirm dialog, with a function attached to the "Confirm"-button...</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('warningConfirm')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-danger"></i>... and by passing a parameter, you can execute something else for "Cancel".</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('handleDismiss')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-purple"></i>A message with a custom image</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('customImage')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-success"></i>A message with custom width, padding, background and animated Nyan Cat</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('customWidth')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-warning"></i>A message with auto close timer</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('timer')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-info"></i>Right-to-left support for Arabic, Persian, Hebrew, and other RTL languages</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('rtl')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-pink"></i>AJAX request example</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('ajaxRequest')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-pink"></i>Chaining modals (queue) example</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('chainingModals')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-warning"></i>Dynamic queue example</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('dynamicQueue')">Click me</button></td>
+                                            </tr>
+
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-warning"></i>Mixin example</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('mixin')">Click me</button></td>
+                                            </tr>
+                                            <tr class="border-0">
+                                                <td class="border-0"><i class="mdi mdi-circle-outline me-1 text-warning"></i>Declarative template example</td>
+                                                <td class="border-0"><button type="button" class="btn btn-de-primary btn-sm" onclick="executeExample('declarativeTemplate')">Click me</button></td>
+                                                <template id="my-template">
+                                                    <swal-title>
+                                                        Save changes to "Untitled 1" before closing?
+                                                    </swal-title>
+                                                    <swal-icon type="warning" color="red"></swal-icon>
+                                                    <swal-button type="confirm">
+                                                        Save As
+                                                    </swal-button>
+                                                    <swal-button type="cancel">
+                                                        Cancel
+                                                    </swal-button>
+                                                    <swal-button type="deny">
+                                                        Close without Saving
+                                                    </swal-button>
+                                                    <swal-param name="allowEscapeKey" value="false">
+                                                        <swal-param name="customClass" value="{ &quot;popup&quot;: &quot;my-popup&quot; }">
+                                                        </swal-param>
+                                                    </swal-param>
+                                                </template>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!--table responsive-->
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+            </div><!-- container -->
+            <!--Start Rightbar-->
+            <!--Start Rightbar/offcanvas-->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                    <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <h6>Account Settings</h6>
+                    <div class="p-2 text-start mt-3">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch1">
+                            <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch2" checked="">
+                            <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="settings-switch3">
+                            <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                        </div><!--end form-switch-->
+                    </div><!--end /div-->
+                    <h6>General Settings</h6>
+                    <div class="p-2 text-start mt-3">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch4">
+                            <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch5" checked="">
+                            <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                        </div><!--end form-switch-->
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="settings-switch6">
+                            <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                        </div><!--end form-switch-->
+                    </div><!--end /div-->
+                </div><!--end offcanvas-body-->
+            </div>
+            <!--end Rightbar/offcanvas-->
+            <!--end Rightbar-->
+            <!--Start Footer-->
+            <!-- Footer Start -->
+            <footer class="footer text-center text-sm-start">
+                ©
+                <script>document.write(new Date().getFullYear())</script>2022 Metrica <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+            </footer>
+            <!-- end Footer -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+    <!-- Javascript  -->
+    <!-- Sweet-Alert  -->
+    <script src="~/assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="~/assets/pages/sweet-alert.init.js"></script>
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+
+
+
+</body>
+
+
+</html>

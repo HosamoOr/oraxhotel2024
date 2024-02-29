@@ -1,0 +1,758 @@
+﻿@model HotelSys.ViewModel.ReceptionViewModel
+
+
+@{
+    ViewData["Title"] = "oneReservation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+    <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الشقق والتسكين</a></li>
+
+                                <li class="breadcrumb-item active">تسجيل الدخول </li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">تعديل حجز</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">~</h4>
+
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <form class="ReceptionAddForm" name="ReceptionAddForm" method="post" id="custom-step">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab">
+                                        <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">تفاصيل الحجز</a>
+                                        <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">المالية</a>
+
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+
+                                    <center><div id="result"></div></center>
+
+                                    <div class="tab-pane active" id="step1">
+                                        <h4 class="card-title mt-3 mb-1">بيانات الحجز </h4>
+
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group row mb-2">
+                                                    <label class="col-lg-3 col-form-label text-end">الرقم :</label>
+                                                    <label class="col-lg-3 col-form-label text-end"> 0</label>
+
+
+                                                </div>
+                                            </div>
+
+                                            <label class="col-lg-3 col-form-label text-end">مصدر الحجز :</label>
+                                            <div class="col-sm-3">
+
+
+                                                <select asp-for="Source"
+                                                        id="Source"
+                                                        class="form-select" asp-items="ViewBag.Idsource"></select>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+
+
+                                            <h4 class="card-title mt-3 mb-1">بيانات الشقة</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row mb-2">
+                                                        <label for="roomid" class="col-lg-3 col-form-label text-end">الشقة</label>
+                                                        <div class="col-lg-9">
+
+                                                            <select 
+                                                                  
+                                                                    asp-for="room.IdRoom" id="userinputid" class="form-select" asp-items="ViewBag.IdRoom"></select>
+
+
+
+                                                        </div>
+                                                    </div><!--end form-group-->
+                                                </div><!--end col-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group row mb-2">
+                                                        <label for="Price" class="col-lg-3 col-form-label text-end">السعر</label>
+                                                        <div class="col-lg-9">
+                                                            <input id="txtPrice" asp-for="Price" type="text" class="form-control ">
+                                                        </div>
+                                                    </div><!--end form-group-->
+                                                </div>
+                                            </div><!--end col-->
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <div class="row">
+
+
+                                            <h4 class="card-title mt-3 mb-1">بيانات العميل  </h4>
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <label for="customer" class="col-lg-3 col-form-label text-end">العميل</label>
+                                                    <input type="text" disabled id="customerName"  class="col-lg-3 col-form-label text-end" />
+                                                    <input type="hidden" id="customerID"  class="col-lg-3 col-form-label text-end" />
+                                                    <input type="hidden" id="PrivateNoteID"  class="col-lg-3 col-form-label text-end" />
+                                                </div><!--end form-group-->
+
+
+
+                                                <div class="col-sm-4">
+
+
+                                                    <span>
+                                                        <button type="button"
+                                                                id="searchCuid" onclick="bindDatatablecust()"
+                                                                class="btn btn-primary-outline">
+                                                            <i class="fas fa-search text-secondary font-18"></i>
+                                                        </button>
+
+                                                    </span>
+
+
+                                                    <span>
+                                                        <button type="button" class="btn btn-primary-outline"
+                                                                onclick="newCusModelShow()">
+                                                            <i class="fas fa-plus text-secondary font-18"></i>
+                                                        </button>
+
+                                                    </span>
+                                                    @*<span>
+            <button class="btn btn-primary-outline  ">
+                <i class="fas fa-edit text-secondary font-18"></i>
+            </button>
+
+        </span>*@
+
+                                                    <!-- Modal  ADD customer-->
+                                                   
+                                                    @Html.Partial("_newcustomerModal",Model.customer)
+
+                                                    <!-- Modal  search customer-->
+                                                    @Html.Partial("_searchCustomerPartial")
+
+
+                                                    <!-- Modal  search  company-->
+                                                    @Html.Partial("_SearchCompanyPartial")
+
+
+                                                    <!-- Modal  New  company-->
+                                                    @Html.Partial("_newCompanyPartial")
+
+
+
+                                                </div><!--end form-group-->
+                                            </div>
+
+
+                                            @Html.Partial("_showCompanyPartial")
+
+
+                                            @Html.Partial("_showFollowerPartial")
+
+
+
+
+                                        </div><!--end row-->
+
+
+                                        <div class="row">
+
+                                            <h4 class="card-title">بيانات الفترة</h4>
+
+
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row mb-2">
+                                                        <label for="typeRE_" class="col-lg-3 col-form-label text-end">نوع الايجار </label>
+
+                                                        <select asp-for="Unit"
+                                                                id="Unit"
+                                                                class="form-select" asp-items="ViewBag.Unit"></select>
+
+
+                                                        @*<div class="col-lg-9">
+                                                                <select class="form-select" aria-label="typeRE_">
+                                                                    <option selected="">يومي  </option>
+                                                                    <option value="1">شهري</option>
+                                                                    <option value="2">ساعات</option>
+
+                                                                </select>
+                                                            </div>*@
+                                                    </div><!--end form-group-->
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row mb-2">
+                                                        <label for="grand" class="col-lg-3 col-form-label text-end">التقويم </label>
+
+                                                        <select asp-for="TypeDate"
+                                                                id="TypeDate"
+                                                                class="form-select" asp-items="ViewBag.TypeDate"></select>
+
+
+                                                        @*<div class="col-md-9">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option4">
+                                                                    <label class="form-check-label" for="inlineRadio1">هجري</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option5">
+                                                                    <label class="form-check-label" for="inlineRadio2">ميلادي</label>
+                                                                </div>
+
+                                                            </div>*@
+                                                    </div><!--end form-group-->
+                                                </div>
+
+
+                                                <div class="row">
+
+
+                                                
+
+
+
+                                                    <div class="col-md-6">
+
+
+                                                        <div class="form-group row mb-2">
+                                                            <label asp-for="QtyTime" class="col-lg-3 col-form-label text-end">عدد الايام/الساعات</label>
+                                                            <div class="col-lg-9">
+                                                                <input id="QtyTime" asp-for="QtyTime" type="text" class="form-control">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+
+
+                                                        <div class="form-group row mb-2">
+
+                                                        </div><!--end form-group-->
+
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+
+                                                    <h4 class="card-title">ميلادي: </h4>
+
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row mb-2">
+                                                                <label for="StartDate" class="col-lg-3 col-form-label text-end">من : </label>
+                                                                <div class="col-lg-9">
+                                                                    <input class="form-control" id="StartDate" asp-for="StartDate" type="date">
+
+                                                                </div>
+                                                            </div><!--end form-group-->
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row mb-2">
+                                                                <label for="toDate_en" class="col-lg-3 col-form-label text-end">الى : </label>
+                                                                <div class="col-lg-9">
+                                                                    <input class="form-control" type="date" id="EndDate" asp-for="EndDate">
+
+                                                                </div>
+                                                            </div><!--end form-group-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <h4 class="card-title">هجري: </h4>
+
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row mb-2">
+                                                                <label for="fromDate_en" class="col-lg-3 col-form-label text-end">من : </label>
+                                                                <div class="col-lg-9">
+                                                                    <input class="form-control" type="date" value="2011-08-19" id="fromh">
+
+                                                                </div>
+                                                            </div><!--end form-group-->
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row mb-2">
+                                                                <label for="toDate_en" class="col-lg-3 col-form-label text-end">الى : </label>
+                                                                <div class="col-lg-9">
+                                                                    <input class="form-control" type="date" value="2011-08-19" id="toh">
+
+                                                                </div>
+                                                            </div><!--end form-group-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="">
+                                            <button type="submit" id="step1Next" class="btn btn-primary float-end">حفظ </button>
+
+                                            <button type="button" class="btn btn-de-secondary">الغاء</button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane" id="step2">
+                                        <partial name="_step2Bill" />
+
+
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div><!--end row-->
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+
+
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<!-- Javascript  -->
+
+@Html.Partial("_searchFollowePartial")
+
+@Html.Partial("_newcFollwerModal")
+
+
+@section scripts{
+
+
+    @*farze-regesrer*@
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    @*<script src="~/js/reception.js"></script>*@
+    <script src="~/js/reception/roomR.js"></script>
+
+    <script src="~/js/reception/customerR.js"></script>
+
+    <script src="~/js/reception/companyR.js"></script>
+
+    <script src="~/js/reception/followersR.js"></script>
+
+    <script>
+
+
+
+
+$('#userinputid').on('change', function (event) {
+    var form = $(event.target).parents('form');
+
+
+    var url = '@Url.Action("getPriceRoom", "Reception")'; //$(this).attr("action");
+    var comid = $(":selected", $("#userinputid")).val();
+    var comname = $(":selected", $("#userinputid")).text();
+
+
+
+    var myModel =
+    {
+        "id": comid,
+        "name": comname
+    };
+
+
+
+    $.ajax(
+        {
+            type: 'POST',
+            dataType: 'JSON',
+            url: url,
+            data: myModel,
+            success:
+                function (response) {
+
+                    $('#txtPrice').val(response.price);
+
+
+                },
+            error:
+                function (response) {
+                    alert("Error: " + response);
+                }
+        });
+
+
+    //$.post(url, myModel, function (response) {
+
+    //        alert("success");
+
+
+    //      //  if (intervalId)
+    //            //clearInterval(intervalId);
+    //    });
+
+    //$('#table').bootstrapTable('refresh');
+
+});
+
+        function saveComp() {
+            var namcom11 = $('#NameCompany').val();
+          var myModel =
+        {
+            "Id": 2,
+              "Name": namcom11,
+            "IdAccount": 22,
+            "IdSub": 22
+        };
+           // var formData = JSON.stringify(myModel);
+
+        var url = '@Url.Action("Createjson", "_Company")';
+      //  var formData = $(this).serialize();
+
+            $.post(url, myModel, function (response) {
+            $('#addCompanyModal').modal('hide');
+            alert(" New company sucess " + response.id);
+
+
+            $("#companyName").val(response.name + "   " + response.id);
+
+            $("#companyID").val(response.id);
+
+            //
+
+            //window.location.href = '@Url.Action("Index", "_Company")';
+            //  if (intervalId)
+            //clearInterval(intervalId);
+        });
+        }
+
+    @*$("#addcompform").on("submit", function (event) {
+        event.preventDefault();
+
+        // var myModel =
+        //{
+        //    "Id": 2,
+        //    "Name": "hhhhhh",
+        //    "IdAccount": 22,
+        //    "IdSub": 22
+        //};
+        //var jsonToPost = JSON.stringify(myModel);
+
+        var url = '@Url.Action("Createjson", "_Company")'; //$(this).attr("action");
+        var formData = $(this).serialize();
+
+        $.post(url, formData, function (response) {
+            $('#addCompanyModal').modal('hide');
+            alert(" New company sucess " + response.id);
+
+
+            $("#companyName").val(response.name + "   " + response.id);
+
+            $("#companyID").val(response.id);
+
+            //
+
+            //window.location.href = '@Url.Action("Index", "_Company")';
+            //  if (intervalId)
+            //clearInterval(intervalId);
+        });
+
+
+    });*@
+
+        //addFolloweForm
+
+
+        function saveCustomer15() {
+        //event.preventDefault();
+
+
+
+         var myModel =
+         {
+             "IdcumtomerAll": $('#customerID').val(),
+             "Name": $('#NameCustomer').val(),
+             "Type": $('#TypeCustomer').val(),
+             "Email": $('#EmailID').val(),//
+             "Nationality": $('#Nationality').val(),
+             "LocWork": $('#LocWork').val(),
+             "PhoneWork": $('#PhoneWork').val(),
+             "TypeProof": $('#TypeProof').val(),
+             "NumProof": $('#NumProof').val(),
+             "LocRelease": $('#LocRelease').val(),
+
+             "ReleaseDate": $('#ReleaseDate').val(),
+             "EndDate": $('#EndDateCustomer').val(),
+             "PublicNote": $('#PublicNote').val(),
+
+             "PrivateNote": $('#PrivateNoteCustomer').val(),
+
+             "IdAccount": 22,
+
+            "IdSub": 22
+        };
+             var url = '@Url.Action("CreateJson", "Customers")'; //$(this).attr("action");
+        //var formData = $(this).serialize();
+
+            $.post(url, myModel, function (response) {
+                $('#newCustoModals').modal('hide');
+                alert(response.mess + response.id);
+
+
+            $("#customerName").val(response.name + "   " + response.id);
+
+            $("#customerID").val(response.id);
+
+                $("#PrivateNoteID").val(response.privateNote);
+
+           
+        });
+
+
+    };
+
+
+
+
+        function saveFollower() {
+        //event.preventDefault();
+
+
+
+         var myModel =
+        {
+             "Name": $('#NameF').val(),
+             "Type": $('#TypeF').val(),
+             "Email": $('#EmailF').val(),//
+             "Nationality": $('#NationalityF').val(),
+             "LocWork": $('#LocWorkF').val(),
+             "PhoneWork": $('#PhoneWorkF').val(),
+             "TypeProof": $('#TypeProofF').val(),
+             "NumProof": $('#NumProofF').val(),
+             "LocRelease": $('#LocReleaseF').val(),
+
+             "ReleaseDate": $('#ReleaseDateF').val(),
+             "EndDate": $('#EndDateF').val(),
+             "PublicNote": $('#PublicNoteF').val(),
+
+             "PrivateNote": $('#PrivateNoteF').val(),
+
+             "IdAccount": 22,
+
+            "IdSub": 22
+        };
+        //var jsonToPost = JSON.stringify(myModel);
+
+        var url = '@Url.Action("CreateJson", "Customers")'; //$(this).attr("action");
+        //var formData = $(this).serialize();
+
+            $.post(url, myModel, function (response) {
+              
+                alert("id New Follower " + response.id);
+
+
+
+
+
+                var naff = response.name;
+
+                var idff = response.id;
+                var reff = $("#RelationF").val();
+
+                $('#tableFollowSelect').append('<tr><td>' + naff + '</td><td> <span class="badge badge-soft-success">' + reff + '</span></td><td> <a href="#"><i class="las la-pen text-secondary font-18"></i></a><button  class="btnDelete text-dark"> <i class="mdi mdi-close-circle-outline font-18"></i></button></td> <td >' + idff + '</td></tr>');
+                $('#addFollowerModal').modal('hide');
+
+    //
+
+            //
+
+
+
+
+            //window.location.href = '@Url.Action("Index", "_Company")';
+            //  if (intervalId)
+            //clearInterval(intervalId);
+        });
+
+
+    };
+
+
+
+
+        $(".ReceptionAddForm").on("submit", function (event) {
+        event.preventDefault();
+
+       
+        //var jsonToPost = JSON.stringify(myModel);
+
+            //var array = [];
+
+            //$('#tableFollowSelect tr').each(function () {
+            //    var values = [];
+
+            //    $(this)
+            
+            //        .each(function () {
+            //            values.push(this.val());
+            //        });
+
+            //    array.push(values);
+            //});
+
+            //alert(array);
+
+         
+            var Data = [];
+
+
+            $("#tableFollowSelect tbody tr").each(function () {
+                var cnts = $(this).find('td:eq(0)').text();
+                var crelat = $(this).find('td:eq(1)').text();
+                var cidf = $(this).find('td:eq(3)').text();
+
+                Data.push({
+                    'follwerCusomer': {
+                        'IdcumtomerAll': cidf,
+                        'Name': cnts
+                    },
+                    'Relation': crelat,
+                   
+                });
+
+              
+               
+            });
+
+            var myModel =
+            {
+                "Id": 0,
+                "Source": $('#Source').val(),
+                "Price": $('#txtPrice').val(),
+                "QtyTime": $('#QtyTime').val(),
+                "Unit": $('#Unit').val(),
+                "StartDate": $('#StartDate').val(),
+                "EndDate": $('#EndDate').val(),
+                "TypeDate": $('#TypeDate').val(),
+                "IdCo": $('#companyID').val(),
+                "IdCustomer": $('#customerID').val(),
+                "IdRoom": $('#userinputid').val(),
+                "NameCustomer": $('#customerName').val(),
+                "PrivateNote": $('#PrivateNoteID').val(),
+
+                "followers": Data
+            };
+
+        var url = '@Url.Action("Create", "Reception")'; //$(this).attr("action");
+           // var formData = $(this).serialize();
+
+
+           
+
+
+
+            $.post(url, myModel, function (response) {
+
+            //alert("id  " + response.id);
+
+            $("#result").html(response.id);
+            //adding class
+            $("#result").addClass("alert alert-success");
+
+        });
+
+
+    });
+
+
+
+        $("#tableFollowSelect").on('click', '.btnDelete', function () {
+            $(this).closest('tr').remove();
+        });
+
+    </script>
+
+}

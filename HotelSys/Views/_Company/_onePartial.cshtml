@@ -1,0 +1,27 @@
+﻿@model HotelSys.ViewModel._CompanyViewModel
+
+
+<tr>
+    <td>
+
+
+        @Model.NameCo
+    </td>
+    <td>@Model.IdAccountCo</td>
+
+    <td>
+        <a asp-action="Delete" asp-route-id="@Model.IdCo"><i class="las fa-trash text-danger font-18"></i></a>
+
+
+        <button class="c" type="button" onclick="q_dec('@Model.IdCo', '@Model.NameCo', '@Model.IdAccountCo' )">
+        <i class="fas fa-edit text-success font-18"></i></button>
+        @*<a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit text-success font-18"></i></a>
+
+        <a asp-action="Delete" asp-route-id="@item.Id"><i class="las fa-trash text-danger font-18"></i></a>*@
+
+
+    </td>
+</tr><!--end tr-->
+
+
+

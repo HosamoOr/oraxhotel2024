@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DataModels.ConditionReceptionTable>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادت</a></li>
+                                <li class="breadcrumb-item"><a href="#">تهيئة شروط العقد </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">شروط العقد </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button class="btn btn-success" style="margin-bottom:10px"
+                               onclick="@("window.location.href='" + @Url.Action("Create") + "'");"
+                               new { id=5 })">
+                                <i class="fa fa-plus"></i> 
+                                <span style="color:white"> شرط عقد جديد   </span>
+
+                                
+                               
+                            </button>
+
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0 table-centered">
+                        <thead>
+                            <tr>
+
+                                <th>نص الشرط</th>
+                                <th>الترتيب</th>
+
+                                <th class="text-end">عمليات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @item.Name
+                                    </td>
+
+                                    <td> @item.Num </td>
+
+                                    <td class="text-end">
+                                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit text-success font-18"></i></a>
+                                      
+                                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="las fa-trash text-danger font-18"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.Id"><i class="las fa-list text-secondary font-18"></i></a>
+
+                                        @*<a asp-action="Details" asp-route-id="@item.Id">
+        عرض نموذج
+        Details</a>*@
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table><!--end /table-->
+                </div>
+
+
+                <!--end col-->
+            </div>
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿@model HotelSys.Models.CustomerTable
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nationality)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeWork)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeWork)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocWork)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocWork)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneWork)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneWork)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeProof)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeProof)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumProof)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumProof)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocRelease)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocRelease)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Createat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Createat)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.PublicNot)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublicNot)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrivateNote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrivateNote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdSub)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdSub)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAccountNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAccountNavigation.Name)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

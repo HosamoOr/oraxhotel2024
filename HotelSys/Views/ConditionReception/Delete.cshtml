@@ -1,0 +1,85 @@
+﻿@model DataModels.ConditionReceptionTable
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title"> حذف عقد شرط</h4>
+
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+                                <a asp-action="Index">رجوع</a>
+
+                            </div>
+
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+
+
+                    @*<h2>Delete</h2>*@
+
+
+                    <input class="form-control text-danger" type="text" placeholder="تنبية : هل انت متأكد من حذف شرط العقد هذا؟ " readonly>
+
+
+                   
+                    <div>
+
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                نص شرط العقد
+                                @*@Html.DisplayNameFor(model => model.Name)*@
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt>
+                                الترتيب
+                                @*@Html.DisplayNameFor(model => model.Num)*@
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Num)
+                            </dd>
+                            @*<dt>
+                    @Html.DisplayNameFor(model => model.IdSub)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IdSub)
+                </dd>*@
+                        </dl>
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="حذف" class="btn btn-danger" />
+                            
+                        </form>
+                    </div>
+
+                </div>
+</div>
+</div>
+</div>

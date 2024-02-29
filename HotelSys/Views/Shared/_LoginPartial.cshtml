@@ -1,0 +1,75 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle nav-user"
+                   data-bs-toggle="dropdown" href="#" role="button"
+                   aria-haspopup="false" aria-expanded="false">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-user"></i>
+                        @*<img src="~/assets/images/users/user-4.jpg"
+                        alt="profile-user" class="rounded-circle me-2 thumb-sm" />*@
+                        <div>
+                            @*<small class="d-none d-md-block font-11">Admin</small>*@
+                            <span class="d-none d-md-block fw-semibold font-12">
+                                @UserManager.GetUserName(User)
+
+                                <i class="mdi mdi-chevron-down"></i>
+                            </span>
+
+
+                        </div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item" asp-area="Identity"
+                asp-page="/Account/Manage/Index" >
+                        <i class="ti ti-user font-16 me-1 align-text-bottom"></i> الملف الشخصي
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="ti ti-settings font-16 me-1 align-text-bottom"></i> الاعدادات
+                    </a>
+                    <div class="dropdown-divider mb-0"></div>
+
+                    <form id="logoutForm" class="form-inline"
+                          asp-area="Identity" asp-page="/Account/Logout"
+                          asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button id="logout" type="submit" class="dropdown-item">
+                            <i class="ti ti-power font-16 me-1 align-text-bottom"></i> تسجيل خروج
+                        </button>
+                    </form>
+
+                    @*<a class="dropdown-item" href="#">
+                        <i class="ti ti-power font-16 me-1 align-text-bottom"></i> تسجيل خروج
+                    </a>*@
+                </div>
+            </li><!--end topbar-profile-->
+
+            @*<li class="nav-item">
+                <a id="manage" class="nav-link text-dark" asp-area="Identity"
+                asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li class="nav-item">
+                <form id="logoutForm" class="form-inline"
+                      asp-area="Identity" asp-page="/Account/Logout"
+                      asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>
+            </li>*@
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+    </ul>

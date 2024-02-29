@@ -1,0 +1,159 @@
+﻿
+@model HotelSys.ViewModel.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">عملائي </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                            <a asp-action="allCusomer">رجوع</a>
+
+
+                        </div>
+                        <h4 class="page-title"> حذف عميل </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+            </div>
+
+            <hr />
+            <div class="row">
+
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="met-profile">
+                                <div class="row">
+                                    <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                        <div class="met-profile-main">
+
+                                            <div class="met-profile_user-detail">
+                                                <h5 class="met-user-name">@Html.DisplayFor(model => model.Name)</h5>
+                                                <p class="mb-0 met-user-name-post">@Html.DisplayFor(model => model.Type), @Html.DisplayFor(model => model.TypeWork),  @Html.DisplayFor(model => model.LocWork)</p>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+
+                                    <div class="col-lg-4 ms-auto align-self-center">
+                                        <ul class="list-unstyled personal-detail mb-0">
+                                            <li class="">
+                                                <i class="las la-phone mr-2 text-secondary font-22 align-middle">
+                                                </i> <b> رقم الجوال </b> :  @Html.DisplayFor(model => model.PhoneWork)
+                                            </li>
+                                            <li class="mt-2">
+                                                <i class="las la-envelope text-secondary font-22 align-middle mr-2">
+                                                </i> <b> البريد الالكتروني </b> :  @Html.DisplayFor(model => model.Email)
+                                            </li>
+                                            <li class="mt-2">
+                                                <i class="las la-globe text-secondary font-22 align-middle mr-2">
+                                                </i> <b> الجنسية </b> :
+                                                @Html.DisplayFor(model => model.Nationality)
+                                            </li>
+
+
+
+
+                                        </ul>
+
+                                    </div><!--end col-->
+                                    <div class="col-lg-4 align-self-center">
+                                        <div class="row">
+                                            <div class="col-auto text-end border-end">
+
+
+                                                <ul class="list-unstyled personal-detail mb-0">
+
+                                                    <li class="mt-2">
+                                                        <b> مكان اصدار الهوية </b> :
+                                                        @Html.DisplayFor(model => model.LocRelease)
+                                                    </li>
+
+                                                    <li class="mt-2">
+                                                        <b> تاريخ الاصدار  </b> :
+                                                        @Html.DisplayFor(model => model.ReleaseDate)
+                                                    </li>
+                                                    <li class="mt-2">
+                                                        <b> تاريخ الانتهاء  </b> :
+                                                        @Html.DisplayFor(model => model.EndDate)
+                                                    </li>
+
+
+
+                                                </ul>
+                                            </div><!--end col-->
+                                            <div class="col-auto">
+                                                <ul class="list-unstyled personal-detail mb-0">
+
+                                                    <li class="mt-2">
+                                                        <b> نوع الهوية </b> :
+                                                        @Html.DisplayFor(model => model.TypeProof)
+                                                    </li>
+                                                    <li class="mt-2">
+                                                        <h4 class="m-0 font-weight-bold">
+                                                            @Html.DisplayFor(model => model.NumProof)
+                                                            <span class="text-muted font-12 font-weight-normal">
+
+                                                            </span>
+                                                        </h4>
+                                                    </li>
+
+                                                </ul>
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+
+                                    </div><!--end col-->
+                                </div><!--end row-->
+                                <br />
+                                <div class="row">
+                                    <div class="col-auto">
+
+
+                                        <b> ملاحظات عامة  </b> :
+                                        @Html.DisplayFor(model => model.PublicNote)
+
+                                    </div>
+
+                                </div>
+                            </div><!--end f_profile-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="IdmyCu" />
+                    <input type="submit" value="حذف من قائمة عملائي" class="btn btn-danger" />
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

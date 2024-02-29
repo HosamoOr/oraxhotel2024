@@ -1,0 +1,3 @@
+﻿@using HotelSys
+@using HotelSys.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

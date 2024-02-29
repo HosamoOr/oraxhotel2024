@@ -1,0 +1,161 @@
+﻿@model HotelSys.Models.BillsTable
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>BillsTable</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypePay" class="control-label"></label>
+                <input asp-for="TypePay" class="form-control" />
+                <span asp-validation-for="TypePay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumReference" class="control-label"></label>
+                <input asp-for="NumReference" class="form-control" />
+                <span asp-validation-for="NumReference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsForRoom" /> @Html.DisplayNameFor(model => model.IsForRoom)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeserveAmount" class="control-label"></label>
+                <input asp-for="DeserveAmount" class="form-control" />
+                <span asp-validation-for="DeserveAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeDiscount" class="control-label"></label>
+                <input asp-for="TypeDiscount" class="form-control" />
+                <span asp-validation-for="TypeDiscount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QtyDiscount" class="control-label"></label>
+                <input asp-for="QtyDiscount" class="form-control" />
+                <span asp-validation-for="QtyDiscount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayAmount" class="control-label"></label>
+                <input asp-for="PayAmount" class="form-control" />
+                <span asp-validation-for="PayAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RestAmount" class="control-label"></label>
+                <input asp-for="RestAmount" class="form-control" />
+                <span asp-validation-for="RestAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumCheck" class="control-label"></label>
+                <input asp-for="NumCheck" class="form-control" />
+                <span asp-validation-for="NumCheck" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumCard" class="control-label"></label>
+                <input asp-for="NumCard" class="form-control" />
+                <span asp-validation-for="NumCard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Createat" class="control-label"></label>
+                <input asp-for="Createat" class="form-control" />
+                <span asp-validation-for="Createat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdAccount" class="control-label"></label>
+                <select asp-for="IdAccount" class="form-control" asp-items="ViewBag.IdAccount"></select>
+                <span asp-validation-for="IdAccount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdReception" class="control-label"></label>
+                <select asp-for="IdReception" class="form-control" asp-items="ViewBag.IdReception"></select>
+                <span asp-validation-for="IdReception" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdBank" class="control-label"></label>
+                <input asp-for="IdBank" class="form-control" />
+                <span asp-validation-for="IdBank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerOrCompany" class="control-label"></label>
+                <input asp-for="CustomerOrCompany" class="form-control" />
+                <span asp-validation-for="CustomerOrCompany" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCurrancy" class="control-label"></label>
+                <input asp-for="IdCurrancy" class="form-control" />
+                <span asp-validation-for="IdCurrancy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalTaxPrice" class="control-label"></label>
+                <input asp-for="TotalTaxPrice" class="form-control" />
+                <span asp-validation-for="TotalTaxPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalTaxRate" class="control-label"></label>
+                <input asp-for="TotalTaxRate" class="form-control" />
+                <span asp-validation-for="TotalTaxRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IncludeTax" class="control-label"></label>
+                <input asp-for="IncludeTax" class="form-control" />
+                <span asp-validation-for="IncludeTax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalBaladiTaxPrice" class="control-label"></label>
+                <input asp-for="TotalBaladiTaxPrice" class="form-control" />
+                <span asp-validation-for="TotalBaladiTaxPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalBaladiTaxRate" class="control-label"></label>
+                <input asp-for="TotalBaladiTaxRate" class="form-control" />
+                <span asp-validation-for="TotalBaladiTaxRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsBaladiTax" class="control-label"></label>
+                <input asp-for="IsBaladiTax" class="form-control" />
+                <span asp-validation-for="IsBaladiTax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,57 @@
+﻿@*<form id="addcompform" name="addcompform">*@
+    <div class="modal fade" id="addCompanyModal" tabindex="-1" aria-labelledby="addCompanyModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">شركة جديدة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="row">
+                        <h4 class="card-title mt-3 mb-1">اضافة</h4>
+
+
+
+
+                        <div class="row mb-2">
+
+
+                            <div class="form-group">
+                                <label for="typeCustomer" class="form-label-sm">اسم الشركة </label>
+
+                                <input type="text" id="NameCompany" name="NameCompany" class="form-control">
+
+                            </div><!--end form-group-->
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="form-group">
+                                <label class="control-label">رقم الحساب :</label>
+
+                                <input id="IdAccountCompany" name="IdAccountCompany" value="0" class="form-control" disabled />
+
+                                @*<select asp-for="IdAccount" class="form-control" asp-items="ViewBag.IdAccount"></select>*@
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    <button type="button" class="btn btn-primary" onclick="saveComp()" >اضافة </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*</form>*@

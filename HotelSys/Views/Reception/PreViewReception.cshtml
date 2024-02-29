@@ -1,0 +1,266 @@
+﻿@model HotelSys.ViewModel.PrintReceptionVewModel
+
+@{ Layout = null; }
+
+   
+
+    
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="card">
+                                <div class="card-body invoice-head">
+                                    <div class="row">
+                                        <div class="col-md-8 align-self-center">
+                                            <div class="media">
+
+                            @{
+                                if(Model.hotelData.Logo=="")
+                                {
+                                    <img src="~/img/lo3.jpg" alt="logo-small" class="logo-lg me-2" height="80">
+
+                                }
+                                else
+                                {
+                                   <img src="@Model.hotelData.Logo" alt="logo-small" class="logo-lg me-2" height="80"> 
+                                }
+                            }
+
+                                              
+
+                                                <div class="media-body align-self-center">
+                                                    <h3 class="m-0 font-20">@Model.hotelData.NameH</h3>
+                                                    <p class="mt-2 mb-0 text-muted">
+                                                        <i class="mdi mdi-map-marker"></i>
+                                                        @Model.hotelData.Address
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div><!--end col-->
+                                        <div class="col-md-4">
+                                            <ul class="list-inline mb-0 contact-detail float-end">
+
+                                                <li class="list-inline-item">
+                                                    <div class="ps-3">
+                                                        <i class="mdi mdi-phone"></i>
+                                                        <span class="text-muted mb-0">+966 @Model.hotelData.Phone</span>
+
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+
+
+
+                                
+                                <div class="card-body">
+
+                                    <div class="row row-cols-3 d-flex justify-content-md-between my-4">
+                                        <div class="col-md-3 d-print-flex mb-3">
+                                            <h6 class="mt-0"><b> التاريخ :</b>
+                                                @{
+                                                   var ss=  DateTime.Now;
+
+                                                   <div>@ss.Day/@ss.Month/@ss.Year  </div>
+
+                                                }
+                                                @*16/9/2022*@
+                                            </h6>
+
+                                        </div>
+
+
+                                        <div class="col-md-3 d-print-flex mb-3">
+                                            <h2 class="m-0">عقد ايجار</h2>
+
+                                        </div><!--end col-->
+                                        <div class="col-md-3 d-print-flex mb-3">
+                                            <h6 class="m-0"><b>رقم العقد :</b>
+                                                <span class="IdReceptionRep">@Model.receptionData.IdReception</span>
+                                               
+                                                
+                                            </h6>
+
+                                        </div> <!--end col-->
+                                    </div>
+                                    <p>العقد</p>
+                                    <div class="row row-cols-2 d-flex justify-content-md-between my-4">
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <div class="row">
+                                                <h6 class="mt-0"><b>بداية العقد :</b>
+                                                    <span class="StartDateRep">@Model.receptionData.StartDate</span>
+
+                                                  @*  
+                                                    *@
+                                                
+                                                    </h6>
+                                            </div>
+                                            <div class="row">
+                                                <h6 class="mt-0"><b>نوع الايجار :</b> 
+
+                                                     <span class="UnitRep">@Model.receptionData.Unit</span>
+                                                    
+                                                   @* *@
+                                                   
+                                                    </h6>
+                                            </div>
+                                                <h6 class="mt-0"><b>الايجار اليومي :</b> 
+                                                    <span class="txtPriceRep">@Model.receptionData.Price</span>
+                                                    
+                                                     @**@
+                                                    @*10 ريال*@
+                                                    
+                                                </h6>
+                                                <h6 class="mt-0"><b> الاجمالي قبل الضريبة :</b> 
+
+
+                            @{
+                                var bb = @Model.receptionData.bill.Total - @Model.receptionData.bill.TotalTaxPrice - @Model.receptionData.bill.TotalBaladiTaxPrice;
+                                <span class="finishtotalbeforVATRep">@bb </span>
+                            }
+                                                     
+                                           
+
+                                                     
+                                                     
+                                                 </h6>
+
+                                                  <h6 class="mt-0"><b>الضريبة  :</b>  <span class="TotalTaxPriceRep">@Model.receptionData.bill.TotalTaxPrice</span></h6>
+                                        @{
+                                            if (Model.receptionData.bill.IsBaladiTax == true)
+                                            {
+                                                 <h6 class="mt-0"><b>ضريبة بلدي  :</b>   <span id="totalBaladiTaxRep">@Model.receptionData.bill.TotalBaladiTaxPrice</span></h6>
+                                            }
+                                        }
+
+                                                <h6 class="mt-0"><b>الإجمالي :</b> 
+
+                                                      @Model.receptionData.bill.Total
+                                                   @* 10 ريال*@
+                                                    
+                                                </h6>
+                                                <h6 class="mt-0"><b>التكلفة النهائية :</b>
+                                                    <span id="totalBRep"> @Model.receptionData.bill.DeserveAmount</span>
+                                                    </h6>
+
+                                               
+                                              @*  <h6 class="mt-0"><b>كمبيالة :</b> 10 ريال</h6>*@
+                                            </div><!--end col-->
+
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <h6 class="mt-0"><b>نهاية العقد :</b>  <span class="EndDateRep">@Model.receptionData.EndDate</span> </h6>
+                                            <h6 class="mt-0"><b>الشقة :</b><span class="roominputidRep">@Model.receptionData.IdRoom</span> </h6>
+                                            <h6 class="mt-0"><b>عدد الايام :</b><span class="QtyTimeRep">@Model.receptionData.QtyTime</span></h6>
+                                            <h6 class="mt-0"><b>الخصم :</b><span class="totalDiscountRep">@Model.receptionData.bill.QtyDiscount</span></h6>
+                                            @*<h6 class="mt-0"><b>المدفوع :</b> 0 ريال</h6>*@
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row row-cols-2 d-flex justify-content-md-between my-4">
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <h6 class="mt-0"><b>اسم العميل :</b> 
+                                                <span class="customerNameRep"> @Model.receptionData.customer.Name</span>|
+                                                
+                                               
+                                            @{
+                                                if (Model.receptionData.bill.CustomerOrCompany == "co")
+                                                {
+                                                    <span> @Model.receptionData.company.NameCo</span>
+                                                   
+                                                }
+                                            }
+                                               
+                                                
+                                            </h6>
+                                            <h6 class="mt-0"><b>نوع الاثبات :</b>
+                                                @Model.receptionData.customer.TypeProof
+                                               @* جواز سفر*@
+                                                </h6>
+                                            @*<h6 class="m-0"><b>التاريخ  :</b> 16/9/2022</h6>*@
+
+                                            <h6 class="mb-0"><b>جوال  :</b> @Model.receptionData.customer.PhoneWork</h6>
+                                        </div><!--end col-->
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <h6 class="m-0"><b>الجنسية  :</b>@Model.receptionData.customer.Nationality</h6>
+                                            <h6 class="mb-0"><b>رقم الاثبات :</b> @Model.receptionData.customer.NumProof</h6>
+                                            <h6 class="mb-0"><b>المصدر :</b>
+                                                @Model.receptionData.Source
+                                               @* الاستقبال*@
+                                                </h6>
+                                            <h6 class="mb-0"><b>عدد المرافقين  :</b>
+                                               @Model.receptionData.followers.Count().ToString()
+                                                </h6>
+                                        </div><!--end col-->
+                                       
+                                    </div><!--end row-->
+
+                                    <div class="row">
+                                       
+                                           
+                                            <div class="col-lg-12">
+                                                <h5 class="mt-4">الشروط :</h5>
+                                                <ul class="ps-3">
+
+                                                      @foreach (var item in Model.conditions)
+                {
+                    <li><small class="font-12">@item.Num :@item.Name </small></li>
+                                                  
+                }
+
+
+                                                   @*   <li><small class="font-12">.............................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>*@
+                                                </ul>
+                                            </div> <!--end col-->
+
+
+                                      
+                                    </div><!--end row-->
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <small class="mt-4">توقيع المستأجر :</small>
+                                            <p >
+                                                <small class="font-12">........................................... </small>
+                                            </p>
+                                            </div> <!--end col-->
+                                        <div class="col-lg-6 align-self-center">
+                                            <div class="float-none float-md-end" style="width: 30%;">
+                                                <small>توقيع المسئول</small>
+                                                <img src="assets/images/signature.png" alt="" class="mt-2 mb-1" height="20">
+                                                <p class="border-top">emp</p>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                    <hr>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-lg-12 col-xl-4 ms-auto align-self-center">
+                                            <div class="text-center"><small class="font-12">البريد الالكتروني :orax@info.com</small></div>
+                                        </div><!--end col-->
+
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            </div><!--end col-->
+                              <div class="modal-footer">
+                        
+                        <div class="col-lg-12 col-xl-4">
+                            <div class="float-end d-print-none mt-2 mt-md-0">
+                                <a href="javascript:window.print()" class="btn btn-de-info btn-lg">طباعة</a>
+                                <button type="button" class="btn btn-de-danger btn-lg" data-bs-dismiss="modal">اغلاق</button>
+                            </div>
+                        </div>
+                    </div>
+
+                            </div><!--end row-->
+
+

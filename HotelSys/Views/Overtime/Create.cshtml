@@ -1,0 +1,135 @@
+﻿@model DataModels.OvertimeTable
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">اوقات الذروة</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title"> وقت ذروة جديد </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <div class="row">
+
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">وقت البدء اليومي : </label>
+                            <div class="col-lg-9">
+                                <input asp-for="StartTime" type="time" class="form-control" />
+                                <span asp-validation-for="StartTime" class="text-danger"></span>
+
+                            </div>
+                        </div><!--end form-group-->
+
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">وقت الانتهاء اليومي : </label>
+                            <div class="col-lg-9">
+                                <input asp-for="EndTime" type="time" class="form-control" />
+                                <span asp-validation-for="EndTime" class="text-danger"></span>
+                            </div>
+                        </div><!--end form-group-->
+
+                        <hr />
+
+                        <input class="form-control text-danger" type="text" placeholder="ملاحظة : لتفعيل وقت الذروة لكل الايام يرجى ترك حقل التاريخ فارغ " readonly>
+                        <br />
+
+
+                      
+                        <hr />
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">تاريخ البداية  : </label>
+                            <div class="col-lg-9">
+                                <input asp-for="StartDate" type="date" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div><!--end form-group-->
+
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">تاريخ الانتهاء : </label>
+                            <div class="col-lg-9">
+                                <input asp-for="EndDate" type="date" class="form-control" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div><!--end form-group-->
+
+
+                        <div class="form-group row mb-2">
+                            <label class="col-lg-3 col-form-label-sm text-end">المستخدم  : </label>
+                            <div class="col-lg-9">
+                                <label asp-for="IdUser" class="control-label"> 1 </label>
+                                <span asp-validation-for="IdUser" class="text-danger"></span>
+                            </div>
+                        </div><!--end form-group-->
+
+
+
+
+                        <div class="form-group row mb-2">
+                            <input type="submit" value="حفظ" class="btn btn-success" />
+                        </div><!--end form-group-->
+
+
+
+                    </form>
+                </div>
+            </div>
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                            document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+
+        </div>
+    </div>
+</div>
+
+
+

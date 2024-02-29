@@ -1,0 +1,113 @@
+﻿@model DataModels.ConditionReceptionTable
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+                                <a asp-action="Index">رجوع</a>
+
+                            </div>
+
+                            <h4 class="page-title"> شرط عقد جديد </h4>
+
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <br />
+                    <br />
+
+
+                   
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <form asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+                                <input class="form-control text-danger" type="text" placeholder="ملاحظة : يمكنك اضافة شروط كثيرة في حقل نص الشرط  او شرط وحيد " readonly>
+                                <br />
+
+                                @*<div class="form-group">
+            <label asp-for="Name" class="control-label">نص الشرط</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>*@
+
+
+                                <div class="col-md-12">
+
+                                    <div class="form-group row mb-xxl-1">
+                                        <label asp-for="Name" class="control-label">نص الشرط -يرجى الكتابة بلغة واضحة وصريحة</label>
+                                        <textarea id="editor" asp-for="Name" class="form-control"></textarea>
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row  mb-xxl-1">
+                                            <label class="control-label">  الترتيب: </label>
+
+                                            <input asp-for="Num" class="form-control" />
+
+                                            <span asp-validation-for="Num" class="text-danger"></span>
+                                        </div><!--end form-group-->
+                                    </div>
+
+
+                                </div> <!--end row--->
+                                @*<div class="form-group">
+            <label asp-for="Num" class="control-label"></label>
+            <input asp-for="Num" class="form-control" />
+            <span asp-validation-for="Num" class="text-danger"></span>
+        </div>*@
+                                @*<div class="form-group">
+            <label asp-for="IdSub" class="control-label"></label>
+            <input asp-for="IdSub" class="form-control" />
+            <span asp-validation-for="IdSub" class="text-danger"></span>
+        </div>*@
+                                <div class="form-group">
+                                    <input type="submit" value="اضافة" class="btn btn-primary " />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer text-center text-sm-start">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                        للانظمة
+                        وتقنية المعلومات
+                    </span>
+                </footer>
+
+            </div>
+            </div>
+        </div>

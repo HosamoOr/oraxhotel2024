@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    
+     <meta charset="utf-8" />
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Hotel Management Orax Soft" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link href="~/img/favicon.png" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - عارض التقارير</title>
+    <link rel="stylesheet" href="~/css/thirdparty.bundle.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+   
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - اوراكس هوتيل </p>
+        </div>
+    </footer>
+    <script src="~/js/site.thirdparty.bundle.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", false)    
+</body>
+</html>

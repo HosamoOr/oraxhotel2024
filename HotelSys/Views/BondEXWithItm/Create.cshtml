@@ -1,0 +1,461 @@
+﻿@model HotelSys.ViewModel.BondViewModel
+
+@{ Layout = null; }
+
+                    <div class="row">
+
+                    <form asp-action="Create" name="fromC" id="fromC">
+
+                    <div class="row">
+                          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"> سند قبض جديد</h4>
+
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-3 col-form-label text-end">رقم السند</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="Id"  asp-for="Id"
+                                                           type="text"  disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">نوع السند</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="TypeT" asp-for="Type">
+                                                        <option value="0">select</option>
+                                                        <option selected="" value="1">سند قبض</option>
+                                                        <option value="3">كمبيالة</option>
+
+                                                    </select>
+                                                     <span asp-validation-for="Type" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">امين الصندوق</label>
+                                                <div class="col-sm-9">
+                                                    @*<select class="form-control" id="accountFormT_" asp-for="id_accountForm" name="accountFormT_" ></select>*@
+                                                      <select asp-for="id_accountForm" id="accountFormT_" class="form-select" asp-items="ViewBag.IdBoxAccount"></select>
+                                               <span asp-validation-for="id_accountForm" class="text-danger"></span>
+                                                  </div>
+                                            </div>
+
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">استلمت من :</label>
+                                                <div class="col-sm-9">
+                                                   @* <input class="form-control" id="nameaccountP" name="nameaccountP" asp-for="nameCustomer" disabled>*@
+                                                       <select asp-for="id_accountTo" id="nameaccountP" class="form-select" asp-items="ViewBag.IdAccount"></select>
+                                                       <span asp-validation-for="id_accountTo" class="text-danger"></span>
+                                                    <span>search</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">طريقة الدفع</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="TypePay" aria-label="TypePay" asp-for="TypePay">
+                                                        <option value="1" selected="">نقدا</option>
+                                                        <option value="3">تحويل بنكي</option>
+                                                        <option value="4">بطاقة</option>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row bank0" id="NumCheckTForm">
+                                                <label class="col-sm-3 col-form-label text-end">رقم الشيك</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="رقم الشيكـ" id="NumCheck" asp-for="NumCheck" >
+                                               <span asp-validation-for="NumCheck" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="col-lg-6">
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">التاريخ</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" id="Date" asp-for="Date" >
+                                                     <span asp-validation-for="Date" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">الموافق</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" id="DateTh" >
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">الوقت</label>
+                                                <div class="col-sm-8">
+                                                    <input type="time" class="form-control" id="Time" asp-for="Time">
+                                                     <span asp-validation-for="Time" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">المبلغ</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="المبلغ" asp-for="Amount" id="Amount" >
+                                                     <span asp-validation-for="Amount" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">من اجل</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" id="Why"  asp-for="Why" placeholder="من اجل ">
+                                                     <span asp-validation-for="Why" class="text-danger"></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row cart0" id="NumCardTForm">
+                                                <label class="col-sm-3 col-form-label text-end">رقم البطاقة</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="رقم البطاقة" id="NumCard" asp-for="NumCard" >
+                                                     <span asp-validation-for="NumCard" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="mb-3 row bank0" id="IdBankTForm">
+                                                <label class="col-sm-3 col-form-label text-end">البنك</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="البنك" id="IdBank"  asp-for="IdBank"  >
+                                                     <span asp-validation-for="IdBank" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group mb-3">
+                                    <span class="input-group-text ">رقم العقد</span>
+                                    <input type="text" class="form-control" aria-label="رقم العقد" placeholder="رقم العقد ان وجد " id="IdReception" asp-for="IdReception">
+                                    <span class="input-group-text"> <a  >
+                                                <i class="fas fa-search"></i>
+                                            </a></span>
+                                             <span asp-validation-for="IdReception" class="text-danger"></span>
+                                </div>
+
+
+
+                                        
+                                               @* <div class="col-sm-9">
+                                                    <div class="col-sm-8 form-outline">
+                                                    <input class="form-control" type="text" placeholder="رقم العقد ان وجد " id="IdReception" name="IdReception" asp-for="IdReception">
+                                                    </div>
+                                                     <div class="col-sm-4">
+                                                     <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                                    </div>
+                                                </div>*@
+                                          
+
+
+
+                                        </div>
+                                        <div class="col-lg-12">
+
+                                            <div class="mb-3 row">
+                                                <label for="example-week-input" class="col-sm-2 col-form-label text-end">ملاحظة</label>
+                                                <div class="col-sm-10">
+                                                    <textarea placeholder="ملاحظة" id="Note"  asp-for="Note" rows="2"
+                                                              class="form-control" style="min-width: 100%"></textarea>
+
+                                                               <span asp-validation-for="Note" class="text-danger"></span>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div><!--end col-->
+                 
+
+                    @*<div class="card-body">
+        <div class="row">
+
+            <div class="row mb-3">
+
+                <div class="col">
+
+
+                    <div class="form-group">
+                        <label class="control-label"> رقم السند</label>
+
+                        <input id="idDoadP" name="idDoadP" class="form-control"  disabled/>
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="control-label">التاريخ</label>
+                        <input id="dateP" name="dateP" type="date" class="form-control" />
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="row mb-3">
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="control-label">نوع السند</label>
+                        <select class="form-select" id="TypeP" name="TypeP" aria-label="TypeP">
+                            <option selected="">اختر  </option>
+                            <option value="قبض">سند قبض</option>
+                            <option value="كمبيالة">كمبيالة</option>
+
+                        </select>
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="col">
+
+                        <div class="form-group">
+                            <label class="control-label">الموافق</label>
+                            <input id="datePh" name="datePh" type="date" class="form-control" />
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="control-label"> امين الصندوق</label>
+                        <input id="boxaccount" name="boxaccount" class="form-control" disabled />
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="control-label">الوقت </label>
+                        <input id="timeP" name="timeP" type="time" class="form-control" />
+
+                    </div>
+                </div>
+            </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+
+                            <div class="input-group">
+                                <label class="control-label">استلمت من  </label>
+
+                                <div class="form-outline">
+                                    <input type="text" id="nameAccountP" name="nameAccountP"  class="form-control">
+
+                                </div>
+                                <button type="button" class="btn btn-primary">
+                                    بحث
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">المبلغ </label>
+                            <input id="amountP" name="amountP" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">طريقة الدفع</label>
+                            <select class="form-select" id="payMethedP" name="payMethedP" aria-label="payMethedP">
+                                <option selected="">اختر  </option>
+                                <option value="نقدا">نقدا </option>
+                                <option value="تحويل بنكي">تحويل بنكي</option>
+                                <option value="بطاقة">بطاقة </option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+
+                            <label class="control-label"> من اجل(مقابل)</label>
+
+                            <input id="whyP" name="whyP" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">رقم البطاقة</label>
+                            <input id="cardIDP" name="cardIDP" class="form-control" />
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label"> البنك</label>
+                            <input id="bankP" name="bankP" class="form-control" />
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="row mb-3">
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label"> رقم الشيك</label>
+                            <input id="checkIDP" name="checkIDP" class="form-control" type="date" />
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col-11">
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="control-label">ملاحظة:</label>
+                                <input id="noteP" name="noteP" class="form-control" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>*@
+
+        
+           </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                        <button type="button" class="btn btn-primary" onclick="saveBondTalk()">حفظ</button>
+                    </div>
+
+                    </form>
+
+                </div>
+
+
+        
+            <script>
+
+        $(document).ready(function () {
+
+
+             $('.bank0').hide();
+              $('.cart0').hide();
+           
+
+             $('#TypePayT').on('change', function (event) {
+
+                   var comid = $(":selected", $("#TypePayT")).val();
+
+                   if(comid==1)
+                   {
+                         $('.bank0').hide();
+                         $('.cart0').hide();
+                   }
+                   else  if(comid==3)
+                   {
+                         $('.bank0').show();
+                         $('.cart0').hide();
+
+                   }
+                   else  if(comid==4)
+                   {
+                         $('.bank0').hide();
+                         $('.cart0').show();
+
+                   }
+
+               
+
+             });
+
+        });
+
+       function saveBondTalk()
+       {
+           //var dataa=JSON.stringify($("#fromC").serializeObject());
+
+           var dataa0 = $("#fromC").serialize();
+
+           alert(dataa0);
+
+          
+$.ajax({
+url: 'BondQ/Create/',
+type: 'POST',
+data: dataa0,
+//contentType: 'application/json; charset=utf-8',
+//dataType: "json",
+success: function (data) {
+if (data != null && data.Success) {
+alert(data.Message);
+} else {
+// DoSomethingElse()
+alert(data.Message);
+}
+},
+error: function (data) {
+alert("error!"); //
+}
+});
+
+       }
+
+        </script>
+        

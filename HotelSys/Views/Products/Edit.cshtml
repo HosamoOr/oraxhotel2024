@@ -1,0 +1,106 @@
+﻿@model DataModels.ProductTable
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادت</a></li>
+                                <li class="breadcrumb-item"><a href="#">الخدمات  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">الخدمات الفرعية </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title">تعديل خدمة فرعية </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+
+                <center><div id="result"></div></center>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" /> <div class="form-group">
+                                الاسم
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                الاسم بالانجليزي
+                                <input asp-for="NameEn" class="form-control" />
+                                <span asp-validation-for="NameEn" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                السعر
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="IdGroup" class="control-label">المجموعة الاب</label>
+                                <select asp-for="IdGroup" class="form-control" asp-items="ViewBag.IdGroup"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="IdTaxGroup" class="control-label">المجموعة الضريبية</label>
+                                <select asp-for="IdTaxGroup " class="form-control" asp-items="ViewBag.IdGroupTax"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="تعديل" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+</div>

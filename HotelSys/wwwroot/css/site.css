@@ -1,0 +1,371 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+#mb-0n {
+    color: #FFFFFF !important;
+    margin-bottom: 0 !important;
+
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+
+.num-room {
+    text-align: center;
+    font-size: 20px;
+}
+
+.lbl-for {
+    font-size: 12px;
+}
+
+
+
+
+
+/*.main-content {
+            width: 100% !important;
+            padding-left: 150px !important;
+            padding-right: 150px !important;
+            background: white;
+            padding-top: 100px;
+        }*/
+
+h3 {
+    color: #32c19a;
+}
+
+.thead_dark1 {
+    color: #FFFFFF;
+    background: #0b51b7;
+}
+
+.btn-download {
+    background: #42C2A1 !important;
+    border-radius: 50% !important;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    vertical-align: top !important;
+    padding: 5px;
+    border: none;
+    color: white;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    padding-top: 0px !important;
+    white-space: nowrap;
+    color: #0b51b7 !important;
+}
+
+table.dataTable > tbody > tr.child ul.dtr-details {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
+    top: 9px;
+    left: 4px;
+    height: 14px;
+    width: 14px;
+    display: block;
+    position: absolute;
+    color: white;
+    border: 2px solid white;
+    border-radius: 14px;
+    box-shadow: 0 0 3px #444;
+    box-sizing: content-box;
+    text-align: center;
+    text-indent: 0 !important;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 14px;
+    content: '+';
+    background-color: #60b6ab;
+}
+
+.table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
+    content: '-';
+    background-color: #d33333;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff !important;
+    background-color: #0b51b7 !important;
+    border-color: #0b51b7 !important;
+    border-radius: 8px !important;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #0b51b7 !important;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.dataTables_info, .dataTables_length {
+    float: right;
+}
+
+#files_list_paginate, .dataTables_filter {
+    float: left;
+}
+
+.center {
+    text-align: center;
+}
+
+
+
+
+input[type="date"]::-webkit-datetime-edit, input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-clear-button {
+    color: #fff;
+    position: relative;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+    position: absolute !important;
+    border-left: 1px solid #8c8c8c;
+    padding: 2px;
+    color: #000;
+    left: 56px;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+    position: absolute !important;
+    border-left: 1px solid #8c8c8c;
+    padding: 2px;
+    color: #000;
+    left: 26px;
+}
+
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+    position: absolute !important;
+    color: #000;
+    padding: 2px;
+    left: 4px;
+}
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: red;
+}
+
+.rr {
+    color: red;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+
+/* Change input control border color */
+.form-control, .input-group-text {
+    border: 1px solid #0080ff;
+}
+
+a.btn:hover {
+    cursor: pointer !important;
+}
+
+/*loader*/
+.loaderbody {
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background-color: rgba(128,128,128,0.2);
+    z-index: 2147483647;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 45%;
+    left: 40%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    min-height: 550px;
+    visibility: visible;
+    overflow: visible !important; /* Remove scrollbar for printing. */
+}
+
+.modal-dialog {
+    visibility: visible !important;
+    overflow: visible !important; /* Remove scrollbar for printing. */
+}
+
+.f1 {
+    color: blue;
+    font-size: 30px;
+}
+
+
+
+
+/* for DevExtreme
+
+*/
+
+
+
+
+.form {
+    display: flex;
+}
+
+    .form > div,
+    #treeview {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+.log-container {
+    padding: 20px;
+    margin-left: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    font-size: 115%;
+    font-weight: bold;
+    position: relative;
+    height: 100%;
+}
+
+    .log-container .dx-icon-clock {
+        position: relative;
+        top: 1px;
+    }
+
+#log {
+    margin-top: 10px;
+}
+
+    #log .dx-empty-message {
+        padding-left: 0px;
+    }
+
+.dx-list-item-content {
+    padding-left: 0;
+}

@@ -1,0 +1,204 @@
+﻿
+    <div class="modal fade" id="addDoadExModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >اضافة سند صرف</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <input id="sourceBondEX" name="sourceBondEX"
+                           type="hidden" value="fromLogin" disabled>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" id="titlEX"> اضافة سند صرف للحجز</h4>
+
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-3 col-form-label text-end">رقم السند</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="idDoadE" name="idDoadE"
+                                                           type="text" value="0" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">نوع السند</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="TypeE" aria-label="TypeE">
+                                                        <option value="2" selected="">سند صرف</option>
+
+                                                        @*<option value="2">كمبيالة</option>*@
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end"> الصندوق</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" id="id_accountToE" name="id_accountToE"></select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end"> دفع لـ :</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="nameaccountE" name="nameaccountE" disabled>
+                                                    <span>search</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">المبلغ</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="المبلغ" id="AmountE" name="AmountE">
+                                                </div>
+                                            </div>
+
+
+                                            @*<div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label text-end">بند المصروفات </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select" id="itemExE" aria-label="itemExE">
+                                            <option selected="">select</option>
+                                            <option value="1">ايجارات </option>
+                                            <option value="2">كهرباء</option>
+                                            <option value="3">ماء</option>
+                                            <option value="4">نظافة</option>
+                                            <option value="5">ديزل</option>
+                                            <option value="6">رواتب</option>
+                                            <option value="7">نثريات</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+
+                                            <div class="mb-3 row" id="NumCardEForm">
+                                                <label class="col-sm-3 col-form-label text-end">رقم البطاقة</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="رقم البطاقة" id="NumCardE" name="NumCardE">
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+                                        <div class="col-lg-6">
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">التاريخ</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" id="DateE" name="DateE">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">الموافق</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" id="DatePh" name="DatePh">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">الوقت</label>
+                                                <div class="col-sm-8">
+                                                    <input type="time" class="form-control" id="TimeE" name="TimeE">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">المستلم </label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="المستلم" id="receveNameE" name="receveNameE">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">طريقة الدفع</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="TypePayE" aria-label="TypePayE">
+                                                        <option value="1" selected="">نقدا</option>
+                                                        <option value="3">تحويل بنكي</option>
+                                                        <option value="4">بطاقة</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row" id="IdBankEForm">
+                                                <label class="col-sm-3 col-form-label text-end">البنك</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="البنك" id="IdBankE" name="IdBankE">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row" id="NumCheckEForm">
+                                                <label class="col-sm-3 col-form-label text-end">رقم الشيك</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="رقم الشيك" id="NumCheckE" name="NumCheckE">
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">من اجل</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" id="WhyE" name="WhyE">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+
+                                            <div class="mb-3 row">
+                                                <label for="example-week-input" class="col-sm-2 col-form-label text-end">ملاحظة</label>
+                                                <div class="col-sm-10">
+                                                    <textarea placeholder="ملاحظة" id="NoteE" name="NoteE" rows="2"
+                                                              class="form-control" style="min-width: 100%"></textarea>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div><!--end col--> 
+                    </div>
+
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                        <button type="button" class="btn btn-primary" onclick="saveBondPay()">حفظ</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+@*</form>*@

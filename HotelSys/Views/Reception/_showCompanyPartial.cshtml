@@ -1,0 +1,38 @@
+﻿@model HotelSys.ViewModel._CompanyViewModel
+
+
+<div class="row">
+    <div class="col-sm-8">
+        <label for="company" class="col-lg-3 col-form-label text-end">الشركة</label>
+
+        <input type="text" disabled id="companyName"
+               asp-for="NameCo" class="col-lg-3 col-form-control text-end bg-white" />
+
+        <input type="hidden" id="companyID"  asp-for="IdCo" class="col-lg-3 col-form-label text-end" />
+
+        <input type="hidden" id="companyIDacc"  asp-for="IdAccountCo" class="col-lg-3 col-form-label text-end" />
+
+    </div><!--end form-group-->
+
+    <div class="col-sm-4">
+        <span>
+            <button type="button" class="btn btn-primary-outline " onclick="bindDatatableComp()">
+                <i class="fas fa-search text-secondary font-18">
+                </i>
+            </button>
+        </span>
+        <span>
+            <button type="button" class="btn btn-primary-outline  "
+                    data-bs-toggle="modal" data-bs-target="#addCompanyModal">
+                <i class="fas fa-plus text-secondary font-18"></i>
+            </button>
+        </span>
+        <span>
+            <button class="btn btn-primary-outline"
+                    data-bs-toggle="modal" data-bs-target="#addCompanyModal">
+                <i class="fas fa-edit text-secondary font-18"></i>
+            </button>
+
+        </span>
+    </div><!--end form-group-->
+</div>

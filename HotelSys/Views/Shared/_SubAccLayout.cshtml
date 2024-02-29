@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "View1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الحسابات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a class="btn btn-success" style="margin-bottom:10px"
+                              
+                               href="@Url.Action("Create","_Accounts")">
+                                <i class="fa fa-plus"></i>
+                                <span style="color:white">    حساب جديد</span>
+
+                               
+                            </a>
+
+                            <a class="btn btn-primary" style="margin-bottom:10px" href="@Url.Action("Create","GroupAccount")">
+                                <i class="fa fa-plus"></i>
+                                <span style="color:white">   مجموعة حساب جديدة</span>
+
+                                
+                               
+                            </a>
+                            
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                @RenderBody()
+
+            </div><!--end row-->
+
+
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                للانظمة
+                وتقنية المعلومات
+            </span>
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<!-- Javascript  -->
+@*<script src="~/assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/plugins/apexcharts/irregular-data-series.js"></script>
+    <script src="~/assets/plugins/apexcharts/ohlc.js"></script>
+    <script src="~/assets/pages/apexcharts.init.js"></script>
+
+    <script src="~/assets/js/app.js"></script>*@
+
+
+@if (IsSectionDefined("scripts"))
+{
+    RenderSection("scripts");
+}
+
+@if (IsSectionDefined("style"))
+{
+    RenderSection("style");
+}

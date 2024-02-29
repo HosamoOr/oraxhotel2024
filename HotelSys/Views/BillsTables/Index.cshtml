@@ -1,0 +1,185 @@
+﻿@model IEnumerable<HotelSys.Models.BillsTable>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypePay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsForRoom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeserveAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtyDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PayAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RestAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumCheck)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Createat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdBank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCurrancy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalTaxPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalTaxRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncludeTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalBaladiTaxPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalBaladiTaxRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsBaladiTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAccountNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdReceptionNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypePay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumReference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsForRoom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeserveAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeDiscount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtyDiscount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumCheck)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Createat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerOrCompany)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCurrancy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalTaxPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalTaxRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncludeTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBaladiTaxPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBaladiTaxRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBaladiTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAccountNavigation.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdReceptionNavigation.Source)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

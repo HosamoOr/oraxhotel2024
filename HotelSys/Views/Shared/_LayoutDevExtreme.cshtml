@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <!-- <meta charset="utf-8" />
+    <title> | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    App favicon
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico"> -->
+
+    <meta charset="utf-8" />
+    <title>Orax Soft Hotel Management </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Hotel Management Orax Soft" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link href="~/img/favicon.png" rel="shortcut icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    @* Uncomment to use the HtmlEditor control *@
+    @* <script src="https://unpkg.com/devextreme-quill@21_2/dist/dx-quill.min.js"></script> *@
+
+    <link rel="stylesheet" href="~/css/vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Site.css" />
+    @*<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.1.4/css/dx.light.css">
+*@
+    <script src="~/js/vendor.js" asp-append-version="true"></script>
+
+
+
+    
+    <link href="~/assets/plugins/animate/magic.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/app-rtl.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body style="padding-top: 5rem;">
+
+    <div  >
+    <partial name="_slidbar.cshtml" />
+    <!-- leftbar-tab-menu -->
+    <!-- end leftbar-tab-menu-->
+    <!-- Top Bar Start -->
+    <!-- Top Bar Start -->
+
+
+    <partial name="_topbar.cshtml" />
+    <!-- Top Bar End -->
+    <!-- Top Bar End -->
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="form-modal"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="modal fade" id="big-modal" tabindex="-1" aria-labelledby="reportReceptionModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" ></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                   
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+     <div class="modal fade" id="print-modal" tabindex="-1" aria-labelledby="reportReceptionModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" ></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                   
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="loaderbody" id="loaderbody">
+        <div class="loader"></div>
+    </div>
+
+     <script src="~/assets/js/app.js"></script>
+
+       <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+    <!--  Sweet-Alert  -->
+    <script src="~/assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="~/js/swit_alert.js"></script>
+
+
+    
+    @if (IsSectionDefined("style"))
+    {
+
+        RenderSection("style");
+    }
+
+     
+   
+
+    @if (IsSectionDefined("scripts"))
+    {
+
+        RenderSection("Scripts", required: false);
+    }
+
+
+</body>
+
+</html>

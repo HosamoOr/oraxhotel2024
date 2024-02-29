@@ -1,0 +1,231 @@
+﻿@model HotelSys.ViewModel.showBondVM
+
+@{ Layout = null; }
+
+   
+
+    
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="card">
+                                <div class="card-body invoice-head">
+                                    <div class="row">
+                                        <div class="col-md-8 align-self-center">
+                                            <div class="media">
+
+                            @{
+                                if(Model.hotelData.Logo=="")
+                                {
+                                    <img src="~/img/lo3.jpg" alt="logo-small" class="logo-lg me-2" height="80">
+
+                                }
+                                else
+                                {
+                                   <img src="@Model.hotelData.Logo" alt="logo-small" class="logo-lg me-2" height="80"> 
+                                }
+                            }
+
+                                              
+
+                                                <div class="media-body align-self-center">
+                                                    <h3 class="m-0 font-20">@Model.hotelData.NameH</h3>
+                                                    <p class="mt-2 mb-0 text-muted">
+                                                        <i class="mdi mdi-map-marker"></i>
+                                                        @Model.hotelData.Address
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div><!--end col-->
+                                        <div class="col-md-4">
+                                            <ul class="list-inline mb-0 contact-detail float-end">
+
+                                                <li class="list-inline-item">
+                                                    <div class="ps-3">
+                                                        <i class="mdi mdi-phone"></i>
+                                                        <span class="text-muted mb-0">+966 @Model.hotelData.Phone</span>
+
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+
+
+
+                                
+                                <div class="card-body">
+
+                                    <div class="row row-cols-3 d-flex justify-content-md-between my-4">
+                                        <div class="col-md-3 d-print-flex mb-3">
+                                            <h6 class="mt-0"><b> التاريخ :</b>
+                                                @{
+                                                   var ss=  DateTime.Now;
+
+                                                   <div>@ss.Day/@ss.Month/@ss.Year  </div>
+
+                                                }
+                                                @*16/9/2022*@
+                                            </h6>
+
+                                        </div>
+
+
+                                        <div class="col-md-3 d-print-flex mb-3">
+                        <h2 class="m-0">@{
+                                if(Model.bondData.Type=="1")
+                                {
+                                    <span> سند قبض</span>
+                                }
+                                else  if(Model.bondData.Type=="2")
+                                {
+                                   <span> سند صرف</span>  
+                                }
+                                 else  if(Model.bondData.Type=="3")
+                                {
+                                   <span> سند ايجار مسترد (بدل ايجار) </span>  
+                                }
+                                 else  if(Model.bondData.Type=="4")
+                                {
+                                   <span> سند كمبيالة</span>  
+                                }
+
+                            }</h2>
+
+                                        </div><!--end col-->
+                                        <div class="col-md-3 d-print-flex mb-3">
+                                            <h6 class="m-0"><b>رقم السند :</b>
+                                                <span class="IdReceptionRep">@Model.bondData.Id</span>
+                                               
+                                                
+                                            </h6>
+
+                                        </div> <!--end col-->
+                                    </div>
+                                    <p>السند </p>
+                                    <div class="row row-cols-2 d-flex justify-content-md-between my-4">
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <div class="row">
+                                                <h6 class="mt-0"><b>العميل :</b>
+                                                    <span class="StartDateRep">@Model.bondData.nameCustomer</span>
+
+                                @{
+                                    if(Model.bondData.customerOrCompany=="co")
+                                    {
+                                        <span class="StartDateRep">شركة</span>
+                                    }
+                                }
+
+                                                  @*  
+                                                    *@
+                                                
+                                                    </h6>
+                                            </div>
+                                            <div class="row">
+                                                <h6 class="mt-0"><b>المبلغ :</b> 
+
+                                                     <span class="UnitRep">@Model.bondData.Amount</span>
+                                                    
+                                                   @* *@
+                                                   
+                                                    </h6>
+                                            </div>
+                                                <h6 class="mt-0"><b>تاريخ الانشاء :</b> 
+                                                    <span class="txtPriceRep">@Model.bondData.Createat</span>
+                                                    
+                                                     @**@
+                                                    @*10 ريال*@
+                                                    
+                                                </h6>
+                                                <h6 class="mt-0"><b> وذلك مقابل :</b> 
+                                                     <span class="finishtotalbeforVATRep">@Model.bondData.Why </span>
+
+                              
+                                                 </h6>
+
+                                                  <h6 class="mt-0"><b>بيد   :</b>  
+                                                      <span class="TotalTaxPriceRep">@Model.bondData.Hand</span></h6>
+                                       
+
+                                              @*  <h6 class="mt-0"><b>كمبيالة :</b> 10 ريال</h6>*@
+                                            </div><!--end col-->
+
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <h6 class="mt-0"><b>المبلغ :</b>  <span class="EndDateRep">@Model.bondData.Amount</span> </h6>
+                                            <h6 class="mt-0"><b>طريقة الدفع :</b><span class="roominputidRep">@Model.bondData.TypePay</span> </h6>
+                                            <h6 class="mt-0"><b>بيد  :</b><span class="QtyTimeRep">@Model.bondData.Hand</span></h6>
+                                            @*<h6 class="mt-0"><b>الحساب :</b><span class="totalDiscountRep">@Model.receptionData.bill.QtyDiscount</span></h6>
+                                          *@
+                                        </div>
+                                    </div>
+
+                                    <div class="row row-cols-2 d-flex justify-content-md-between my-4">
+                                        <div class="col-md-5 d-print-flex mb-3">
+                                            <h6 class="mt-0"><b>اسم العميل :</b> 
+                                                <span class="customerNameRep"> @Model.bondData.nameCustomer</span>|
+                                                
+                                            </h6>
+                                            
+                                          
+                                        </div><!--end col-->
+                                      
+                                    </div><!--end row-->
+
+                                    <div class="row">
+                                       
+                                          
+
+                                                   @*   <li><small class="font-12">.............................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>
+                                                    <li><small class="font-12"> ........................................</small></li>*@
+                                                </ul>
+                                            </div> <!--end col-->
+
+
+                                      
+                                    </div><!--end row-->
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <small class="mt-4">توقيع الاستقبال :</small>
+                                            <p >
+                                                <small class="font-12">........................................... </small>
+                                            </p>
+                                            </div> <!--end col-->
+                                        <div class="col-lg-6 align-self-center">
+                                            <div class="float-none float-md-end" style="width: 30%;">
+                                                <small>توقيع المسئول</small>
+                                                <img src="assets/images/signature.png" alt="" class="mt-2 mb-1" height="20">
+                                                <p class="border-top">emp</p>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div><!--end row-->
+                                    <hr>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-lg-12 col-xl-4 ms-auto align-self-center">
+                                            <div class="text-center"><small class="font-12">البريد الالكتروني :orax@info.com</small></div>
+                                        </div><!--end col-->
+
+                                    </div><!--end row-->
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                            </div><!--end col-->
+                              <div class="modal-footer">
+                        
+                        <div class="col-lg-12 col-xl-4">
+                            <div class="float-end d-print-none mt-2 mt-md-0">
+                                <a href="javascript:window.print()" class="btn btn-de-info btn-lg">طباعة</a>
+                                <button type="button" class="btn btn-de-danger btn-lg" data-bs-dismiss="modal">اغلاق</button>
+                            </div>
+                        </div>
+                    </div>
+
+                            </div><!--end row-->
+
+

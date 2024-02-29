@@ -1,0 +1,88 @@
+﻿@model HotelSys.ViewModel.GroupAccountViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title"> مجموعة الحسابات</h4>
+                            <h4 class="page-title">حذف مجموعة </h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+
+
+                            </div>
+                            <a asp-action="Index">رجوع</a>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+
+                    <div>
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                اسم المجموعة
+
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            @*<dt>
+                                @Html.DisplayNameFor(model => model.IsRoot)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.IsRoot)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.IsPrivate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.IsPrivate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.IdSub)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.IdSub)
+                            </dd>*@
+                            <dt>
+                                <label> المجموعة الاب</label>
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.NameMainGroup)
+                            </dd>
+                        </dl>
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <br />
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

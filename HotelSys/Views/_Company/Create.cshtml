@@ -1,0 +1,116 @@
+﻿@model HotelSys.ViewModel._CompanyViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title"> شركة جديدة</h4>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+
+
+                <div class="row">
+                    <div class="col-md-9">
+
+
+
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                        <label class="col-lg-3 col-form-label-sm text-end">  اسم الشركة: </label>
+                                        <div class="col-lg-9">
+                                            <input asp-for="NameCo" class="form-control">
+                                        </div>
+                                        <span asp-validation-for="NameCo" class="text-danger"></span>
+                                    </div><!--end form-group-->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                       
+                                          
+                                        
+                                    </div>
+                                </div>
+
+                            </div> <!--end row--->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row mb-2">
+                                        <label asp-for="IdAccountCo" class="control-label">رقم الحساب : 0</label>
+
+
+                                    </div><!--end form-group-->
+                                </div>
+                              
+                            </div> <!--end row--->
+
+                            <br />
+
+
+                            <div class="form-group">
+                                <input type="submit" value="انشاء" class="btn btn-primary" />
+                               
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div><!-- container -->
+            <!--Start Rightbar-->
+            <!--Start Rightbar/offcanvas-->
+            <!--end Rightbar-->
+            <!--Start Footer-->
+            <!-- Footer Start -->
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+            <!-- end Footer -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+</div>
+
+
+
+

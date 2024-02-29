@@ -1,0 +1,250 @@
+﻿@*form id="addFolloweForm" name="addFollowerModal">*@
+
+
+    <div class="modal fade" id="addFollowerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >اضافة مرافق جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="row mb-3">
+
+                                <div class="col">
+
+
+                                    <div class="form-group">
+                                        <label class="control-label">اسم المرافق</label>
+                                        <input id="NameF" name="NameF" class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">صلة القرابة</label>
+                                        <input id="RelationF" name="RelationF" class="form-control" />
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">النوع</label>
+                                        <select class="form-select" id="TypeF" name="TypeF" aria-label="TypeF">
+                                            <option selected="">اختر  </option>
+                                            <option value="مقيم">مقيم</option>
+                                            <option value="زائر">زائر</option>
+                                            <option value="مواطن(سعودي)">مواطن(سعودي)</option>
+                                        </select>
+
+                                        @*<input asp-for="Type" class="form-control" />*@
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col">
+                                    <div class="form-group">
+
+                                        <label class="control-label">الجنسية</label>
+
+                                        <select class="form-select" id="NationalityF" name="NationalityF">
+                                            <option selected="">اختر  </option>
+                                            <option value="السعودية">السعودية</option>
+                                            <option value="اليمن">اليمن</option>
+                                            <option value="بقية دول العالم">بقية دول العالم</option>
+
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">رقم التلفون</label>
+                                        <input id="PhoneF" name="PhoneF" class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="control-label">البريد الالكتروني</label>
+                                        <input id="EmailF" name="EmailF" class="form-control" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+
+
+                                            <label class="control-label">نوع العمل</label>
+                                            <input id="TypeWorkF" name="TypeWorkF" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">مكان العمل</label>
+                                            <input id="LocWorkF" name="LocWorkF" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">تلفون العمل</label>
+                                            <input id="PhoneWorkF" name="PhoneWorkF" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <label class="control-label">نوع الهوية</label>
+
+                                            <select class="form-select" id="TypeProofF" name="TypeProofF">
+                                                <option selected="">اختر  </option>
+                                                <option value="1">الهوية</option>
+                                                <option value="2">جواز سفر</option>
+                                                <option value="3">...</option>
+
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">رقم الهوية</label>
+                                            <input id="NumProofF" name="NumProofF" class="form-control" />
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">مكان الاصدار</label>
+                                            <input id="LocReleaseF" name="LocReleaseF" class="form-control" />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="row mb-3">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">تاريخ الاصدار</label>
+                                            <input id="ReleaseDateF" name="ReleaseDateF" class="form-control" type="date" />
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="col-form-label">تاريخ الانتهاء</label>
+
+                                            <input class="form-control" id="EndDateF" name="EndDateF" type="date" />
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-11">
+                                        @*<div class="row">
+                        <div class="form-group">
+                            <label asp-for="Createat" class="control-label"></label>
+                            <input asp-for="Createat" class="form-control" />
+                            <span asp-validation-for="Createat" class="text-danger"></span>
+                        </div>
+                    </div>*@
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class="control-label">ملاحظات عامة</label>
+                                                <input id="PublicNoteF" name="PublicNoteF" class="form-control" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">ملاحظات خاصة</label>
+                                            <input id="PrivateNoteF" name="PrivateNoteF" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                    @*<div class="col">
+                                        <div class="form-group">
+                                            <label class="control-label">رقم الحساب :</label>
+
+                                            <input id="IdAccount" name="IdAccount" class="form-control" disabled />
+
+                                             </div>
+                                    </div>*@
+                                </div>
+
+                                @*<div class="form-group">
+                <input type="submit" value="اضافة الى قائمة عملائي " class="btn btn-primary" />
+            </div>*@
+
+
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                        <button type="button" class="btn btn-primary" onclick="saveFollower()">حفظ</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+@*</form>*@

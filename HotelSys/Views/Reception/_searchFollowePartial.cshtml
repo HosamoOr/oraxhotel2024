@@ -1,0 +1,206 @@
+﻿
+
+<div class="modal fade" id="FollowSearchModal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">بحث عن مرافق من العملاء</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+
+                <div class="row">
+                    <h4 class="card-title mt-3 mb-1">ابحث عن مرافق  </h4>
+
+
+                    <div class="row">
+
+
+                        <div class="alert alert-primary border-0" role="alert">
+                            <strong>ملاحظة:</strong>  يمكنك البحث عن مرافق  حسب الاسم- رقم الاثبات-رقم الهاتف
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="typeCustomer" class="col-lg-3 col-form-label-sm text-end">القريب :</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" name="nameFollowtxt" id="nameFollowtxt" disabled />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="typeCustomer" class="col-lg-3 col-form-label-sm text-end">صلة القرابة</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" name="relationtxt" id="relationtxt" placeholder="صلة القرابة" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                   
+                                    <div class="col-lg-9">
+                                        <input type="hidden" name="followSelectid" id="followSelectid"  />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="input-group">
+
+                                    <button type="button" onclick="selectFollowClickOk()" class="btn btn-primary" id="okFollow" disabled>
+                                        تحديد وخروج
+                                        <i class="fas fa-user-edit"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="table-responsive">
+                                <div id="toolbar" class="select">
+                                    <label for="typeFollowid" class="col-lg-3 col-form-label-sm text-end">تصنيف</label>
+                                    <select class="form-control" id="typeFollowid">
+                                     <option value="1"> مرافق من عملائي </option>
+                                    <option selected=""  value="2">مرافق من كل العملاء</option>
+
+
+                                    </select>
+                                </div>
+                                <table id="tableFollow"
+                                       style="font-size: 12px;"
+                                       data-mobile-responsive="true" class="mb-0 display table table-striped table-bordered"
+                                       data-toolbar="#toolbar"
+                                       data-search="true"
+                                       data-show-refresh="true"
+                                       data-show-toggle="true"
+                                       data-show-fullscreen="false"
+                                       data-show-columns="true"
+                                       data-show-export="false"
+                                       data-click-to-select="true"
+                                       data-minimum-count-columns="2"
+                                       data-show-pagination-switch="true"
+                                       data-pagination="true"
+                                       data-id-field="idcumtomerAll"
+                                       data-page-list="[10, 20, 50, 100, all]"
+                                       data-show-footer="true"
+                                       data-side-pagination="server"
+                                       data-show-copy-rows="true">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th class="border-top-0">تحديد</th>
+                                            <th class="border-top-0">اسم العميل</th>
+
+                                            <th class="border-top-0">نوع الاثبات</th>
+                                            <th class="border-top-0">رقم الاثبات</th>
+                                            <th class="border-top-0">رقم التلفون</th>
+                                            <th class="border-top-0">ملاحظات</th>
+
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                </table>
+                            </div>
+
+
+                            @*<div class="table-responsive">
+                <table class="table mb-0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="border-top-0">تحديد</th>
+                            <th class="border-top-0">اسم العميل</th>
+                            <th class="border-top-0">رقم الاثبات</th>
+                            <th class="border-top-0">رقم التلفون</th>
+                            <th class="border-top-0">ملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="tabulator-cell" role="gridcell" tabulator-field="car" tabindex="0"
+                                     aria-checked="true" title="" style="width: 20px; text-align: center; height: 43px;">
+                                    <svg enable-background="new 0 0 24 24" height="14" width="14" viewBox="0 0 24 24" xml:space="preserve">
+                                    <path fill="#2DC214" clip-rule="evenodd" d="M21.652,3.211c-0.293-0.295-0.77-0.295-1.061,0L9.41,14.34  c-0.293,0.297-0.771,0.297-1.062,0L3.449,9.351C3.304,9.203,3.114,9.13,2.923,9.129C2.73,9.128,2.534,9.201,2.387,9.351  l-2.165,1.946C0.078,11.445,0,11.63,0,11.823c0,0.194,0.078,0.397,0.223,0.544l4.94,5.184c0.292,0.296,0.771,0.776,1.062,1.07  l2.124,2.141c0.292,0.293,0.769,0.293,1.062,0l14.366-14.34c0.293-0.294,0.293-0.777,0-1.071L21.652,3.211z" fill-rule="evenodd"></path></svg>
+                                    <div class="tabulator-col-resize-handle">
+                                    </div><div class="tabulator-col-resize-handle prev"></div>
+                                </div>
+                            </td>
+                            <td>عميل 1</td>
+                            <td>1445542 </td>
+                            <td>096650000</td>
+                            <td>
+                                <a href="#"><i class="las la-pen text-secondary font-18"></i></a>
+                                 </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="tabulator-cell" role="gridcell" tabulator-field="car"
+                                     tabindex="0" aria-checked="false" title="" style="width: 20px; text-align: center; height: 42px;"><svg enable-background="new 0 0 24 24" height="14" width="14" viewBox="0 0 24 24" xml:space="preserve"><path fill="#CE1515" d="M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z"></path></svg><div class="tabulator-col-resize-handle"></div><div class="tabulator-col-resize-handle prev"></div></div>
+                            </td>
+                            <td>عميل 2</td>
+                            <td>00000 </td>
+                            <td>096650000</td>
+                            <td>
+                                <a href="#"><i class="las la-pen text-secondary font-18"></i></a>
+                                  </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="tabulator-cell" role="gridcell" tabulator-field="car" tabindex="0"
+                                     aria-checked="false" title="" style="width: 20px; text-align: center; height: 42px;"><svg enable-background="new 0 0 24 24" height="14" width="14" viewBox="0 0 24 24" xml:space="preserve"><path fill="#CE1515" d="M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z"></path></svg><div class="tabulator-col-resize-handle"></div><div class="tabulator-col-resize-handle prev"></div></div>
+                            </td>
+                            <td>عميل 3</td>
+                            <td>0000 </td>
+                            <td>096650000</td>
+                            <td>
+                                <a href="#"><i class="las la-pen text-secondary font-18"></i></a>
+                                 </td>
+                        </tr>
+
+                    </tbody>
+                </table> <
+            </div>*@
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                @*<button type="button" class="btn btn-primary">موافق </button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

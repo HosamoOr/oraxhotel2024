@@ -1,0 +1,77 @@
+﻿@model DataModels.TypeRoomsTable
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">الاعدادات </a></li>
+
+                                    <li class="breadcrumb-item active">انواع الشقق </li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title"> تعديل انواع الشقق </h4>
+                            <div>
+                                <a asp-action="Index">رجوع</a>
+                            </div>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="col-md-9">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                             <div class="form-group">
+                                <label class="control-label"> 
+                                    نوع الشقة
+                                     <span class="error text-danger" style="font-size:16px !important;">*</span>  
+                                    </label>
+                                <input asp-for="NameT" class="form-control" required />
+                                <span asp-validation-for="NameT" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control"  type="color" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+                            @*<div class="form-group">
+                                <label asp-for="IdSub" class="control-label"></label>
+                                <input asp-for="IdSub" class="form-control" />
+                                <span asp-validation-for="IdSub" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <input type="submit" value="تعديل" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+            </div>
+        </div>
+
+                  
+

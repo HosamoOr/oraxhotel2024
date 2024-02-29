@@ -1,0 +1,241 @@
+﻿@model  HotelSys.ViewModel.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                    <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">عملائي </h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+
+                                <a asp-action="Index">رجوع</a>
+
+
+                            </div>
+                            <h4 class="page-title"> تعديل بيانات عميل </h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+
+
+                    <hr />
+                    <div class="row">
+
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="IdmyCu" />
+                            <input type="hidden" asp-for="IdcumtomerAll" />
+                            <div class="row">
+
+                                <div class="col-md-4">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label">اسم العميل</label>
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+
+
+                                    <div class="form-group">
+                                        <label asp-for="Type" class="control-label">نوع العميل</label>
+                                        <select class="form-select-sm" asp-for="Type" aria-label="typeCustomer">
+                                            <option selected="">اختر  </option>
+                                            <option value="مقيم">مقيم</option>
+                                            <option value="زائر">زائر</option>
+
+                                        </select>
+
+                                        @*<input asp-for="Type" class="form-control" />*@
+                                        <span asp-validation-for="Type" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label">البريد الالكتروني</label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+
+                                        <label for="country" class="col-lg-3 col-form-label-sm text-end lbl-for">الجنسية</label>
+                                        <div class="col-lg-9">
+                                            <select class="form-select-sm" asp-for="Nationality" aria-label="Nationality">
+                                                <option selected="">اختر  </option>
+                                                <option value="السعودية">السعودية</option>
+                                                <option value="اليمن">اليمن</option>
+                                                <option value="بقية دول العالم">بقية دول العالم</option>
+
+                                            </select>
+                                        </div>
+                                        @*<label asp-for="Nationality" class="control-label"></label>
+                    <input asp-for="Nationality" class="form-control" />*@
+                                        <span asp-validation-for="Nationality" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+
+
+                                        <label asp-for="TypeWork" class="control-label">نوع العمل</label>
+                                        <input asp-for="TypeWork" class="form-control" />
+                                        <span asp-validation-for="TypeWork" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="LocWork" class="control-label">مكان العمل</label>
+                                        <input asp-for="LocWork" class="form-control" />
+                                        <span asp-validation-for="LocWork" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="PhoneWork" class="control-label">تلفون العمل</label>
+                                        <input asp-for="PhoneWork" class="form-control" />
+                                        <span asp-validation-for="PhoneWork" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+
+                                        <label for="typeE" class="col-lg-3 col-form-label-sm text-end">نوع الاثبات</label>
+                                        <div class="col-lg-9">
+                                            <select class="form-select-sm" asp-for="TypeProof" aria-label="TypeProof">
+                                                <option selected="">اختر  </option>
+                                                <option value="الهوية">الهوية</option>
+                                                <option value="جواز سفر">جواز سفر</option>
+                                                <option value="عام">...</option>
+
+                                            </select>
+                                        </div>
+                                        @*<label asp-for="TypeProof" class="control-label">نوع الاثبات</label>
+                    <input asp-for="TypeProof" class="form-control" />*@
+                                        <span asp-validation-for="TypeProof" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="NumProof" class="control-label">رقم الاثبات</label>
+                                        <input asp-for="NumProof" class="form-control" />
+                                        <span asp-validation-for="NumProof" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="ReleaseDate" class="control-label">تاريخ الاصدار</label>
+                                        <input asp-for="ReleaseDate" class="form-control" />
+                                        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="EndDate" class="control-label">تاريخ الانتهاء</label>
+                                        <input asp-for="EndDate" class="form-control" />
+                                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="LocRelease" class="control-label">مكان الاصدار</label>
+                                        <input asp-for="LocRelease" class="form-control" />
+                                        <span asp-validation-for="LocRelease" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                @*<div class="row">
+                <div class="form-group">
+                    <label asp-for="Createat" class="control-label"></label>
+                    <input asp-for="Createat" class="form-control" />
+                    <span asp-validation-for="Createat" class="text-danger"></span>
+                </div>
+            </div>*@
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="PublicNote" class="control-label">ملاحظات عامة</label>
+                                        <input asp-for="PublicNote" class="form-control" />
+                                        <span asp-validation-for="PublicNote" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="PrivateNote" class="control-label">ملاحظات خاصة</label>
+                                        <input asp-for="PrivateNote" class="form-control" />
+                                        <span asp-validation-for="PrivateNote" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label asp-for="IdAccount" class="control-label">رقم الحساب :</label>
+                                        <label class="control-label">@Model.IdAccount</label>
+                                        @*<select asp-for="IdAccount" class="form-control" asp-items="ViewBag.IdAccount"></select>*@
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="IdSub" class="control-label"></label>
+                <input asp-for="IdSub" class="form-control" />
+                <span asp-validation-for="IdSub" class="text-danger"></span>
+            </div>
+        </div>*@
+                            <div class="form-group">
+                                <input type="submit" value="تعديل" class="btn btn-primary" />
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>

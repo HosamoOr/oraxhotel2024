@@ -1,0 +1,378 @@
+﻿@model IEnumerable<HotelSys.ViewModel.CustomerViewModel>
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+@section style{
+
+    <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+
+
+    <style>
+  .select,
+  #locale {
+    width: 100%;
+  }
+  .like {
+    margin-right: 10px;
+  }
+</style>
+
+
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">عملائي </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                               @Html.Partial("_newcustomerMPartia2",new HotelSys.ViewModel.CustomerViewModel())
+
+                            <button type="button" class="btn btn-primary"
+                                    onclick="newCusModelShow()">
+
+                                <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Index")">عملائي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("allCusomer")">كل العملاء</a>
+                    </li>
+
+
+                </ul>
+                <br />
+
+
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">عملائي </h4>
+                                @*<p class="text-muted mb-0">
+                                        Tabulator allows you to paginate your data. simply set the pagination property to true.
+                                    </p>*@
+                            </div><!--end card-header-->
+                            <div class="card-body">
+
+                               @* <div id="toolbar" class="select">
+                                    <select class="form-control">
+                                        <option value="all">الكل</option>
+                                      
+
+                                        <option value="">اساسي</option>
+
+                                    </select>
+                                </div>*@
+
+                                <div id="toolbar">
+  <button id="remove" class="btn btn-danger" disabled>
+    <i class="fa fa-trash"></i> Delete
+  </button>
+</div>
+<table
+  id="table"
+  data-toolbar="#toolbar"
+  data-search="true"
+  data-show-refresh="true"
+  data-show-toggle="true"
+  data-show-fullscreen="true"
+  data-show-columns="true"
+  data-show-columns-toggle-all="true"
+  data-detail-view="true"
+  data-show-export="true"
+  data-click-to-select="true"
+  data-detail-formatter="detailFormatter"
+  data-minimum-count-columns="2"
+  data-show-pagination-switch="true"
+  data-pagination="true"
+  data-id-field="id"
+  data-page-list="[10, 25, 50, 100, all]"
+  data-show-footer="true"
+  data-side-pagination="server"
+  data-response-handler="responseHandler"
+  data-url="@Url.Action("GetDataFarz","Customers",new {id=1})"
+ >
+</table>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+
+
+
+
+
+                @*<div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>رقم الاثبات</th>
+                                    <th>نوع الاثبات</th>
+                                    <th>الاسم</th>
+                                    <th>مكان الاصدار</th>
+                                    <th>Mobile No</th>
+                                    <th>تاريخ اخر زيارة</th>
+                                    <th>البريد الالكتروني</th>
+                                    <th class="text-right">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @{
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.NumProof</td>
+                                            <td>@item.TypeProof</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.LocRelease</td>
+                                            <td>@item.PhoneWork</td>
+                                            <td>
+
+                                                @if (@item.VisitEndDate == null)
+                                                {
+                                                    <label> لا زيارات </label>
+
+                                                }
+                                                else
+                                                {
+                                                    @item.VisitEndDate
+                                                }
+
+
+                                            </td>
+                                            <td>@item.Email</td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.IdmyCu"><i class="las fa-pen text-secondary font-18"></i></a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdmyCu"><i class="las fa-trash-alt text-danger font-18"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>*@
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+
+
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+      <script src="~/js/city.js"></script>
+    <script src="~/js/AddEditcustomer.js"></script>
+
+      
+
+    <script src="/assets/pages/form-validation.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+
+    <script>
+                                 var $table = $('#table')
+  var $remove = $('#remove')
+  var selections = []
+
+  function getIdSelections() {
+    return $.map($table.bootstrapTable('getSelections'), function (row) {
+      return row.id
+    })
+  }
+
+  function responseHandler(res) {
+    $.each(res.rows, function (i, row) {
+      row.state = $.inArray(row.id, selections) !== -1
+    })
+    return res
+  }
+
+  function detailFormatter(index, row) {
+    var html = []
+    $.each(row, function (key, value) {
+      html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+    })
+    return html.join('')
+  }
+
+  function operateFormatter(value, row, index) {
+    return [
+      '<a class="like" href="javascript:void(0)" title="Like">',
+      '<i class="fa fa-heart"></i>',
+      '</a>  ',
+      '<a class="remove" href="javascript:void(0)" title="Remove">',
+      '<i class="fa fa-trash"></i>',
+      '</a>'
+    ].join('')
+  }
+
+  window.operateEvents = {
+    'click .like': function (e, value, row, index) {
+      alert('You click like action, row: ' + JSON.stringify(row))
+    },
+    'click .remove': function (e, value, row, index) {
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: [row.id]
+      })
+    }
+  }
+
+  function totalTextFormatter(data) {
+    return 'Total'
+  }
+
+  function totalNameFormatter(data) {
+    return data.length
+  }
+
+  function totalPriceFormatter(data) {
+    var field = this.field
+    return '$' + data.map(function (row) {
+      return +row[field].substring(1)
+    }).reduce(function (sum, i) {
+      return sum + i
+    }, 0)
+  }
+
+  function initTable() {
+    $table.bootstrapTable('destroy').bootstrapTable({
+      height: 550,
+      locale: "ar",
+      columns: [
+        [{
+          field: 'name',
+          checkbox: true,
+          rowspan: 2,
+          align: 'center',
+          valign: 'middle'
+        }, {
+          title: 'numProof',
+          field: 'numProof',
+          rowspan: 2,
+          align: 'center',
+          valign: 'middle',
+          sortable: true,
+          footerFormatter: totalTextFormatter
+        }, {
+          title: 'Item Detail',
+          colspan: 3,
+          align: 'center'
+        }],
+        [{
+          field: 'typeProof',
+          title: 'Item Name',
+          sortable: true,
+          footerFormatter: totalNameFormatter,
+          align: 'center'
+        }, {
+          field: 'date',
+          title: 'Item Price',
+          sortable: true,
+          align: 'center',
+          footerFormatter: totalPriceFormatter
+        }, {
+          field: 'phoneWork',
+          title: 'Item Operate',
+          align: 'center',
+          clickToSelect: false,
+          events: window.operateEvents,
+          formatter: operateFormatter
+        }]
+      ]
+    })
+    $table.on('check.bs.table uncheck.bs.table ' +
+      'check-all.bs.table uncheck-all.bs.table',
+    function () {
+      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
+
+      // save your data, here just save the current page
+      selections = getIdSelections()
+      // push or splice the selections if you want to save all data selections
+    })
+    $table.on('all.bs.table', function (e, name, args) {
+      console.log(name, args)
+    })
+    $remove.click(function () {
+      var ids = getIdSelections()
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: ids
+      })
+      $remove.prop('disabled', true)
+    })
+  }
+
+  $(function() {
+    initTable()
+
+    //$('#locale').change(initTable)
+  })
+
+
+    </script>
+
+
+}

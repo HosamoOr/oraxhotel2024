@@ -1,0 +1,80 @@
+﻿@model  IEnumerable<HotelSys.ViewModel.FollowerViewModel>
+
+
+<div class="row">
+
+    <div class="row">
+        <div class="col-sm-8">
+            <label class="col-lg-3 col-form-label text-end">المرافقون</label>
+
+        </div><!--end form-group-->
+
+        <div class="col-sm-4">
+            <span>
+                <button type="button" class="btn btn-primary-outline" onclick="bindDatatablefollow()">
+                    <i class="fas fa-search text-secondary font-18"></i>
+                </button>
+
+            </span>
+
+
+            <span>
+                <button type="button" class="btn btn-primary-outline" data-bs-toggle="modal" data-bs-target="#addFollowerModal">
+                    <i class="fas fa-plus text-secondary font-18"></i>
+                </button>
+
+            </span>
+
+        </div><!--end form-group-->
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-md-9 ">
+
+
+
+                <div class="table-responsive">
+                    <table class="table" id="tableFollowSelect">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>المرافق</th>
+                                <th>صلة القرابة </th>
+                                <th class="text-right">Action</th>
+                                <th></th>
+                            </tr><!--end tr-->
+                        </thead>
+
+                        <tbody>
+
+                            @{
+                                foreach (var item in Model)
+                                {
+                                    <tr><td> @item.follwerCusomer.Name</td>
+                            
+                            <td> <span class="badge badge-soft-success">@item.Relation</span></td>
+                            
+                            <td> <button class="btnDelete"> 
+                                <i class="mdi mdi-close-circle-outline font-18"></i></button></td>
+                            <td>@item.follwerCusomer.IdcumtomerAll</td></tr>
+                                    
+
+
+                                }
+                            }
+                            @**@
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

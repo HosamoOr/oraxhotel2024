@@ -1,0 +1,87 @@
+﻿@model HotelSys.ViewModel._AccountViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    //Layout = "~/Views/Shared/_SubLayout.cshtml";
+}
+
+
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title">الحسابات</h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+
+                                <a asp-action="Index">رجوع</a>
+
+                            </div>
+                            <h4 class="page-title">تعديل الحساب </h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+
+
+
+                        <div class="row">
+                          
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group">
+                                    <label asp-for="Name" class="control-label">اسم الحساب</label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">حالة الحساب</label>
+                                    <select asp-for="Status" class="form-control">
+                                        <option value="active">active</option>
+                                        <option value="disable">disable</option>
+                                    </select>
+                                </div>
+                                @*<div class="form-group">
+                                    <label asp-for="IsPrivate" class="control-label"></label>
+                                    <input asp-for="IsPrivate" class="form-control" />
+                                    <span asp-validation-for="IsPrivate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Createat" class="control-label"></label>
+                                    <input asp-for="Createat" class="form-control" />
+                                    <span asp-validation-for="Createat" class="text-danger"></span>
+                                </div>*@
+                            <div class="form-group">
+                                <label class="control-label">مجموعة الحساب</label>
+                                <select asp-for="IdGroup" class="form-control" asp-items="ViewBag.IdGroup"></select>
+                            </div>
+                                <div class="form-group">
+                                    <input type="submit" value="تعديل" class="btn btn-success" />
+                                </div>
+                            </form>
+                            
+                        </div>
+
+                      
+
+                    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,346 @@
+﻿@model IEnumerable<HotelSys.ViewModel.CustomerViewModel>
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+@section style{
+
+    <link href="~/assets/plugins/tabulator/bootstrap/tabulator_bootstrap4.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+}
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">العملاء  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">عملائي </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                          @*  <button type="button" class="btn btn-primary"
+                                    onclick="@("window.location.href='" + @Url.Action("Create1", "Customers") + "'");"
+                                    new { id=5 })">
+
+                                <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>*@
+
+
+                               <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopupBig('@Url.Action("AddOrEdit","Customers",null,Context.Request.Scheme)',' عميل جديد ')">
+                                <i class="fa fa-plus"></i>  عميل جديد
+                                    </button>
+                               
+
+
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Index")">عملائي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("allCusomer")">كل العملاء-المرافقين</a>
+                    </li>
+
+
+                </ul>
+                <br />
+
+
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">عملائي </h4>
+                                @*<p class="text-muted mb-0">
+                                        Tabulator allows you to paginate your data. simply set the pagination property to true.
+                                    </p>*@
+                            </div><!--end card-header-->
+                            <div class="card-body">
+
+                        
+
+
+
+
+                <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>رقم الاثبات</th>
+                                    <th>نوع الاثبات</th>
+                                    <th>الاسم</th>
+                                    <th>مكان الاصدار</th>
+                                    <th>Mobile No</th>
+                                    <th>تاريخ اخر زيارة</th>
+                                    <th>البريد الالكتروني</th>
+                                    <th class="text-right">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @{
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.NumProof</td>
+                                            <td>@item.TypeProof</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.LocRelease</td>
+                                            <td>@item.PhoneWork</td>
+                                            <td>
+
+                                                @if (@item.VisitEndDate == null)
+                                                {
+                                                    <label> لا زيارات </label>
+
+                                                }
+                                                else
+                                                {
+                                                    @item.VisitEndDate
+                                                }
+
+
+                                            </td>
+                                            <td>@item.Email</td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.IdmyCu"><i class="las fa-pen text-secondary font-18"></i></a>
+                                                <a asp-action="Delete" asp-route-id="@item.IdmyCu"><i class="las fa-trash-alt text-danger font-18"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+
+
+    <!-- Javascript  -->
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.core.min.js"></script>
+    @*polo*@
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    @*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>*@
+
+
+    @*<script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>*@
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-ar-SA.min.js"></script>
+
+
+    <script>
+                                    var $table = $('#table');
+
+                                    $(function () {
+
+
+
+                                            $('#toolbar').find('select').change(function () {
+
+                                                $table.bootstrapTable('destroy').bootstrapTable({
+                                                    exportDataType: $(this).val(),
+                                                    //exportTypes: ['xlsx', 'xlsx', 'txt', 'csv'], //Optional export file type
+                                                    exportTypes: ['xlsx', 'pdf', 'doc', 'csv', 'excel', 'png', 'txt', 'powerpoint'],
+                                                    //exportFooter: true,
+                                                    //  export: 'glyphicon-export icon-share',
+                                                    // showExport: true,
+
+
+                                                    url: 'Customers/GetDataFarz/1',
+                                                    //height: 790,                    //ارتفاع الجدول
+                                                    search: true,
+                                                    searchAlign: "left",
+                                                    trimOnSearch: true,         //حذف الفراغات عند البحث
+                                                    searchOnEnterKey: true, //设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
+
+                                                    /* icons: {   //تغيير الايقونات الافتراضية
+                                                         refresh: "glyphicon-repeat",
+                                                         toggle: "glyphicon-list-alt",
+                                                         columns: "glyphicon-list",
+                                                         export: 'glyphicon-export'
+                                                     },*/
+
+
+                                                    exportOptions: {
+
+                                                        // ignoreColumn: [0, 1], //استخراج اعمدة محددة    $(":selected", $("#userinputid")).text();
+                                                        fileName: function () {
+                                                            return $("#userinputid option").filter(":selected").text();
+                                                        }
+
+                                                        , //file name setting
+                                                        worksheetName: 'nameUser', //table workspace name
+                                                        tableName: 'nameUser',
+                                                        excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
+                                                    },
+                                                    queryParams: queryParams,       //查询函数
+                                                    //pagination: true,                       //显示分页栏
+                                                    showRefresh: true,               //显示刷新按钮
+                                                    showColumns: true,              //是否显示内容列下拉框
+                                                    // striped: true,                      //设置为 true 会有隔行变色效果
+                                                    //sortName: "plateNumber",                //定义排序字段
+                                                    //sortOrder: "desc",                  //定义排序方式，'asc' 或者 'desc'
+                                                    // silentSort: false,                      //设置为 false 将在点击分页按钮时，自动记住排序项
+                                                    //maintainSelected: true,         //设置为 true 在点击分页按钮或搜索按钮时，将记住checkbox的选择项
+                                                    //toolbar: 'toolbar',          //工具栏id
+                                                    // sidePagination: "server",                               //设置在哪里进行分页，可选值为 'client' 或者 'server'，默认'client'
+                                                    //pageNumber: 1,                                             //如果设置了分页，首页页码
+                                                    // pageSize: 20,                                               //每页每页显示行数
+                                                    //  pageList: [20, 50, 100, 200, 'All'],                         //设置可供选择的页面数据条数,如果数据量大于50小于100，则只会显示20，50，100三项
+                                                    showFullscreen: true,                                    //是否显示全屏按钮
+                                                    responseHandler: function (data) {                  //如果后台返回的数据格式与bootstrapTable的数据格式不同在这里调整
+                                                        return {
+                                                            "page": data.pages,
+                                                            "total": data.total,
+                                                            "rows": data.list
+                                                        };
+                                                    },
+                                                    columns: [
+                                                        //{ field: 'state'},
+                                                        { field: 'name', title: 'الاسم', formatter: function (value, row, index) { return '<a href=' + value + '  target="_blank"  rel="noopener noreferrer" >' + value + '</a>'; } },
+
+                                                        { field: 'numProof', title: 'رقم الاثبات' },
+                                                        { field: 'typeProof', title: 'نوع الاثبات' },
+
+                                                        { field: 'date', title: 'مكان الاصدار' },
+
+                                                        { field: 'phoneWork', title: 'رقم التلفون' },
+                                                        // { field: 'long', title: 'Long' },
+                                                        {
+                                                            field: 'visitEndDate', title: 'تاريخ اخر زيارة', formatter: function (value, row, index)
+                                                            {
+                                                                if (value == null)
+
+                                                                    return '<p>لا زيارات </p>';
+                                                                else
+                                                                    return value;
+                                                            }
+                                                        }, 
+
+
+                                                        { field: 'email', title: 'البريد الالكتروني' },
+
+                                                        { field: 'publicNote', title: 'ملاحظات' },
+
+                                                        {
+                                                            field:'idmyCu',
+                                                            title:'idmyCu',
+                                                            //formatter: function (value, row, index) {
+                                                            //    //return '<input name="elementname"  value="'+value+'"/>';
+                                                            //    return '<a class="btn btn-primary" href="/Customers/Edit/"' + row.idmyCu + '">تعديل</a>';
+                                                            //}
+                                                        },
+                                                        
+
+                                                        {
+                                                            
+                                                            title: '',
+                                                            formatter: function (value, row, index) {
+                                                                //return '<input name="elementname"  value="'+value+'"/>';
+                                                                return '<a class="btn btn-danger" href="/Customers/Delete/" "' + row.idmyCu + '">حذف</a>';
+                                                            }
+                                                        }
+
+
+                                                    ]
+
+                                                })
+                                            }).trigger('change')
+                                        });
+
+                                        $('#userinputid').on('change', function (event) {
+                                            var form = $(event.target).parents('form');
+
+                                            $('#table').bootstrapTable('refresh');
+
+                                        });
+
+                                        function queryParams(params) {
+                                            //params = {
+                                            //    search: "", sort: undefined, order: undefined, limit: 10,
+                                            //    offset: 0,
+                                            //    username: "hsam"
+                                            //};//，可通过上面的配置修改
+                                            var temp = {            //这里的键的名字和控制器的变量名必须一致
+                                                limit: params.limit,
+                                                offset: params.offset,
+                                                pageSize: this.pageSize,
+                                                pageNumber: this.pageNumber,
+                                                userid: $("#userinputid").val()
+                                            };
+                                            return temp;
+                                        }
+
+
+
+
+
+
+
+
+    </script>
+
+
+}

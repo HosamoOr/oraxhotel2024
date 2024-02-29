@@ -1,0 +1,533 @@
+﻿@model HotelSys.ViewModel.HomeReceptionViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style{
+    <style>
+        .notification {
+            /*background-color: #22b783;*/
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+            .notification:hover {
+                background: red;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background: red;
+                color: white;
+            }
+    </style>
+
+     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+}
+
+
+<main class="valign-wrapper">
+
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-pills card-header-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="@Url.Action("Index", "HomeReception")">الكل</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="@Url.Action("Home_logout", "HomeReception")"> تسجيل الخروج </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+               @* <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                    
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab1" data-bs-toggle="tab"
+                                 type="button"
+                                onclick="@("window.location.href='" + @Url.Action("Index", "HomeReception") + "'");"
+                                role="tab"  aria-selected="true">
+                            الكل
+                        </button>
+                    </li>
+                    
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                type="button" role="tab" aria-selected="false"
+                                aria-controls="contact" onclick="@("window.location.href='" + @Url.Action("Home_logout", "HomeReception") + "'");">
+                            تسجيل الخروج
+                        </button>
+                    </li>
+                </ul>*@
+
+                @*<li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                aria-selected="false">
+                تسجيل الدخول
+                </button>
+                </li>*@
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <div class="float-end">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">الاستقبال</a></li>
+                                            <li class="breadcrumb-item"><a href="#">تسجيل الدخول</a></li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">الشقق والتسكين</h4>
+                                </div>
+                                <!--end page-title-box-->
+                            </div>
+                            <!--end col-->
+                        </div>
+
+                       @* <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <div class="float-end">
+
+
+                                      
+
+                                    </div>
+                                    <h4 class="page-title"></h4>
+                                </div>
+                                
+                            </div>
+                           
+                        </div>*@
+
+
+
+
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary"
+                                                onclick="@("window.location.href='" + @Url.Action("Index", "Reception") + "'");"
+                                                new { id=5 })">
+                                            <i class="fa fa-plus"></i>حجز جديد
+
+
+                                        </button>
+                                    </div><!--end col-->
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <div class="form-outline">
+                                               
+
+                                                <input type="search" id="form1" class="form-control" placeholder="ابحث عن شقة">
+
+                                            </div>
+                                            <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+
+
+                                    <div class="col-auto">
+
+                                        <div class="row">
+
+                                            <ul class="list-inline mb-0 align-self-center">
+
+
+                                                <li class="list-item d-inline-block mr-2">
+                                                    <a href="#">
+                                                        <span class="text-black font-weight-bold font-14">@Model.countAll</span>
+                                                        @*<span class="badge"> 55  </span>*@
+
+
+                                                    </a>
+                                                    <span class="text-black font-weight-bold font-12">الكل </span>
+                                                </li>
+
+                                                <li class="list-item d-inline-block mr-2">
+                                                    <a href="#" class="notification" style="background-color: #008000;">
+                                                        <span class="text-white font-weight-bold font-12">@Model.countEmpty</span>
+                                                        @*<span class="badge"> 55  </span>*@
+
+
+                                                    </a>
+                                                    <span class="text-black font-weight-bold font-12">فارغ </span>
+                                                </li>
+                                                <li class="list-item d-inline-block">
+                                                    <a class="notification" style="background-color: #FFA500;">
+
+                                                        <span class="text-white font-weight-bold font-12">@Model.countClean</span>
+
+
+                                                    </a>
+                                                    <span class="text-black font-weight-bold font-12">نظافة </span>
+
+                                                </li>
+                                                <li class="list-item d-inline-block">
+                                                    <a href="#" class="ml-2 notification" style="background-color: #808080;">
+                                                        <span class="text-white font-weight-bold font-12">@Model.countRepair</span>
+
+                                                    </a>
+                                                    <span class="text-muted font-weight-bold font-12">صيانة </span>
+                                                </li>
+                                                <li class="list-item d-inline-block">
+                                                    <a class="notification" style="background-color: #0000FF;">
+                                                        <span class="text-white font-weight-bold font-12">@Model.countReservation_without_entry</span>
+
+                                                    </a>
+                                                    <span class="text-black font-weight-bold font-12 ">حجز مؤقت </span>
+                                                </li>
+
+                                                <li class="list-item d-inline-block">
+                                                    <a class="notification" style="background-color: #FF0000;">
+                                                        <span class="text-white font-weight-bold font-12">@Model.countBusy</span>
+
+                                                    </a>
+                                                    <span class="text-black font-weight-bold font-12 ">مؤجر  </span>
+                                                </li>
+                                            </ul>
+
+
+
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+
+                                        @*<div>
+                                                <div class="col">
+                                                    <i class="fas fa-circle text-success"></i>
+                                                    <span>
+                                                        فارغ
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <i class="fas fa-circle text-success"></i>
+                                                    <span> نظافة</span>
+                                                </div>
+
+                                                <div class="col">
+                                                    <i class="fas fa-circle text-success">صيانة</i>
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <i class="fas fa-circle text-success"> حجز مؤقت</i>
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <i class="fas fa-circle text-success">شاغرة</i>
+
+                                                </div>
+
+
+                                            </div>*@
+
+                                        @*<h4 class="card-title"></h4>*@
+
+
+                                        @*<div class="col-auto">
+                                                <div class="dropdown">
+                                                    <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        All<i class="las la-angle-down ms-1"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end" style="">
+                                                        <a class="dropdown-item" href="#">Last Week</a>
+                                                        <a class="dropdown-item" href="#">Last Month</a>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                    </div>  <!--end row-->
+                                </div><!--end card-header-->
+                                <div class="card-body p-0">
+
+
+
+                                    <div class="py-5">
+                                        <div class="container">
+                                            <div class="row">
+
+                                                @{
+                                                    foreach (var item in Model.RoomsStatusItems)
+                                                    {
+
+                                                        @Html.Partial("oneStatusRoomPartial", item)
+
+                                                    }
+                                                }
+
+
+
+                                            </div><br>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>  <!--end card-body-->
+                            </div>
+
+
+
+
+
+                        </div><!-- container -->
+
+                    </div>
+                   @* <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+
+                       
+*@
+                      
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!--end Rightbar/offcanvas-->
+                <!--end Rightbar-->
+                <!--Start Footer-->
+                <!-- Footer Start -->
+                <footer class="footer text-center text-sm-start">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                        للانظمة
+                        وتقنية المعلومات
+                    </span>
+                </footer>
+                <!-- end Footer -->
+                <!--end footer-->
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+        <!-- Javascript  -->
+
+    </div>
+
+</main>
+
+@*<div class="fixed-action-btn">
+        <a href="#message" class="modal-trigger btn btn-large btn-floating amber waves-effect waves-light">
+            <i class="large material-icons">message</i>
+        </a>
+    </div>
+
+    <div id="message" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Contact</h4>
+            <p>coming soon...</p>
+        </div>
+        <div class="modal-footer">
+            <a href="" class="modal-action modal-close waves-effect btn-flat">close</a>
+        </div>
+    </div>
+
+    <footer class="page-footer deep-purple darken-3">
+        <div class="footer-copyright deep-purple darken-4">
+            <div class="container">
+                <time datetime="{{ site.time | date: '%Y' }}">&copy; 2016 Jason</time>
+            </div>
+        </div>
+    </footer>*@
+
+<!-- App js -->
+
+
+
+@section scripts{
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+
+
+
+
+   
+    
+
+
+    <script type="text/javascript">
+
+       
+
+        $(document).ready(function(){
+
+             $('.vehicle').popover();
+
+            $('.vehicle555').popover({
+                title: '<h4><span class="glyphicon glyphicon-hand-right"></span> Nissan Micra</h4>',
+                content: '<ul><li>1.6L I4 Engine</li><li>109 HP Power</li><li>Front-Wheel Drive</li><li>5-Speed Manual</li><li>2+3 Seating</li></ul>',
+                html: true,
+                container: 'body',
+                placement: 'right',
+                trigger: 'hover'
+            });
+        });
+
+
+        $('#profile-tab').on('click', function (event) {
+            // alert('ddddddddddddd');
+
+
+        });
+
+
+        var someTabTriggerEl = document.querySelector('#home');
+        var tab = new bootstrap.Tab(someTabTriggerEl);
+
+
+        $('#datetimepicker').datetimepicker({
+            format: 'dd/MM/yyyy',
+            language: 'ar-LB'
+        });
+        $('#datetimepicker').datepicker({ language: "ar-LB" });
+
+
+   
+
+       function selectDel(id,idroom)
+        {
+           
+        
+         var url="/HomeReception/cancelRec?id="+id+"&idroom="+idroom;
+         
+         Swal.fire({
+        title: 'Are you sure?',
+        text: "هل انت متأكد من الغاء الحجز" +" !",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'نعم, الغاء الحجز!',
+    }).then(function (result) {
+        if (result.isConfirmed) {
+
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (res) {
+                    if (res.isValid) {
+                     Swal.fire(
+                        'تم الالغاء!',
+                        'تم الغاء الحجز بنجاح.',
+                        'success'
+                    );
+                     window.location = "@Url.Action("Index", "HomeReception")";
+                    }
+                    else
+                    {
+                        alert("لم يتم الفاء الحجز بسبب وجود خطاء ما ");
+                    }
+                }
+            });
+
+
+
+        }
+    })
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "View1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            
+
+            <div class="row">
+
+               
+
+                @RenderBody()
+
+            </div><!--end row-->
+
+
+
+        </div><!-- container -->
+        <!--Start Rightbar-->
+        <!--Start Rightbar/offcanvas-->
+        <!--end Rightbar-->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                للانظمة
+                وتقنية المعلومات
+            </span>
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<!-- Javascript  -->
+@*<script src="~/assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/plugins/apexcharts/irregular-data-series.js"></script>
+    <script src="~/assets/plugins/apexcharts/ohlc.js"></script>
+    <script src="~/assets/pages/apexcharts.init.js"></script>
+
+    <script src="~/assets/js/app.js"></script>*@
+
+
+@if (IsSectionDefined("scripts"))
+{
+    RenderSection("scripts");
+}
+
+@if (IsSectionDefined("style"))
+{
+    RenderSection("style");
+}
+
+    

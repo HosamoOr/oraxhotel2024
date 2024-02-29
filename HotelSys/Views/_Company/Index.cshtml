@@ -1,0 +1,245 @@
+﻿@model IEnumerable<HotelSys.ViewModel._CompanyViewModel>
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">الشركات  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">الشركات </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a class="btn btn-success" style="margin-bottom:10px" href="@Url.Action("Create","_Company")">
+                                <i class="fa fa-plus"></i>
+                                <span style="color:white">   شركة جديدة </span>
+
+                                
+                               
+                            </a>
+
+
+                            @*<button type="button" class="btn btn-primary"
+                                        onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                                        new { id=5 })">
+
+                                    <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                                </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>اسم الشركة </th>
+                                <th>رقم الحساب </th>
+
+                                <th class="text-right">Action</th>
+                            </tr><!--end tr-->
+                        </thead>
+
+                        <tbody>
+
+                            @{
+                                foreach (var item in Model)
+                                {
+
+                                    <!-- model edit  -->
+
+                                    @Html.Partial("_onePartial", item)
+
+
+
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @*<button class="btn btn-outline-light btn-sm px-4 " >+ Add New</button>*@
+                    </div><!--end col-->
+                    <div class="col-auto">
+                        <nav aria-label="...">
+                            <ul class="pagination pagination-sm mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul><!--end pagination-->
+                        </nav><!--end nav-->
+                    </div> <!--end col-->
+                </div><!--end row-->
+                <!--end col-->
+            </div>
+
+
+
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">تعديل شركة</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                
+
+
+                @Html.Partial("_EditCoPartial")
+
+
+                @*<div class="dvData"></div>
+
+        <div class="dvData2"></div>*@
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                @*<button type="button" class="btn btn-primary">حفظ</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+    <script>
+
+
+        function q_dec( iddd,name,idaccount) {
+            //$(".dvData").html(id);
+
+            //$(".dvData2").html(quantity);
+
+            // $("#myModal").modal();
+            $("#Id").val(iddd);
+            $("#Name").val(name);
+            $("#IdAccount").val(idaccount);
+
+
+            $('#myModal').modal('show');
+        }
+
+
+            $("#myform").on("submit", function (event) {
+                event.preventDefault();
+
+               // var myModel =
+                //{
+                //    "Id": 2,
+                //    "Name": "hhhhhh",
+                //    "IdAccount": 22,
+                //    "IdSub": 22
+                //};
+                //var jsonToPost = JSON.stringify(myModel);
+
+                 var url = '@Url.Action("Edit", "_Company")'; //$(this).attr("action");
+                var formData = $(this).serialize();
+
+                $.post(url, formData, function (response) {
+                    $('#myModal').modal('hide');
+                    alert("success");
+
+
+
+
+
+                    window.location.href = '@Url.Action("Index", "_Company")';
+                  //  if (intervalId)
+                        //clearInterval(intervalId);
+                });
+
+
+            });
+
+
+
+        function DeleteSchedule(id) {
+    if (confirm('Are you sure you want to delete this Schedule?')) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete", "Schedule")',
+            data: "id=" + id ,
+            async: true,
+            cache: false,
+            success: function (result) { success(result); }
+        });
+    }
+    return false;
+}
+
+function success(result) {
+    $("#ScheduleList").html(result);
+}
+
+
+    </script>
+
+}

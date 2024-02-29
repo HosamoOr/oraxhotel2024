@@ -1,0 +1,293 @@
+﻿@model HotelSys.ViewModel.BondViewModel
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPostBig(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+         
+              <div class="col-lg-12">
+                            <div class="card">
+                               @* <div class="card-header">
+                                    <h4 class="card-title"> سند قبض جديد</h4>
+
+                                </div>*@
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-3 col-form-label text-end">رقم السند</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="Id"  asp-for="Id"
+                                                           type="text"  disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">نوع السند</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="TypeT" asp-for="Type">
+                                                        <option value="0">select</option>
+                                                        <option selected="" value="2">سند صرف</option>
+                                                        @*<option value="3">كمبيالة</option>*@
+
+                                                    </select>
+                                                     <span asp-validation-for="Type" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end"> الصندوق</label>
+                                                <div class="col-sm-9">
+                                                    @*<select class="form-control" id="accountFormT_" asp-for="id_accountForm" name="accountFormT_" ></select>*@
+                                                      <select asp-for="id_accountTo" id="accountFormT_" class="form-select" asp-items="ViewBag.IdBoxAccount"></select>
+                                               <span asp-validation-for="id_accountTo" class="text-danger"></span>
+                                                  </div>
+                                            </div>
+
+
+                                            <div class="mb-3 row">
+                                   
+                                      
+                                       
+                                            <label class="col-sm-3 col-form-label text-end"> بند المصروف :</label>
+                                                <div class="col-sm-9">
+                                                   @* <input class="form-control" id="nameaccountP" name="nameaccountP" asp-for="nameCustomer" disabled>*@
+                                                       <select asp-for="id_accountForm" id="nameaccountP" class="form-select" asp-items="ViewBag.IdAccount"></select>
+                                                       <span asp-validation-for="id_accountForm" class="text-danger"></span>
+                                                    <span>search</span>
+                                                </div>
+                                        
+                                          
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">طريقة الدفع</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="TypePay" aria-label="TypePay" asp-for="TypePay">
+                                                        <option value="1" selected="">نقدا</option>
+                                                        <option value="3">تحويل بنكي</option>
+                                                        <option value="4">بطاقة</option>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                             <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">من اجل</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" id="Why"  asp-for="Why" placeholder="من اجل ">
+                                                     <span asp-validation-for="Why" class="text-danger"></span>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row bank0" id="NumCheckTForm">
+                                                <label class="col-sm-3 col-form-label text-end">رقم الشيك</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="رقم الشيكـ" id="NumCheck" asp-for="NumCheck" >
+                                               <span asp-validation-for="NumCheck" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="col-lg-6">
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">التاريخ</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" id="Date" asp-for="Date" >
+                                                     <span asp-validation-for="Date" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">الموافق</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" id="DateTh" >
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">الوقت</label>
+                                                <div class="col-sm-8">
+                                                    <input type="time" class="form-control" id="Time" asp-for="Time">
+                                                     <span asp-validation-for="Time" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                             <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">المستلم</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="المستلم" asp-for="Hand" id="Hand" >
+                                                     <span asp-validation-for="Hand" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end">المبلغ</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="المبلغ" asp-for="Amount" id="Amount" >
+                                                     <span asp-validation-for="Amount" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                           
+                                            <div class="mb-3 row cart0" id="NumCardTForm">
+                                                <label class="col-sm-3 col-form-label text-end">رقم البطاقة</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="رقم البطاقة" id="NumCard" asp-for="NumCard" >
+                                                     <span asp-validation-for="NumCard" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="mb-3 row bank0" id="IdBankTForm">
+                                                <label class="col-sm-3 col-form-label text-end">البنك</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" placeholder="البنك" id="IdBank"  asp-for="IdBank"  >
+                                                     <span asp-validation-for="IdBank" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                           @* <div class="input-group mb-3">
+                                    <span class="input-group-text ">رقم العقد</span>
+                                    <input type="text" class="form-control" aria-label="رقم العقد" placeholder="رقم العقد ان وجد " id="IdReception" asp-for="IdReception">
+                                    <span class="input-group-text"> <a  onclick="showModalReception()" >
+                                                <i class="fas fa-search"></i>
+                                            </a></span>
+                                             <span asp-validation-for="IdReception" class="text-danger"></span>
+                                </div>
+*@
+
+                                 @Html.Partial("_ListReceptioModal")
+
+                                        
+                                               @* <div class="col-sm-9">
+                                                    <div class="col-sm-8 form-outline">
+                                                    <input class="form-control" type="text" placeholder="رقم العقد ان وجد " id="IdReception" name="IdReception" asp-for="IdReception">
+                                                    </div>
+                                                     <div class="col-sm-4">
+                                                     <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                                    </div>
+                                                </div>*@
+                                          
+
+
+
+                                        </div>
+                                        <div class="col-lg-12">
+
+                                            <div class="mb-3 row">
+                                                <label for="example-week-input" class="col-sm-2 col-form-label text-end">ملاحظة</label>
+                                                <div class="col-sm-10">
+                                                    <textarea placeholder="ملاحظة" id="Note"  asp-for="Note" rows="2"
+                                                              class="form-control" style="min-width: 100%"></textarea>
+
+                                                               <span asp-validation-for="Note" class="text-danger"></span>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div><!--end col-->
+                 
+           @* <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>*@
+
+             <div class="modal-footer">
+                       
+                        <button type="submit" class="btn btn-primary">  
+                    @{
+                        if(Model.Id==0)
+                        {
+                            <span>اضافة</span>
+                        }else
+                        {
+                             <span>تعديل</span>
+                        }
+                    }
+                            
+                            
+                        </button>
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+  <script>
+
+      
+function showModalReception()
+{
+   // bindDatatableR();
+     $('#ReceptionSearchModal').modal('show');
+
+}
+
+        $(document).ready(function () {
+
+
+             $('.bank0').hide();
+              $('.cart0').hide();
+
+              bindDatatableR();
+           
+
+             $('#TypePay').on('change', function (event) {
+
+                   var comid = $(":selected", $("#TypePay")).val();
+
+                   if(comid==1)
+                   {
+                         $('.bank0').hide();
+                         $('.cart0').hide();
+                   }
+                   else  if(comid==3)
+                   {
+                         $('.bank0').show();
+                         $('.cart0').hide();
+
+                   }
+                   else  if(comid==4)
+                   {
+                         $('.bank0').hide();
+                         $('.cart0').show();
+
+                   }
+
+               
+
+             });
+
+        });
+
+
+
+
+
+  </script>

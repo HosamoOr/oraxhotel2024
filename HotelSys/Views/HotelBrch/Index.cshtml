@@ -1,0 +1,145 @@
+﻿@model IEnumerable<HotelSys.ViewModel.HotelBrchViewModel>
+
+
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style{
+
+    @*Farze+regester*@
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+
+     <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+}
+
+
+<div class="page-wrapper">
+
+
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title">الاعدادات</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <a asp-action="Index">رجوع</a>
+
+                        </div>
+                        <h4 class="page-title">الفروع </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <br />
+                <br />
+
+
+
+                <div class="card text-center">
+
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <div class="float-end">
+                                        <ol class="breadcrumb">
+                                        </ol>
+                                       @* <button type="button" class="btn btn-success" style="margin-bottom:10px" onclick="showInPopup('@Url.Action("AddOrEdit","HotelBrch",null,Context.Request.Scheme)','فرع جديد')">
+                                            <i class="fa fa-plus"></i> فرع جديد
+                                        </button>*@
+                                    </div>
+
+
+
+                                </div>
+                                <!--end page-title-box-->
+                            </div>
+                            <!--end col-->
+                        </div>
+
+
+
+
+                        <div class="row">
+
+                            <div id="view-all">
+                                @await Html.PartialAsync("_ViewAll", Model)
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+    
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@section scripts
+{
+
+
+    @*farze-regesrer*@
+
+
+     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+}

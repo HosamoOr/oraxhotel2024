@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HotelSys.ViewModel.AreaViewModel>
+
+      <div class="table-responsive">
+
+      
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        <label>اسم المديرية</label>
+                    </th>
+                    <th>
+                        <label > المحافظة</label>
+                    </th>
+
+                    <th>
+                        <label > عدد النزلاء</label>
+                    </th>
+                    
+                    <th>
+                           </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameCity)
+                        </td>
+                         <td>
+                         @Html.DisplayFor(modelItem => item.countCustomer)
+                        </td>
+                        <td>
+                            <div>
+                                <a onclick="showInPopup('@Url.Action("AddOrEdit","H_Area",new {id=item.Id},Context.Request.Scheme)','تعديل المديرية ')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> تعديل</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <input type="submit" value="حذف" class="btn btn-danger" />
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

@@ -1,0 +1,116 @@
+﻿@model DataModels.TaxGroupTable
+
+@{
+    ViewData["Title"] = "Create";
+    // Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+
+                        <h4 class="page-title"> مجموعة ضريبية جديدة </h4>
+
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="row">
+
+
+
+                <div class="row">
+                    <div class="col-md-9">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"> اسم المجموعة الضريبية</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NameEn" class="control-label">اسم المجموعة الضريبية -انجليزي</label>
+                                <input asp-for="NameEn" class="form-control" />
+                                <span asp-validation-for="NameEn" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Rate" class="control-label">النسبة</label>
+                                <input asp-for="Rate" type="number" min="0" max="100" class="form-control" />
+                                <span asp-validation-for="Rate" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                            <div class="form-check form-switch">
+
+                                <input class="form-check-input"
+                                           id="flexSwitchCheckDefault" type="checkbox" name="IsBaladiTax" asp-for="IsBaladiTax">
+                                    <label asp-for="IsBaladiTax" class="control-label">تفعيل ضريبة بلدي</label>
+                                    <span asp-validation-for="IsBaladiTax" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                           
+                            <div class="form-group">
+                                <label asp-for="BaladiRate" class="control-label">نسبة ضريبة بلدي</label>
+                                <input asp-for="BaladiRate" type="number" min="0" max="100" class="form-control" />
+                                <span asp-validation-for="BaladiRate" class="text-danger"></span>
+                            </div>
+            @*<div class="form-group">
+                <label asp-for="IdUser" class="control-label"></label>
+                <input asp-for="IdUser" class="form-control" />
+                <span asp-validation-for="IdUser" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="انشاء" class="btn btn-default" />
+            </div>
+        </form>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div><!-- container -->
+            <!--Start Rightbar-->
+            <!--Start Rightbar/offcanvas-->
+            <!--end Rightbar-->
+            <!--Start Footer-->
+            <!-- Footer Start -->
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+            <!-- end Footer -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

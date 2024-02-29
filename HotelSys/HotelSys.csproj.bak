@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <DefaultItemExcludes>Reports\**</DefaultItemExcludes>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Reports\**" />
+    <Compile Remove="Views\BondTables\**" />
+    <Compile Remove="Views\City\**" />
+    <Compile Remove="Views\CustomerTables\**" />
+    <Content Remove="Reports\**" />
+    <Content Remove="Views\BondTables\**" />
+    <Content Remove="Views\City\**" />
+    <Content Remove="Views\CustomerTables\**" />
+    <EmbeddedResource Remove="Reports\**" />
+    <EmbeddedResource Remove="Views\BondTables\**" />
+    <EmbeddedResource Remove="Views\City\**" />
+    <EmbeddedResource Remove="Views\CustomerTables\**" />
+    <None Remove="Reports\**" />
+    <None Remove="Views\BondTables\**" />
+    <None Remove="Views\City\**" />
+    <None Remove="Views\CustomerTables\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Data\nwind.db" />
+    <None Remove="Data\reportsData.db" />
+    <None Remove="PredefinedReports\ClientsBalanceRPT.repx" />
+    <None Remove="PredefinedReports\CusInHotelRPT.repx" />
+    <None Remove="PredefinedReports\CusInHotelRPT_V.repx" />
+    <None Remove="PredefinedReports\TestReport.repx" />
+    <None Remove="PredefinedReports\XtraReport12.repx" />
+    <None Remove="PredefinedReports\_AccountBalaceRPT.repx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\nwind.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\reportsData.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Data\nwind.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="node_modules\**" />
+    <Content Remove="node_modules\**" />
+    <EmbeddedResource Remove="node_modules\**" />
+    <None Remove="node_modules\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PredefinedReports\*.vsrepx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\BoxsController.cs" />
+    <Compile Remove="Services\CustomReportStorageWebExtension.cs" />
+    <Compile Remove="Services\CustomSqlDataConnectionProviderFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Reception\_newcustomerModal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PredefinedReports\ClientsBalanceRPT.repx" />
+    <EmbeddedResource Include="PredefinedReports\CusInHotelRPT_V.repx" />
+    <EmbeddedResource Include="PredefinedReports\CusInHotelRPT.repx" />
+    <EmbeddedResource Include="PredefinedReports\TestReport.repx" />
+    <EmbeddedResource Include="PredefinedReports\XtraReport12.repx" />
+    <EmbeddedResource Include="PredefinedReports\_AccountBalaceRPT.repx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="db\db.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\ClientsBalanceRPT.cs">
+      <DependentUpon>ClientsBalanceRPT.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\ClientsBalanceRPT.Designer.cs">
+      <DependentUpon>ClientsBalanceRPT.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\CusInHotelRPT.cs">
+      <DependentUpon>CusInHotelRPT.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\CusInHotelRPT.Designer.cs">
+      <DependentUpon>CusInHotelRPT.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\CusInHotelRPT_V.cs">
+      <DependentUpon>CusInHotelRPT_V.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\CusInHotelRPT_V.Designer.cs">
+      <DependentUpon>CusInHotelRPT_V.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\TestReport.cs">
+      <DependentUpon>TestReport.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\TestReport.Designer.cs">
+      <DependentUpon>TestReport.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\XtraReport12.cs">
+      <DependentUpon>XtraReport12.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\XtraReport12.Designer.cs">
+      <DependentUpon>XtraReport12.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\_AccountBalaceRPT.cs">
+      <DependentUpon>_AccountBalaceRPT.repx</DependentUpon>
+    </Compile>
+    <Compile Update="PredefinedReports\_AccountBalaceRPT.Designer.cs">
+      <DependentUpon>_AccountBalaceRPT.repx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="LibraryManagerRestore" Condition="!Exists('node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec Command="npm install" />
+  </Target>
+  <ItemGroup>
+    
+    
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
+    
+    
+    <PackageReference Include="linq2db" Version="4.2.0" />
+    
+    
+    <PackageReference Include="linq2db.AspNet" Version="4.2.0" />
+    
+    
+    <PackageReference Include="linq2db.SqlServer" Version="4.2.0" />
+    
+    
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
+    
+    
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.17" />
+    
+    
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.7" />
+    
+    
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" /><PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" /><PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference><PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" /><PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    
+    
+    
+    <PackageReference Include="System.Data.SQLite" Version="1.0.114.4" /><PackageReference Include="DevExpress.AspNetCore.Reporting" Version="23.1.3" /><PackageReference Include="BuildBundlerMinifier" Version="3.2.449" /><PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" /><PackageReference Include="ZXing.Net" Version="0.16.6" /><PackageReference Include="ZXing.Net.Bindings.ZKWeb.System.Drawing" Version="0.16.5" /></ItemGroup>
+  <ItemGroup>
+    <None Update="db\db.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>db.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\popup\" />
+    <Folder Include="Views\Reception\reportRece\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DevExtreme.AspNet.Core">
+      <HintPath>C:\Users\HSAMPC2\.nuget\packages\devextreme.aspnet.core\23.1.3\lib\net6.0\DevExtreme.AspNet.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

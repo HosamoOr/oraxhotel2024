@@ -1,0 +1,136 @@
+﻿
+    <div class="modal fade" id="summaryCancelModal" tabindex="-1" aria-labelledby="summaryCancelModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >الغاء العقد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"> الغاء العقد</h4>
+
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3 row">
+
+                                                <label class="col-sm-3 col-form-label text-end">رقم الحجز</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="idReceptionOut" name="idReceptionOut"
+                                                           type="text" value="65" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end"> تاريخ الحجز</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="dateEnterOut" name="dateEnterOut"
+                                                           type="text" value="22/8/2022" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end"> الرصيد</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="balancerOut" name="balancerOut"
+                                                           type="text" value="0" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-sm-3 col-form-label text-end"> سبب الغاء الحجز</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" id="whyCancel" name="whyCancel"
+                                                           type="text" placeholder="اكتب سبب الغاء الحجز ">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="mb-3 row">
+
+                                                <div class="col-sm-12">
+                                                    <textarea class="form-control" id="noteOut" name="noteOut"
+                                                              type="text" value=""
+                                                              rows="2"
+                                                              style="min-width: 100%"
+                                                              disabled>
+                                                      </textarea>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        اضهار تفاصيل العمليات
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <div id="itemss"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div><!--end card-->
+                            </div><!--end col-->
+                        </div>
+
+
+                    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">خروج</button>
+                            <div id="btnlogout">
+                                <button type="button" class="btn btn-primary" 
+                                        
+                                        onclick="#">الغاء الحجز</button>
+
+                            </div>
+                            @*<div id="btnBondP">
+                                <button type="button" class="btn btn-primary" onclick="showTalkDoadOut()">اضافة سند قبض </button>
+
+                            </div>
+                            
+                            <div id="btnBondE">
+                                <button id="btnnBounE" type="button" class="btn btn-primary" onclick="showPayDoadOut()">اضافة سند صرف </button>
+
+                            </div>*@
+
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+
+    </div>
+        </div>
+
+@*</form>*@

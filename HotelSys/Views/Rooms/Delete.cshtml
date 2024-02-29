@@ -1,0 +1,145 @@
+﻿@model HotelSys.ViewModel.RoomViewModel
+
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادات</a></li>
+                                <li class="breadcrumb-item"><a href="#">الشقق  </a></li>
+                            </ol>
+                        </div>
+                      
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+
+                            <a asp-action="Index">رجوع</a>
+
+
+                        </div>
+                        <h4 class="page-title"> حذف شقة </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+            </div>
+
+            <hr />
+            <div class="row">
+
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="met-profile">
+                                <div class="row">
+                                    <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                        <div class="met-profile-main">
+
+                                            <div class="met-profile_user-detail">
+                                                <h5 class="met-user-name">@Html.DisplayFor(model => model.NameR)</h5>
+                                                <p class="mb-0 met-user-name-post">الدور:   @Html.DisplayFor(model => model.NumFloor), النوع : @Html.DisplayFor(model => model.Roomstabletyperoomstable.NameT)
+                                               </p>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+
+                                    <div class="col-lg-4 ms-auto align-self-center">
+                                        <ul class="list-unstyled personal-detail mb-0">
+                                            <li class="">
+
+                                                <b> عدد الاسرة المنفردة: </b> :  @Html.DisplayFor(model => model.CountBedSingle)
+                                            </li>
+                                            <li class="mt-2">
+
+                                                <b> عدد الاسرة المزدوجة: </b> :  @Html.DisplayFor(model => model.CountBedDouble)
+                                            </li>
+                                            <li class="mt-2">
+                                                <b> عدد الخزائن  </b> :
+                                                @Html.DisplayFor(model => model.CountWallet)
+                                            </li>
+
+                                            <li class="mt-2">
+                                                <b> مميزات خاصة :  </b> :
+                                                @Html.DisplayFor(model => model.PrivateFeatures)
+                                            </li>
+
+
+                                        </ul>
+
+                                    </div><!--end col-->
+                                    <div class="col-lg-4 align-self-center">
+                                        <div class="row">
+                                            <div class="col-auto text-end border-end">
+
+
+                                                <ul class="list-unstyled personal-detail mb-0">
+
+                                                    <li class="mt-2">
+                                                        <b>  عدد التلفزيونات: </b> :
+                                                        @Html.DisplayFor(model => model.CountTv)
+                                                    </li>
+
+                                                    <li class="mt-2">
+                                                        <b> نوع المكيف:   </b> :
+                                                        @Html.DisplayFor(model => model.TypeCondition)
+                                                    </li>
+                                                    <li class="mt-2">
+                                                        <b> مميزات عامة :  </b> :
+                                                        @Html.DisplayFor(model => model.PublicFeatures)
+                                                    </li>
+
+
+
+                                                </ul>
+                                            </div><!--end col-->
+                                         
+                                        </div><!--end row-->
+
+                                    </div><!--end col-->
+                                </div><!--end row-->
+                                <br />
+                                <div class="row">
+                                    <div class="col-auto">
+
+
+                                        <b> ملاحظات </b> :
+                                        @Html.DisplayFor(model => model.Note)
+
+                                    </div>
+
+                                </div>
+                            </div><!--end f_profile-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="IdR" />
+                    <input type="submit" value="حذف الشقة" class="btn btn-danger" />
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

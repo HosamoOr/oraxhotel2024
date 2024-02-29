@@ -1,0 +1,776 @@
+﻿@using DevExtreme.AspNet.Mvc
+
+@{
+    ViewData["Title"] = "Index";
+     Layout = "~/Views/Shared/_LayoutDevExtreme.cshtml";
+
+}
+
+
+@*\f0fe    \2795 *@
+
+@section style{
+
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+
+    <link href="~/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/plugins/animate/animate.min.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+    <style>
+
+        .dx-treeview .dx-treeview-toggle-item-visibility:before {
+            content: "+";
+        }
+
+        .dx-treeview .dx-treeview-toggle-item-visibility.dx-treeview-toggle-item-visibility-opened:before {
+            content: "-";
+
+        }
+
+
+
+
+    
+        .form {
+    display: flex;
+}
+
+.form>div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#treeviewDriveC,
+#treeviewDriveD {
+    margin-top: 1px;
+}
+
+.drive-header {
+    min-height: auto;
+    padding: 0px;
+    cursor: default;
+}
+
+.drive-panel {
+    padding: 0px 0px;
+    font-size: 115%;
+    font-weight: bold;
+    border-right: 1px solid rgba(165, 165, 165, 0.4);
+    height: 100%;
+}
+
+.drive-panel:last-of-type {
+    border-right: none;
+}
+
+
+
+#simple-treeview_1,
+ #details {
+    display: inline-block;
+}
+
+        #details {
+    vertical-align: top;
+    width: 400px;
+    height: 420px;
+    margin-left: 20px;
+    direction: rtl;
+}
+
+            #details > img {
+        border: none;
+        height: 300px;
+        width: 400px;
+    }
+
+            #details > #Name {
+        text-align: center;
+        font-size: 20px;
+    }
+
+        #name > .price {
+        text-align: center;
+        font-size: 24px;
+    }
+
+        .dark #name > div {
+    color: #f0f0f0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+    
+    </style>
+}
+
+
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+  @*  <div class="page-content-tab">*@
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">المالية</a></li>
+                                <li class="breadcrumb-item"><a href="#">  </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">شجرة الحسابات </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                        <a class="btn btn-success" style="margin-bottom:10px" onclick="newClick()">
+                                <i class="fa fa-plus"></i> جديد
+                            </a>
+
+
+                            @*<button type="button" class="btn btn-primary"
+                            onclick="@("window.location.href='" + @Url.Action("Create", "Customers") + "'");"
+                            new { id=5 })">
+
+                            <i class="mdi add-file-input me-2"></i>  + عميل جديد
+                            </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+
+                <div class="row">
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @* <div class="drive-panel">*@
+                            <div class="card">
+
+                                <div class="card-body">
+
+
+                                    <div id="details" class="hidden">
+
+
+                                        <div class="row">
+
+                                            <form  class="name">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                                            <input id="mainORsub" type="hidden" name="mainORsub" class="form-control" />
+                                               
+                                                <div class="form-group">
+                                                    <label class="control-label"> رقم الحساب</label>
+                                                <input id="ID" name="ID" class="form-control" readonly />
+                                                    @*<span asp-validation-for="Name" class="text-danger"></span>*@
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label"> اسم الحساب</label>
+                                                    <input id="Name" name="Name" class="form-control" />
+                                                    @*<span asp-validation-for="Name" class="text-danger"></span>*@
+                                                </div>
+                                                @*<div class="form-group">
+                                                <label class="control-label">التاريخ </label>
+                                                <input asp-for="Createat" class="form-control" />
+                                                <span asp-validation-for="Createat" class="text-danger"></span>
+                                                </div>*@
+                                                <div class="form-group">
+                                                    <label class="control-label">مجموعة الحساب</label>
+                                                    <select id="IdGroup" name="IdGroup" class="form-control" asp-items="ViewBag.IdGroup"></select>
+                                                </div>
+
+                                                <div class="form-group hidden" id="priv_Acc">
+                                                    <label class="control-label">حالة الحساب</label>
+                                                    <select name="Status" class="form-control">
+                                                        <option value="active">active</option>
+                                                        <option value="disable">disable</option>
+                                                    </select>
+
+
+                                                </div>
+
+                                            <hr class="mt-2 mb-3" />
+
+                                            <div class="row mb-3">
+                                                <label class="col-md-3 my-1 control-label">نوع الحساب</label>
+                                                <div class="col-md-9">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" onclick="handleClick(this);" name="inlineRadioOptions" id="mainRadio" value="main" checked="checked">
+                                                        <label class="form-check-label" for="inlineRadio1">رئيسي</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" onclick="handleClick(this);" name="inlineRadioOptions" id="subRadio" value="sub">
+                                                        <label class="form-check-label" for="inlineRadio2">فرعي</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                                <div class="form-group">
+                                                    <input id="btnSave" type="button" value="حفظ "   onclick="saveTree()" class="btn btn-primary" />
+                                                
+                                                <input id="btnDelete" type="button" value="حذف " onclick="deleteTree()" class="btn btn-danger" />
+
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                    @* <img id="someImage" src="http://here/goes/my.jpg">
+                                    <img alt="Product details" src="" />
+                                    <div class="name"></div>
+                                    <div class="price"></div>*@
+                                    @*</div>*@
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="card">
+
+                                <div class="card-body">
+
+
+                                    <div class="drive-header dx-treeview-item">
+                                        <div class="dx-treeview-item-content">
+                                            <i class="dx-icon dx-icon-activefolder"></i>
+                                            <span>الحسابات:</span>
+                                        </div>
+                                    </div>
+
+                                    @*   @(Html.DevExtreme().Sortable()
+                                    .Filter(".dx-treeview-item")
+                                    .Data("driveC")
+                                    .Group("shared")
+                                    .AllowReordering(true)
+                                    .AllowDropInsideItem(true)
+                                    .OnDragChange("onDragChange")
+                                    .OnDragEnd("onDragEnd")
+                                    .Content(
+                                    Html.DevExtreme().TreeView()
+
+                                    .ExpandNodesRecursive(false)
+                                    .DataStructure(TreeViewDataStructure.Plain)
+                                    .KeyExpr("Id")
+                                    .ParentIdExpr("IdGroup")
+                                    .ExpandedExpr("IsExpanded")
+                                    .DisplayExpr("Name")
+                                    .DataSource(d => d.Mvc().LoadAction("GetPlainDataForDragAndDrop"))
+                                    .DataSourceOptions(o => o.Map("mapIcons"))
+
+                                    .RtlEnabled(false)
+
+                                    .CollapseIcon("file")
+                                    .ExpandIcon("activefolder")
+                                    .OnItemClick("OnItemClick")
+                                    .Width(500)
+
+                                    .Height(500)
+                                    .ToString()
+                                    ))*@
+
+
+
+                                    @(Html.DevExtreme().TreeView()
+                                        .ID("simple-treeview_1")
+                                        .ExpandNodesRecursive(false)
+                                        .DataStructure(TreeViewDataStructure.Plain)
+                                        .KeyExpr("Id")
+                                        .ParentIdExpr("IdGroup")
+                                        .ExpandedExpr("IsExpanded")
+                                        .DisplayExpr("showName")
+                                        .DataSource(d => d.Mvc().LoadAction("GetPlainDataForDragAndDrop"))
+                                        .DataSourceOptions(o => o.Map("mapIcons"))
+
+                                        .RtlEnabled(false)
+
+                                        .CollapseIcon("file")
+                                        .ExpandIcon("activefolder")
+                                        .OnItemClick("OnItemClick")
+                                        .SearchEnabled(true)
+                                        .Width(500)
+
+                                        .Height(500))
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div><!--end row-->
+                <!--end col-->
+            </div>
+
+
+
+
+            <footer class="footer text-center text-sm-start">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> شركة اوراكس سوفت <span class="text-muted d-none d-sm-inline-block float-end">
+                    للانظمة
+                    وتقنية المعلومات
+                </span>
+            </footer>
+        </div>
+   @* </div>*@
+</div>
+
+
+<script>
+       var item = undefined;
+
+
+       function clearFiled()
+       {
+        $('#ID').val("0");
+        $('#Name').val("");
+       // $("#IdGroup").val(-1).change();
+
+
+        $("#btnSave").prop('value', 'اضافة');
+
+
+    }
+
+    function afterOP()
+    {
+        $('#details').addClass('hidden');
+        clearFiled();
+    }
+
+
+    function newClick() {
+
+        $('#details').removeClass('hidden');
+        $('#mainORsub').val("main");
+
+        $('#Name').prop('readonly', false);
+        $('#IdGroup').prop('disabled', false);
+        $('#btnSave').prop('disabled', false);
+        $('#btnDelete').prop('disabled', false);
+
+        clearFiled();
+
+        }
+
+    function handleClick(myRadio) {
+       
+        $('#mainORsub').val(myRadio.value);
+
+        if ($('#mainORsub').val() == "sub") {
+            $('#priv_Acc').removeClass('hidden');
+           
+        }
+        else if ($('#mainORsub').val() == "main") {
+            $('#priv_Acc').addClass('hidden');
+
+        }
+       
+    }
+
+
+     function OnItemClick(e) {
+
+     item = e.itemData;
+        $('#details').removeClass('hidden');
+        
+
+        $('#ID').val(item.Id);
+        $('#Name').val(item.Name);
+       
+        $("#IdGroup").val(item.IdGroup).change();
+        $('#mainORsub').val(item.mainORsub);
+
+       
+        if(item.IsPrivate == true)
+        {
+            $('#Name').prop('readonly', true);      
+            $('#IdGroup').prop('disabled', true);
+            $('#btnSave').prop('disabled', true);
+            $('#btnDelete').prop('disabled', true);
+        }
+        else {
+            $('#Name').prop('readonly', false);
+            $('#IdGroup').prop('disabled', false);
+            $('#btnSave').prop('disabled', false);
+            $('#btnDelete').prop('disabled', false);
+        }
+
+
+        if ($('#mainORsub').val()=="main")
+        {
+            $("#mainRadio").prop("checked", true);
+            
+        }
+        else{
+            $("#subRadio").prop("checked", true);
+        }
+
+        
+
+        $("#btnSave").prop('value', 'تعديل');
+       
+        if (item.mainORsub=="sub")
+        {
+            $('#priv_Acc').removeClass('hidden');
+            $('#Status').val(item.Status);
+           
+        }
+        else if (item.mainORsub == "main") 
+        {
+            $('#priv_Acc').addClass('hidden');
+          
+        }
+
+     // if (item.price) {
+        //$('#product-details').removeClass('hidden');
+        //$('#product-details > img').attr('alt', item.Name).attr('src', item.icon);
+        //$('#product-details > .price').text(`$${item.price}`);
+        //$('#product-details > .name').text(item.name);
+
+      //} else {
+      //  $('#product-details').addClass('hidden');
+      //}
+    }
+
+
+
+    showDelPop_2_2 = (url, title) => {
+         alert(url);
+
+
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "هل انت متأكد من حذف" + title + " !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم, حذف السجل!',
+        }).then(function (result) {
+            if (result.isConfirmed) {
+
+
+                var id_G = $(":selected", $("#IdGroup")).val();
+
+                var myModel =
+                {
+                    "Id": $('#ID').val(),
+                    "Name": $('#Name').val(),
+                    "IdGroup": id_G,
+                    "mainORsub": $('#mainORsub').val(),
+
+                };
+
+               
+
+                $.post(url, myModel, function (response) {
+
+                   var mee="تم الحذف";
+
+                    if (response.id >0)
+                    {
+                        Swal.fire(
+                            mee,
+                            response.messege,
+                            'success'
+                        );
+
+                        afterOP();
+                       
+                        //$('#simple-treeview_1').dxTreeView("instance").refresh();
+
+                        $('#simple-treeview_1').dxTreeView("instance").getDataSource().reload();
+                    }
+                    else{
+                        mee = "خطا لم يتم الحذف";
+                         Swal.fire({
+                         icon: 'error',
+                          title: mee,
+                        text: response.messege,
+                        footer: '<a href>Why do I have this issue?</a>'
+                        });
+
+
+                    }
+
+                    
+
+                    //}
+                    //else {
+                    //    alert("error");
+
+                    //}
+
+
+                });
+
+
+
+            }
+        })
+
+    }
+
+   
+
+    function deleteTree()
+    {
+        if ($('#ID').val()=="0")
+        {
+            alert('الرجاء اختيار الحساب اولا');
+        }
+        else
+        {
+            showDelPop_2_2("/_TreeAccounts/Delete/", " accounts ");
+        }
+       
+    }
+    
+
+    function saveTree()
+    {
+        
+
+        var id_G = $(":selected", $("#IdGroup")).val();
+
+        var myModel =
+        {
+            "Id": $('#ID').val(),
+            "Name": $('#Name').val(),
+            "IdGroup": id_G,
+            "mainORsub": $('#mainORsub').val(),
+          
+        };
+
+        var url = '/_TreeAccounts/AddOrEdit'; //$(this).attr("action"); @Url.Action("Create", "Reception")
+        // var formData = $(this).serialize();
+
+        $.post(url, myModel, function (response) {
+
+            var mee = "تم الحفظ";
+
+            if (response.id > 0) {
+                executeExample('mixin');
+
+                afterOP();
+
+
+            }
+            else {
+                mee = "خطا ";
+                Swal.fire({
+                    icon: 'error',
+                    title: mee,
+                    text: response.messege,
+                    footer: '<a href>Why do I have this issue?</a>'
+                });
+
+
+            }
+            //}
+            //else {
+            //    alert("error");
+
+            //}
+
+
+        });
+
+    }
+
+
+
+    $(function () {
+
+
+
+        $("#newButton").dxButton({
+            icon: "save",
+            text: "جديد"
+        });
+    })
+
+    function onDragChange(e) {
+        if(e.fromComponent === e.toComponent) {
+            var $nodes = e.element.find(".dx-treeview-node");
+            var isDragIntoChild = $nodes.eq(e.fromIndex).find($nodes.eq(e.toIndex)).length > 0;
+            if(isDragIntoChild) {
+                e.cancel = true;
+            }
+        }
+    }
+
+    function onDragEnd(e) {
+        if(e.fromComponent === e.toComponent && e.fromIndex === e.toIndex) {
+            return;
+        }
+
+        var fromTreeView = getTreeView(e.fromData);
+        var toTreeView = getTreeView(e.toData);
+
+        var fromNode = findNode(fromTreeView, e.fromIndex);
+        var toNode = findNode(toTreeView, calculateToIndex(e));
+
+        if(e.dropInsideItem && toNode !== null && !toNode.itemData.IsDirectory) {
+            return;
+        }
+
+        var fromTopVisibleNode = getTopVisibleNode(fromTreeView);
+        var toTopVisibleNode = getTopVisibleNode(toTreeView);
+
+        var fromItems = fromTreeView.option('items');
+        var toItems = toTreeView.option('items');
+        moveNode(fromNode, toNode, fromItems, toItems, e.dropInsideItem);
+
+        fromTreeView.option("items", fromItems);
+        toTreeView.option("items", toItems);
+        fromTreeView.scrollToItem(fromTopVisibleNode);
+        toTreeView.scrollToItem(toTopVisibleNode);
+    }
+
+    function getTreeView(driveName) {
+        return driveName === 'driveC'
+            ? $('#treeviewDriveC').dxTreeView('instance')
+            : $('#treeviewDriveD').dxTreeView('instance');
+    }
+
+    function calculateToIndex(e) {
+        if(e.fromComponent != e.toComponent || e.dropInsideItem) {
+            return e.toIndex;
+        }
+
+        return e.fromIndex >= e.toIndex
+            ? e.toIndex
+            : e.toIndex + 1;
+    }
+
+
+    function findNode(treeView, index) {
+        var nodeElement = treeView.element().find('.dx-treeview-node')[index];
+        if(nodeElement) {
+            return findNodeById(treeView.getNodes(), nodeElement.getAttribute('data-item-id'));
+        }
+        return null;
+    }
+
+    function findNodeById(nodes, id) {
+        for(var i = 0; i < nodes.length; i++) {
+            if(nodes[i].itemData.Id == id) {
+                return nodes[i];
+            }
+            if(nodes[i].children) {
+                var node = findNodeById(nodes[i].children, id);
+                if(node != null) {
+                    return node;
+                }
+            }
+        }
+        return null;
+    }
+
+    function moveNode(fromNode, toNode, fromItems, toItems, isDropInsideItem) {
+        var fromIndex = findIndex(fromItems, fromNode.itemData.Id);
+        fromItems.splice(fromIndex, 1);
+
+        var toIndex = toNode === null || isDropInsideItem
+            ? toItems.length
+            : findIndex(toItems, toNode.itemData.Id);
+        toItems.splice(toIndex, 0, fromNode.itemData);
+
+        moveChildren(fromNode, fromItems, toItems);
+        if(isDropInsideItem) {
+            fromNode.itemData.ParentId = toNode.itemData.Id;
+        } else {
+            fromNode.itemData.ParentId = toNode != null
+                ? toNode.itemData.ParentId
+                : undefined;
+        }
+    }
+
+    function moveChildren(node, fromItems, toItems) {
+        if(!node.itemData.IsDirectory) {
+            return;
+        }
+
+        node.children.forEach(function(child) {
+            if(child.itemData.IsDirectory) {
+                moveChildren(child, fromItems, toItems);
+            }
+
+            var fromIndex = findIndex(fromItems, child.itemData.Id);
+            fromItems.splice(fromIndex, 1);
+            toItems.splice(toItems.length, 0, child.itemData);
+        });
+    }
+
+    function findIndex(array, id) {
+        var idsArray = array.map(function(elem) { return elem.Id; });
+        return idsArray.indexOf(id);
+    }
+
+    function getTopVisibleNode(component) {
+        var treeViewElement = component.element().get(0);
+        var treeViewTopPosition = treeViewElement.getBoundingClientRect().top;
+        var nodes = treeViewElement.querySelectorAll(".dx-treeview-node");
+        for(var i = 0; i < nodes.length; i++) {
+            var nodeTopPosition = nodes[i].getBoundingClientRect().top;
+            if(nodeTopPosition >= treeViewTopPosition) {
+                return nodes[i];
+            }
+        }
+
+        return null;
+    }
+
+    function mapIcons(item) {
+        if (item.Icon) {
+            item.icon = item.Icon;
+        }
+        return item;
+    }
+</script>

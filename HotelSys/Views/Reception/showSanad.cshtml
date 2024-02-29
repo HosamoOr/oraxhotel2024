@@ -1,0 +1,260 @@
+﻿@model HotelSys.ViewModel.showInvRecepitonVM
+@{
+    ViewData["Title"] = "showInvoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="#">الشقق والتسكين</a>
+                                    </li><!--end nav-item-->
+                                    <li class="breadcrumb-item">
+                                        <a href="#">تسجيل الدخول</a>
+                                    </li><!--end nav-item-->
+                                    <li class="breadcrumb-item active">الاسناد</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">عرض السند</h4>
+                        </div><!--end page-title-box-->
+                    </div><!--end col-->
+                </div>
+                <!-- end page title end breadcrumb --> 
+                <div class="row">
+
+
+
+
+<div class="card">
+  <div class="card-body">
+    <div class="container mb-5 mt-3">
+      <div class="row d-flex align-items-baseline">
+        <div class="col-xl-9">
+          <p style="color: #7e8d9f;font-size: 15px;">فاتورة ضريبية  >> <strong>ID: #@Model.receptionData.IdReception</strong></p>
+        </div>
+        <div class="col-xl-3 float-end d-print-none">
+          <a class="btn btn-light text-capitalize border-0" href="javascript:window.print()" data-mdb-ripple-color="dark"><i
+              class="fas fa-print text-primary"></i> طباعة</a>
+          <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
+              class="far fa-file-pdf text-danger"></i> Export</a>
+        </div>
+        <hr>
+      </div>
+
+
+        <div class="row d-flex align-items-baseline">
+         <div class="col-md-9">
+          <div class="text-center">
+            @*<i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>*@
+             <ul class="list-unstyled ">
+            <li style="font-size: 19px; color: red;">@Model.hotelData.NameH</li>
+
+            @{
+                if(Model.hotelData.TaxNum!="")
+                {
+                   <li>@Model.hotelData.TaxNum</li>
+                }
+                 if (Model.hotelData.Address != "")
+                {
+                   <li>@Model.hotelData.Address</li>
+                }
+                if (Model.hotelData.Phone != "")
+                {
+                   <li>@Model.hotelData.Phone</li>
+                }
+                   @*<li>@Model.hotelData.Email</li>*@
+            }
+           
+          
+         
+            </ul>
+          </div>
+
+        </div> 
+        
+      
+           <div class="col-xl-3 float-end d-print-none">
+            @{
+                                            if (@Model.hotelData.Logo == "")
+                                            {
+                                                <img src="~/img/logo.jpg" alt="صورة شعار المؤسسة" width="70" height="70">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Model.hotelData.Logo" alt="صورة شعار المؤسسة" width="70" height="70">
+                                            }
+                                        }
+         
+          </div>
+            <hr>
+    </div>
+
+      <div class="container">
+       
+        
+
+
+        <div class="row">
+          <div class="col-xl-7">
+            <ul class="list-unstyled">
+              <li class="text-muted">اسم العميل: <span style="color:#5d9fc5 ;">@Model.receptionData.customer.Name</span></li>
+              <li class="text-muted"><i class="fas fa-phone"></i> @Model.receptionData.customer.PhoneWork</li>
+              <li class="text-muted">@Model.receptionData.customer.LocWork</li>
+              <li class="text-muted">@Model.receptionData.customer.Nationality</li>
+              
+            </ul>
+          </div>
+          <div class="col-xl-4">
+           
+            <ul class="list-unstyled">
+              <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                  class="fw-bold">رقم فاتورة العقد:</span>#@Model.receptionData.bill.Id</li>
+              <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                  class="fw-bold">تاريخ بداية الحجز: </span> @Model.receptionData.StartDate</li>
+              <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                  class="me-1 fw-bold">تاريخ انتهاء الحجز:</span><span class="badge bg-warning text-black fw-bold">
+                  @Model.receptionData.EndDate</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row my-2 mx-1 justify-content-center">
+          <table class="table table-striped table-borderless">
+            <thead style="background-color:#84B0CA ;" class="text-white">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Description</th>
+                @*<th scope="col">Qty</th>
+                <th scope="col">Unit Price</th>*@
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>المقبوضات</td>
+                <td>@Model.receptionData.summaryPrice.sum_Pay</td>
+              @*  <td>$200</td>
+                <td>$800</td>*@
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>المصروفات/التامين</td>
+                <td>@Model.receptionData.summaryPrice.sum_Ex</td>
+              
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>الخصم</td>
+                <td>@Model.receptionData.bill.QtyDiscount</td>
+                
+              </tr>
+               <tr>
+                <th scope="row">4</th>
+                <td>الضريبة(@Model.receptionData.bill.TotalTaxRate %)</td>
+                <td>@Model.receptionData.bill.TotalBaladiTaxPrice</td>
+                
+              </tr>
+
+
+              @{
+                                                    if(Model.receptionData.bill.IsBaladiTax==true)
+                                                    {
+
+                                                         <tr>
+                <th scope="row">5</th>
+                 <td>ضريبة بلدي(@Model.receptionData.bill.TotalBaladiTaxRate %)</td>
+                <td>@Model.receptionData.bill.TotalBaladiTaxPrice</td>
+                
+              </tr>
+
+                                                       
+                                                    }
+
+                }
+
+                 @{
+                         if(Model.receptionData.summaryPrice.sum_services>0)
+                                    {
+
+                                         <tr>
+                <th scope="row">3</th>
+                <td>الخدمات</td>
+                <td>@Model.receptionData.summaryPrice.sum_services </td>
+                
+              </tr>
+
+      
+                                                    }
+                                                }
+
+              
+              
+             
+            
+            </tbody>
+
+          </table>
+        </div>
+        <div class="row">
+          
+          <div class="col-xl-3">
+            <ul class="list-unstyled">
+              <li class="text-muted ms-3"><span class="text-black me-4">التكلفة المستحقة</span> @Model.receptionData.summaryPrice.final_total</li>
+              <li class="text-muted ms-3 mt-2"><span class="text-black me-4">الاجمالي قبل الضريبية</span>
+              @{
+                        var totaBeforvat=Model.receptionData.summaryPrice.total_befor_VAT;
+                        <span> @totaBeforvat </span>
+                    }    
+              </li>
+               <li class="text-muted ms-3"><span class="text-black me-4"> الاجمالي</span> @Model.receptionData.summaryPrice.total</li>
+             
+            </ul>
+            <p class="text-black float-start"><span class="text-black me-3"> الرصيد</span><span
+                style="font-size: 25px;">@Model.receptionData.summaryPrice.balancer</span></p>
+          </div>
+        </div>
+         <div class="row">
+         <div class="col-md-12">
+          <div class="text-center">
+             @{
+                if (Model.qR.bytes != null)
+                {
+                   
+                    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.qR.bytes))" />
+                }
+            }
+          </div>
+
+        </div> 
+        </div>
+
+        <hr>
+        <div class="row d-print-none">
+          <div class="col-xl-10">
+            <p>Thank you </p>
+          </div>
+         @* <div class="col-xl-2">
+            <button type="button" class="btn btn-primary text-capitalize"
+              style="background-color:#60bdf3 ;">...</button>
+          </div>*@
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>

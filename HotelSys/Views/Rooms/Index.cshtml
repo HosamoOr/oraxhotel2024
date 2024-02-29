@@ -1,0 +1,241 @@
+﻿@model IEnumerable<HotelSys.ViewModel.RoomViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادت</a></li>
+                                <li class="breadcrumb-item"><a href="#">الشقق </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">الشقق </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button class="btn btn-success " style="margin-bottom:10px"
+                               onclick="@("window.location.href='" + @Url.Action("Create", "Rooms") + "'");"
+                               new { id=5 })">
+                                <i class="fa fa-plus"></i> شقة جديدة
+                            </button>
+                            @*<button type="button" class="btn btn-primary"
+                                    onclick="@("window.location.href='" + @Url.Action("Create", "Rooms") + "'");"
+                                    new { id=5 })">
+
+                                <i class="mdi add-file-input me-2"></i>  + شقة جديدة
+                            </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0 table-centered">
+                        <thead>
+                            <tr>
+
+                                <th>اسم الغرفة</th>
+                                <th>نوع الغرفة</th>
+                                <th>الطابق</th>
+                                <th>عدد الغرف</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @item.NameR
+                                    </td>
+
+                                  
+
+                                    <td>   <a   class="label label-tag" asp-action="Details" asp-route-id="@item.Roomstabletyperoomstable.Id" asp-controller="TypeRooms" >
+                                                                            @item.Roomstabletyperoomstable.NameT</a>
+                                                                            
+                                       
+                                        <span id="boot-icon" class="bi bi-circle" style="font-size: 10px; color: @item.Roomstabletyperoomstable.Color;"></span>
+                                                                        
+                                                                        </td>
+                                    <td>@item.NumFloor</td>
+                                    <td>@item.CountRooms</td>
+                                    <td class="text-end">
+
+                                        <a asp-action="Edit" asp-route-id="@item.IdR"><i class="fas fa-edit text-success font-20"></i></a>
+
+                                        <a asp-action="Delete" asp-route-id="@item.IdR"><i class="las fa-trash text-danger font-24"></i></a>
+
+                                        @*<div class="dropdown d-inline-block">
+                                            <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                <i class="las la-ellipsis-v font-20 text-muted"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
+
+
+                                                <a class="btn btn-primary-outline" asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="fas fa-edit text-success font-17"></i>
+                                                    تعديل
+                                                </a>
+                                                <a class="dropdown-item" href="#">حذف</a>
+
+                                            </div>
+                                        </div>*@
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table><!--end /table-->
+                </div>
+
+
+                <!--end col-->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
+
+    <script src="~/lib/jquery-1.12.4.min.js"></script>
+    <script src="~/lib/bootstrap.min.js"></script>
+    <script src="~/lib/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/lib/notify.min.js"></script>
+
+    <script>
+        var Popup, dataTable;
+        $(document).ready(function () {
+            dataTable =  $("#employeeTable").DataTable({
+                "ajax": {
+                    "url": "/Employee/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Name" },
+                    { "data": "Position" },
+                    { "data": "Office" },
+                    { "data": "Age" },
+                    { "data": "Salary" },
+                    {"data":"EmployeeID" , "render" : function (data) {
+                        return "<a class='btn btn-default btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Employee")/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i> Delete</a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"150px"
+                    }
+
+                ],
+                "language": {
+
+                    "emptyTable" : "No data found, Please click on <b>Add New</b> Button"
+                }
+            });
+        });
+
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+            .done(function (response) {
+                formDiv.html(response);
+
+                Popup = formDiv.dialog({
+                    autoOpen: true,
+                    resizable: false,
+                    title: 'انشاء شقة جديدة',
+                    height: 500,
+                    width: 700,
+                    close: function () {
+                        Popup.dialog('destroy').remove();
+                    }
+
+                });
+            });
+        }
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if($(form).valid()){
+                $.ajax({
+                    type : "POST",
+                    url : form.action,
+                    data : $(form).serialize(),
+                    success : function (data) {
+                        if(data.success)
+                        {
+                            Popup.dialog('close');
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message,{
+                                globalPosition :"top center",
+                                className : "success"
+                            })
+
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+
+        function Delete(id) {
+            if(confirm('Are You Sure to Delete this Employee Record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete","Employee")/' + id,
+                    success: function (data) {
+                        if (data.success)
+                        {
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+
+                        }
+                    }
+
+                });
+            }
+        }
+    </script>
+}

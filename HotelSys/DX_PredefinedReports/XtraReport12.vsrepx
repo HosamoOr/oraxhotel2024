@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="22.1.3.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v22.1, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="XtraReport1" Margins="42, 26, 100, 207" PageWidth="850" PageHeight="1100" Version="22.1" DataSource="#Ref-0" Font="Arial, 9.75pt">
+  <Extensions>
+    <Item1 Ref="2" Key="VSReportExtInfo" Value=".repx" />
+  </Extensions>
+  <Bands>
+    <Item1 Ref="3" ControlType="TopMarginBand" Name="TopMargin" />
+    <Item2 Ref="4" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="207">
+      <Controls>
+        <Item1 Ref="5" ControlType="XRPageInfo" Name="pageInfo1" PageInfo="DateTime" SizeF="325,23" LocationFloat="0,0" StyleName="PageInfo" />
+        <Item2 Ref="6" ControlType="XRPageInfo" Name="pageInfo2" TextFormatString="Page {0} of {1}" TextAlignment="TopRight" SizeF="325,23" LocationFloat="325,0" StyleName="PageInfo" />
+      </Controls>
+    </Item2>
+    <Item3 Ref="7" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="60">
+      <Controls>
+        <Item1 Ref="8" ControlType="XRLabel" Name="label1" Text="Report Title" SizeF="650,24.194334" LocationFloat="0,0" StyleName="Title" />
+      </Controls>
+    </Item3>
+    <Item4 Ref="9" ControlType="GroupHeaderBand" Name="GroupHeader1" GroupUnion="WithFirstDetail" HeightF="28">
+      <Controls>
+        <Item1 Ref="10" ControlType="XRTable" Name="table1" SizeF="770.999939,28" LocationFloat="0,0">
+          <Rows>
+            <Item1 Ref="11" ControlType="XRTableRow" Name="tableRow1" Weight="1">
+              <Cells>
+                <Item1 Ref="12" ControlType="XRTableCell" Name="tableCell1" Weight="0.080428954126274307" Text="#" TextAlignment="MiddleRight" StyleName="DetailCaption1" Borders="None">
+                  <StylePriority Ref="13" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="14" ControlType="XRTableCell" Name="tableCell2" Weight="0.27878565536971461" Text="اسم العميل" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="15" UseTextAlignment="false" />
+                </Item2>
+                <Item3 Ref="16" ControlType="XRTableCell" Name="tableCell3" Weight="0.12368055482619214" Text="رقم الهاتف" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="17" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="18" ControlType="XRTableCell" Name="tableCell4" Weight="0.17279673160854123" Text="العتوان" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="19" UseTextAlignment="false" />
+                </Item4>
+                <Item5 Ref="20" ControlType="XRTableCell" Name="tableCell11" Weight="0.20470693733438936" Multiline="true" Text="سبب الزيارة" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="21" UseTextAlignment="false" />
+                </Item5>
+                <Item6 Ref="22" ControlType="XRTableCell" Name="tableCell5" Weight="0.11355595263407464" Text="عدد المرافقين" TextAlignment="MiddleCenter" StyleName="DetailCaption1" Font="Arial, 7pt, style=Bold">
+                  <StylePriority Ref="23" UseFont="false" UseTextAlignment="false" />
+                </Item6>
+                <Item7 Ref="24" ControlType="XRTableCell" Name="tableCell12" Weight="0.13778117959908853" Multiline="true" Text="الهوية" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="25" UseTextAlignment="false" />
+                </Item7>
+                <Item8 Ref="26" ControlType="XRTableCell" Name="tableCell13" Weight="0.1559259872235883" Multiline="true" Text="رقم الهوية" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="27" UseTextAlignment="false" />
+                </Item8>
+                <Item9 Ref="28" ControlType="XRTableCell" Name="tableCell14" Weight="0.17189222914378632" Multiline="true" Text="المرافقين" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="29" UseTextAlignment="false" />
+                </Item9>
+                <Item10 Ref="30" ControlType="XRTableCell" Name="tableCell15" Weight="0.15500200349614698" Multiline="true" Text="ملاحظة" TextAlignment="MiddleCenter" StyleName="DetailCaption1">
+                  <StylePriority Ref="31" UseTextAlignment="false" />
+                </Item10>
+              </Cells>
+            </Item1>
+          </Rows>
+        </Item1>
+      </Controls>
+    </Item4>
+    <Item5 Ref="32" ControlType="DetailBand" Name="Detail" HeightF="25">
+      <Controls>
+        <Item1 Ref="33" ControlType="XRTable" Name="table2" SizeF="650,25" LocationFloat="0,0" OddStyleName="DetailData3_Odd">
+          <Rows>
+            <Item1 Ref="34" ControlType="XRTableRow" Name="tableRow2" Weight="11.5">
+              <Cells>
+                <Item1 Ref="35" ControlType="XRTableCell" Name="tableCell6" Weight="0.11145145071657959" TextAlignment="MiddleRight" StyleName="DetailData1" Borders="None">
+                  <ExpressionBindings>
+                    <Item1 Ref="36" EventName="BeforePrint" PropertyName="Text" Expression="[IdReception]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="37" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="38" ControlType="XRTableCell" Name="tableCell7" Weight="0.24776315783137737" TextAlignment="MiddleRight" StyleName="DetailData1">
+                  <ExpressionBindings>
+                    <Item1 Ref="39" EventName="BeforePrint" PropertyName="Text" Expression="[customer.Name]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="40" UseTextAlignment="false" />
+                </Item2>
+                <Item3 Ref="41" ControlType="XRTableCell" Name="tableCell8" Weight="0.19156469302205509" StyleName="DetailData1">
+                  <ExpressionBindings>
+                    <Item1 Ref="42" EventName="BeforePrint" PropertyName="Text" Expression="[PersonName]" />
+                  </ExpressionBindings>
+                </Item3>
+                <Item4 Ref="43" ControlType="XRTableCell" Name="tableCell9" Weight="0.33183574969951923" StyleName="DetailData1">
+                  <ExpressionBindings>
+                    <Item1 Ref="44" EventName="BeforePrint" PropertyName="Text" Expression="[TitleOfCourtesy]" />
+                  </ExpressionBindings>
+                </Item4>
+                <Item5 Ref="45" ControlType="XRTableCell" Name="tableCell10" Weight="0.11738497220552885" StyleName="DetailData1">
+                  <ExpressionBindings>
+                    <Item1 Ref="46" EventName="BeforePrint" PropertyName="Text" Expression="[Title]" />
+                  </ExpressionBindings>
+                </Item5>
+              </Cells>
+            </Item1>
+          </Rows>
+        </Item1>
+      </Controls>
+    </Item5>
+  </Bands>
+  <StyleSheet>
+    <Item1 Ref="47" Name="Title" BorderStyle="Inset" Padding="6,6,0,0,100" Font="Arial, 14.25pt" ForeColor="255,75,75,75" BackColor="Transparent" BorderColor="Black" Sides="None" StringFormat="Near;Near;0;None;Character;GenericDefault" BorderWidthSerializable="1" />
+    <Item2 Ref="48" Name="DetailCaption1" BorderStyle="Inset" Padding="6,6,0,0,100" Font="Arial, 8.25pt, style=Bold" ForeColor="White" BackColor="255,75,75,75" BorderColor="White" Sides="Left" StringFormat="Near;Center;0;None;Character;GenericDefault" TextAlignment="MiddleLeft" BorderWidthSerializable="2" />
+    <Item3 Ref="49" Name="DetailData1" BorderStyle="Inset" Padding="6,6,0,0,100" Font="Arial, 8.25pt" ForeColor="Black" BorderColor="Transparent" Sides="Left" StringFormat="Near;Center;0;None;Character;GenericDefault" TextAlignment="MiddleLeft" BorderWidthSerializable="2" />
+    <Item4 Ref="50" Name="DetailData3_Odd" BorderStyle="Inset" Padding="6,6,0,0,100" Font="Arial, 8.25pt" ForeColor="Black" BackColor="255,231,231,231" BorderColor="Transparent" Sides="None" StringFormat="Near;Center;0;None;Character;GenericDefault" TextAlignment="MiddleLeft" BorderWidthSerializable="1" />
+    <Item5 Ref="51" Name="PageInfo" BorderStyle="Inset" Padding="6,6,0,0,100" Font="Arial, 8.25pt, style=Bold" ForeColor="255,75,75,75" StringFormat="Near;Near;0;None;Character;GenericDefault" />
+  </StyleSheet>
+  <ComponentStorage>
+    <Item1 Ref="52" ObjectType="DevExpress.DataAccess.ObjectBinding.ObjectDataSource,DevExpress.DataAccess.v22.1" Name="objectDataSource1" Base64="PE9iamVjdERhdGFTb3VyY2UgTmFtZT0ib2JqZWN0RGF0YVNvdXJjZTEiPjxDb25zdHJ1Y3Rvcj48UGFyYW1ldGVyIE5hbWU9ImZsb29yIiBUeXBlPSJTeXN0ZW0uSW50MzIiPjA8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9Im9mZmljZSIgVHlwZT0iU3lzdGVtLkludDMyIj4wPC9QYXJhbWV0ZXI+PFBhcmFtZXRlciBOYW1lPSJwZXJzb25OYW1lIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBJc051bGw9InRydWUiIC8+PFBhcmFtZXRlciBOYW1lPSJ0aXRsZU9mQ291cnRlc3kiIFR5cGU9IlN5c3RlbS5TdHJpbmciIElzTnVsbD0idHJ1ZSIgLz48UGFyYW1ldGVyIE5hbWU9InRpdGxlIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBJc051bGw9InRydWUiIC8+PC9Db25zdHJ1Y3Rvcj48L09iamVjdERhdGFTb3VyY2U+" />
+    <Item2 Ref="0" ObjectType="DevExpress.DataAccess.ObjectBinding.ObjectDataSource,DevExpress.DataAccess.v22.1" Name="objectDataSource2" Base64="PE9iamVjdERhdGFTb3VyY2UgTmFtZT0ib2JqZWN0RGF0YVNvdXJjZTIiIC8+" />
+  </ComponentStorage>
+</XtraReportsLayoutSerializer>

@@ -1,0 +1,139 @@
+﻿@model IEnumerable<DataModels.TaxGroupTable>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الاعدادت</a></li>
+                                <li class="breadcrumb-item"><a href="#">المجموعات الضريبية </a></li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">المجموعات الضريبية </h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+
+                            <button class="btn btn-success" style="margin-bottom:10px"
+                               onclick="@("window.location.href='" + @Url.Action("Create", "TaxGroup") + "'");"
+                               new { id=5 })">
+                                <i class="fa fa-plus"></i> مجموعة ضريبية جديدة
+                            </button>
+                            @*<button type="button" class="btn btn-primary"
+                            onclick="@("window.location.href='" + @Url.Action("Create", "Rooms") + "'");"
+                            new { id=5 })">
+
+                            <i class="mdi add-file-input me-2"></i>  + شقة جديدة
+                            </button>*@
+
+                        </div>
+                        <h4 class="page-title"></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table mb-0 table-centered">
+                        <thead>
+                            <tr>
+
+                                <th>اسم المجموعة الضريبة</th>
+                                <th>اسم الانجليزي للمجموعة</th>
+                                <th>النسبة %</th>
+                                <th>عدد الاصناف</th>
+                                <td>حالة ضريبة بلدي</td>
+                                <th>نسبة ضريبة بلدي %</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @item.Name
+                                    </td>
+
+                                    <td>@item.NameEn</td>
+                                    <td>@item.Rate</td>
+
+                                    <td></td>
+                                    <td>
+                                        @{
+                                            if (@item.IsBaladiTax == false || @item.IsBaladiTax == null)
+                                            {
+                                                <div>غير مفعل</div>
+                                            }
+                                            else
+                                            {
+                                                <div> مفعل</div>
+                                            }
+                                        }
+
+                                       </td>
+
+                                    <td>
+                                        @{
+                                            if (@item.IsBaladiTax == false || @item.IsBaladiTax == null)
+                                            {
+                                                <div>-</div>
+                                            }
+                                            else{
+                                                @item.BaladiRate
+                                            }
+                                            }
+                                        
+                                        </td>
+                                    <td class="text-end">
+
+                                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit text-success font-18"></i></a>
+
+                                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="las fa-trash text-danger font-18"></i></a>
+
+                                        @*<div class="dropdown d-inline-block">
+                                    <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="las la-ellipsis-v font-20 text-muted"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
+
+
+                                    <a class="btn btn-primary-outline" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="fas fa-edit text-success font-17"></i>
+                                    تعديل
+                                    </a>
+                                    <a class="dropdown-item" href="#">حذف</a>
+
+                                    </div>
+                                    </div>*@
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table><!--end /table-->
+                </div>
+                <!--end col-->
+            </div>
+
+        </div>
+    </div>
+</div>
